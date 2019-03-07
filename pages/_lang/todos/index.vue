@@ -10,7 +10,7 @@
         <input type="text" :placeholder="$t('todo.placeholder')" @keyup.enter="addTodo">
       </li>
     </ul>
-    <nuxt-link :to="$i18n.path('')" exact>{{ $t('links.home') }}</nuxt-link>
+    <nuxt-link :to="{name: 'lang'}" exact>{{ $t('links.home') }}</nuxt-link>
   </div>
 </template>
 

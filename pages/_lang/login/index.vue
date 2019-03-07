@@ -26,7 +26,7 @@
       <button @click="logout">Logout</button>
     </div>
     <p>
-      <nuxt-link to="/secret">Super secret page</nuxt-link>
+      <nuxt-link :to="{name: 'lang-secret'}">Super secret page</nuxt-link>
     </p>
   </div>
 </template>
