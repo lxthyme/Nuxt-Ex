@@ -97,7 +97,7 @@ module.exports = {
     debug: process.env._ENV === 'production' ? false : true,
     // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest.vaffle.com'
     // baseURL: 'https://apitest.vaffle.com',
-    browserBaseURL: 'https://apitest.vaffle.com',
+    browserBaseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest.vaffle.com',
     // prefix: '/233',
     // withCredentials: true,
     proxy: true

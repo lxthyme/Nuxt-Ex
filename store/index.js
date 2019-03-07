@@ -1,5 +1,24 @@
 import axios from 'axios'
 
+// const logger = createRenderer({
+//   collapsed: true,
+//   filter (mutaion, stateBefore, stateAfter) {
+//     return true
+//   },
+//   transformer (state) {
+//     return state
+//   },
+//   mutationTransformer (mutaion) {
+//     return mutaion
+//   },
+//   logger: console
+// })
+// const store = () => new Vuex.Store({
+//   plugins: process.env.NODE_ENV !== 'production' ? [
+//     logger
+//   ] : [],
+// ...
+
 export const state = () => ({
   counter: 0,
   locales: ['en', 'zh'],
@@ -26,16 +45,12 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit({ commit }, { req }) {
-    console.log('nuxtServerInit: ', req, '\t\tcommit: ', commit)
-  },
+  nuxtServerInit({ commit }, { req }) {},
   async login({ commit }, { uname, upwd }) {
     try {
       const { data } = await axios.post('/api/login', { uname, upwd })
-      console.log('Login success: ', data)
       commit('setUser', data)
     } catch (error) {
-      console.log('Error: ', error)
       if (error.response && error.response.statusCode === 401) {
         throw new Error('Bad Credentials!')
       }

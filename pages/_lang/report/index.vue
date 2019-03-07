@@ -1,9 +1,10 @@
 <template>
   <div v-cloak class="swiper-container m-report">
+    <h2 style="background-color: white;">reportCounter: {{ reportCounter || -1 }}</h2>
     <!-- <button
       @click="$store.commit('loadData')"
       style="display: block;width: 100%;"
-    >{{ $store.state.counter }}</button> -->
+    >{{ $store.state.counter }}</button>-->
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div class="m-header">
@@ -251,6 +252,8 @@ import Swiper from 'swiper'
 import Util from '~/plugins/util'
 // import { mapActions, mapGetters, mapMutations } from 'vuex'
 // import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
+// import { mapMutations } from 'vuex'
 import { mapState } from 'vuex'
 // import $ from '/assets/js/lib/jquery.min.js'
 
@@ -258,73 +261,29 @@ export default {
   name: 'Report',
   head: {
     meta: [],
-    link: [
-      // { rel: 'stylesheet', href: '~assets/css/lib/swiper.min.css' },
-      // { rel: 'stylesheet', href: '~/static/css/lib/swiper.min.css' }
-      // { rel: 'stylesheet', href: '~/assets/css/lib/swiper.min.css' },
-      // { rel: 'stylesheet', href: '/assets/css/lib/swiper.min.css' },
-      // { rel: 'stylesheet', href: 'assets/css/lib/swiper.min.css' }
-    ],
-    css: [
-      // 'static/css/lib/swiper.min.css'
-    ],
-    script: [
-      // {
-      //   src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
-      //   type: 'text/javascript'
-      // }
-    ]
+    link: [],
+    css: [],
+    script: []
   },
   data() {
     return {
       /// 多语言
       i18n: Object,
-      requestCount: 0,
-      data: {
-        level: 123,
-        post_num: 1234,
-        review_num: 12345,
-        likes_num: 123456,
-        challenge_num: 1234567,
-        answer_num: 12345678,
-        shop_num: 123456789,
-        invite_num: 1234567890,
-        exchange_num: 12345678900,
-        f_level: '123',
-        f_post_num: '1,234',
-        f_review_num: '12,345',
-        f_likes_num: '123,456',
-        f_challenge_num: '1,234,567',
-        f_answer_num: '12,345,678',
-        f_shop_num: '123,456,789',
-        f_invite_num: '1,234,567,890',
-        f_exchange_num: '12,345,678,900'
-      }
+      requestCount: 0
     }
   },
-  nuxtServerInit() {
-    console.log('1. nuxtServerInit')
-  },
-  middleware() {
-    console.log('2. middleware', window)
-  },
+  nuxtServerInit() {},
+  middleware() {},
   validate() {
-    console.log('3. validate', window)
     return true
   },
-  // async asyncData(ctx) {
+  // async asyncData({ $api, query }) {
   //   console.log('4. asyncData', window)
-  //   const query = ctx.query
-
-  //   // const data = await ctx.app.$axios.get('/member/timeline/statistics', {
-  //   console.log('4. data', ctx)
-  //   console.log('4. THIS: ', this)
-  //   console.log('ctx.store.actions: ', ctx.store._actions)
-  //   const data = await ctx.store._actions.loadStatistics(query)
+  //   const data = await $api.loadStatistics(query)
   //   return { data2: data.data }
   // },
   // render() {
-  //   console.log('6. render', window)
+  //   console.log('5. render', window)
   //   return {}
   // },
   watch: {
@@ -343,16 +302,21 @@ export default {
     }
   },
   computed: {
-    ...mapState(['statistics'])
+    // ...mapState([statistics, reportCounter])
+    ...mapState({
+      // reportCounter: 'report/reportCounter'
+      reportCounter: state => state.report.reportCounter
+    }),
+    ...mapGetters({
+      data: 'report/statisticsFormat'
+    })
   },
-  fetch(store, params) {
-    console.log('5. fetch store: ', store, '\t\tparams: ', params)
-    // await store.dispatch('getStatistics')
+  // fetch({ store, params, ccc }) {
+  fetch(ctx) {
+    ctx.store.dispatch('report/loadStatistics', ctx.query)
   },
   mounted() {
-    console.log('42. THIS: ', this)
     this.$nextTick(function() {
-      console.log('43. THIS: ', this)
       this.__main()
     })
   },
@@ -361,11 +325,6 @@ export default {
     __main() {
       this.initialSwiper()
       this.getTimelineData()
-
-      // const query = this.$route.query
-      // this.loadStatistics(query)
-      // this.data = this.formatTimelineData(this.data2)
-      console.log('statistics: ', this.statistics)
     },
     initialSwiper() {
       const swiper = new Swiper('.swiper-container', {

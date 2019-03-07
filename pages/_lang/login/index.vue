@@ -51,7 +51,6 @@ export default {
         this.formPassword = ''
         this.formError = null
       } catch (e) {
-        console.log('Logining...E: ', e)
         this.formError = e.message
       }
     },

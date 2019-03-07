@@ -30,7 +30,6 @@ export default {
   //   console.log('this: ', this, '\t\tto: ', to, '\t\tfrom: ', from)
   // },
   validate({ params, query, store }) {
-    console.log('params233: ', params, '\t\troute: ', this)
     return /^\d+$/.test(params.id)
   },
   data() {

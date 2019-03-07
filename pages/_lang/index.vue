@@ -66,9 +66,6 @@ export default {
   methods: {
     // ...mapActions(['increment'])
     increment() {
-      console.log('--->i18n: ', this.$i18n)
-      console.log('news-id: ', this.$i18n.path('news-id'))
-
       this.$store.commit('increment')
     }
   }

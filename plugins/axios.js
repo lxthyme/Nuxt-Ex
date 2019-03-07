@@ -38,7 +38,6 @@ export default ({ app, $axios }) => {
     }
   })
   $axios.onError(error => {
-    console.log('5. ERROR: ', error)
     const code = parseInt(error.response && error.response.status)
     if (code === 400) {
       app.context.redirect('/400')

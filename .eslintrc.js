@@ -26,6 +26,8 @@ module.exports = {
         options: {
             fix: true
         },
+        "max-len": ["error", {"code": 200, "ignoreUrls": true}],
+        "eslintIntegration": true,
         parserOptions: {
             parser: "babel-eslint"
         }//,
