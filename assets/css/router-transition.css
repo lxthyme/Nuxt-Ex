@@ -1,0 +1,21 @@
+.page-enter-active,
+.page-leave-active {
+    transition: opacity 0.75s;
+}
+
+.page-enter,
+.page-leave-active {
+    opacity: 0;
+}
+
+.test-enter-active,
+.test-leave-active {
+    transition: all 0.75s;
+    font-size: 16px;
+}
+
+.test-enter,
+.test-leave-active {
+    opacity: 0;
+    font-size: 40px;
+}

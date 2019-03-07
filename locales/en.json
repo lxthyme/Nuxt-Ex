@@ -1,0 +1,37 @@
+{
+  "pj": {
+    "name": "HW Nuxt",
+    "introduction": "Hw Nuxt Project"
+  },
+  "links": {
+    "english": "English version",
+    "chinese": "Chienese version",
+    "home": "Home",
+    "about": "About",
+    "news": "News",
+    "ansyc_data": "Ansyc Data",
+    "todos": "Todos",
+    "secret": "Auth",
+    "login": "Login",
+    "report": "Report"
+  },
+  "home": {
+    "title": "Welcome",
+    "introduction": "This is an introduction in English."
+  },
+  "about": {
+    "title": "About Me",
+    "introduction": "This page is made to give you more informations."
+  },
+  "user": {
+    "name": "Full Name",
+    "gender": "Gender",
+    "interest": "Interest"
+  },
+  "todo": {
+    "placeholder": "What needs to be done?"
+  },
+  "news": {
+    "content": "News Content"
+  }
+}

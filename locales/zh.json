@@ -1,0 +1,37 @@
+{
+  "pj": {
+    "name": "HW Nuxt",
+    "introduction": "Hw Nuxt Project"
+  },
+  "links": {
+    "english": "英文",
+    "chinese": "中文",
+    "home": "首页",
+    "about": "关于",
+    "news": "新闻",
+    "ansyc_data": "异步数据",
+    "todos": "Todos",
+    "secret": "权限校验",
+    "login": "登录",
+    "report": "年度报告"
+  },
+  "home": {
+    "title": "欢迎",
+    "introduction": "中文说明."
+  },
+  "about": {
+    "title": "关于我",
+    "introduction": "此次展示更多个人信息."
+  },
+  "user": {
+    "name": "姓名",
+    "gender": "年龄",
+    "interest": "兴趣"
+  },
+  "todo": {
+    "placeholder": "你计划做甚么?"
+  },
+  "news": {
+    "content": "新闻内容"
+  }
+}
