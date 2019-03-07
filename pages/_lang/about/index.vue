@@ -4,7 +4,7 @@
     <p>{{ $t('about.introduction') }}</p>
     <ul>
       <li>
-        <NuxtLink :to="$i18n.path('')" exact>{{ $t('links.home') }}</NuxtLink>
+        <nuxt-link :to="$i18n.path('')" exact>{{ $t('links.home') }}</nuxt-link>
       </li>
     </ul>
     <button @click="$store.commit('increment')">{{ $store.state.counter }}</button>

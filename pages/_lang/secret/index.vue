@@ -2,9 +2,9 @@
   <div>
     <h1>Super secret page</h1>
     <p>If you try to access this URL not connected, you will see the error page telling your that you are not connected.</p>
-    <NuxtLink to="/">
+    <nuxt-link to="/">
       Back to the home page
-    </NuxtLink>
+    </nuxt-link>
   </div>
 </template>
 

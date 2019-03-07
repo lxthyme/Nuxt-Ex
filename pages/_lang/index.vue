@@ -10,12 +10,12 @@
       </h2>
       <ul>
         <li>
-          <NuxtLink v-if="$i18n.locale === 'en'" :to="`/zh` + $route.fullPath" exact>
+          <nuxt-link v-if="$i18n.locale === 'en'" :to="`/zh` + $route.fullPath" exact>
             {{ $t('links.chinese') }}
-          </NuxtLink>
-          <NuxtLink v-else :to="$route.fullPath.replace(/^\/[^\/]+/, '')" exact>
+          </nuxt-link>
+          <nuxt-link v-else :to="$route.fullPath.replace(/^\/[^\/]+/, '')" exact>
             {{ $t('links.english') }}
-          </NuxtLink>
+          </nuxt-link>
         </li>
         <li>
           <nuxt-link :to="{path: $i18n.path('')}" exact>{{ $t('links.home') }}</nuxt-link>
@@ -32,16 +32,16 @@
           <nuxt-link :to="{path: $i18n.path('async_data')}" exact>{{ $t('links.ansyc_data') }}</nuxt-link>
         </li>
         <li>
-          <NuxtLink :to="{path: $i18n.path('todos')}" exact>{{ $t('links.todos') }}</NuxtLink>
+          <nuxt-link :to="{path: $i18n.path('todos')}" exact>{{ $t('links.todos') }}</nuxt-link>
         </li>
         <li>
-          <NuxtLink :to="{path: $i18n.path('secret')}" exact>{{ $t('links.secret') }}</NuxtLink>
+          <nuxt-link :to="{path: $i18n.path('secret')}" exact>{{ $t('links.secret') }}</nuxt-link>
         </li>
         <li>
-          <NuxtLink :to="{path: $i18n.path('login')}" exact>{{ $t('links.login') }}</NuxtLink>
+          <nuxt-link :to="{path: $i18n.path('login')}" exact>{{ $t('links.login') }}</nuxt-link>
         </li>
         <li>
-          <NuxtLink :to="{path: $i18n.path('report')}" exact>{{ $t('links.report') }}</NuxtLink>
+          <nuxt-link :to="{path: $i18n.path('report')}" exact>{{ $t('links.report') }}</nuxt-link>
         </li>
       </ul>
     </div>

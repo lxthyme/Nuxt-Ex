@@ -26,7 +26,7 @@
       <button @click="logout">Logout</button>
     </div>
     <p>
-      <NuxtLink to="/secret">Super secret page</NuxtLink>
+      <nuxt-link to="/secret">Super secret page</nuxt-link>
     </p>
   </div>
 </template>
