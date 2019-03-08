@@ -45,7 +45,9 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit({ commit }, { req }) {},
+  nuxtServerInit({ commit }, { req }) {
+    console.log('>>>: nuxtServerInit')
+  },
   async login({ commit }, { uname, upwd }) {
     try {
       const { data } = await axios.post('/api/login', { uname, upwd })

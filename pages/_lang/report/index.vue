@@ -265,6 +265,7 @@ export default {
     css: [],
     script: []
   },
+  component: [],
   data() {
     return {
       /// 多语言
@@ -274,9 +275,9 @@ export default {
   },
   nuxtServerInit() {},
   middleware() {},
-  validate() {
-    return true
-  },
+  // validate({ query }) {
+  //   return !!query.login
+  // },
   // async asyncData({ $api, query }) {
   //   console.log('4. asyncData', window)
   //   const data = await $api.loadStatistics(query)
@@ -287,18 +288,8 @@ export default {
   //   return {}
   // },
   watch: {
-    requestCount(v) {
-      //   const me = this
-      //   if (parseInt(v) > 0) {
-      //     MJJS.util.loading.show()
-      //   } else {
-      //     setTimeout(() => {
-      //     //   console.log('requestCount: ', me.requestCount)
-      //       if (parseInt(me.requestCount) === 0) {
-      //         MJJS.util.loading.hide()
-      //       }
-      //     }, 200)
-      //   }
+    data(v) {
+      this.$nuxt.$loading.finish()
     }
   },
   computed: {
@@ -317,6 +308,7 @@ export default {
   },
   mounted() {
     this.$nextTick(function() {
+      this.$nuxt.$loading.start()
       this.__main()
     })
   },

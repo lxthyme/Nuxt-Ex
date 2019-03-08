@@ -1,4 +1,4 @@
 module.exports = {
-  domain: 'https://apitest.vaffle.com',
+  domain: 'https://apitest2.vaffle.com',
   endPoint: ''
 }

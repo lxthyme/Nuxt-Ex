@@ -92,21 +92,26 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
     retry: {
-      retries: 3
+      retries: 2
     },
     debug: process.env._ENV === 'production' ? false : true,
-    // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest.vaffle.com'
     // baseURL: 'https://apitest.vaffle.com',
-    browserBaseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest.vaffle.com',
+    browserBaseURL: process.env._ENV === 'production' ? 'https://api.vaffle.com' : 'https://apitest.vaffle.com',
+    // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest3.vaffle.com',
     // prefix: '/233',
     // withCredentials: true,
-    proxy: true
+    timeout: 60000,
+    proxy: process.env._ENV !== 'production',
+    validateStatus: function(status) {
+      console.log('status: ', status)
+      return status >= 200 && status < 300 // default
+    }
   },
   proxy: {
     // 开启代理
-    '/api/': {
-      target: 'http://172.0.0.1:3041',
-      pathRewrite: { '^/api/': '' }
+    '/api': {
+      target: 'http://172.0.0.1:3041'
+      // pathRewrite: { '^/api/': '' }
     }
   },
 

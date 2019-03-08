@@ -1,7 +1,5 @@
-export const state = () => {
-  return {
-    list: []
-  }
+export const state = {
+  list: []
 }
 
 export const getters = {
