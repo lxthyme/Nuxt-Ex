@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="white-space: normal;">
     <h2 v-if="error.statusCode=404">
       404页面不存在
       {{ error }}

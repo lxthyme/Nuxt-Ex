@@ -1,5 +1,5 @@
 <template>
-  <div class="v-navigation">
+  <div class="v-navigation v-shadow">
     <div class="v-navigation-container">
       <img class="v-logo" src="~static/images/logo.jpg" alt>
       <input class="v-search" type="search" name id>
@@ -17,7 +17,6 @@
   width: 100%;
   height: 56px;
   background-color: #fff;
-  box-shadow: 2px 2px 10px #7f818a;
   text-align: center;
 }
 .v-navigation-container {

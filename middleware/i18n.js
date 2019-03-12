@@ -24,7 +24,7 @@ export default ({ isHMR, app, store, route, params, error, redirect }) => {
 
   store.commit('SET_LANG', locale)
   app.i18n.locale = store.state.locale
-
+  route.params.lang = store.state.locale
   if (
     locale === defaultLocale &&
     route.fullPath.indexOf('/' + defaultLocale) === 0

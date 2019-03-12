@@ -2,8 +2,7 @@
   <div style="margin-bottom: 20px;">
     <div v-if="type === 'post'">
       <Banner></Banner>
-      <Post></Post>
-      <Post></Post>
+      <Post v-for="item in $store.getters['post/getPostList']" :item="item" :key="item.key"></Post>
     </div>
     <div v-else-if="type === 'news'">
       <News></News>

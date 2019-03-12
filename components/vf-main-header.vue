@@ -1,5 +1,5 @@
 <template>
-  <div class="v-switch">
+  <div class="v-switch v-shadow">
     <nuxt-link
       :to="{name: 'lang', params: {type: 'following'}}"
       tag="button"
@@ -48,7 +48,6 @@ export default {
   position: relative;
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: 2px 2px 15px #e8e9ed;
 }
 
 .v-switch > button {

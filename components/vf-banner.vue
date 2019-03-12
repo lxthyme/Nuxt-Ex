@@ -1,6 +1,6 @@
 <template>
   <!-- .swiper-container>.swiper-wrapper>.swiper-slide*5 -->
-  <div class="swiper-container" v-if="data && data.length > 0">
+  <div :id="id" class="swiper-container" v-if="data && data.length > 0">
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="(item, idx) in data" v-bind:key="idx">
         <div class="silde-item">
@@ -19,21 +19,25 @@ import Swiper from 'swiper'
 
 export default {
   props: {
+    id: String,
     data: Array
   },
   mounted() {
     this.$nextTick(function() {
-      this.$nuxt.$loading.start()
       this.__main()
     })
   },
   methods: {
     __main() {
+      if (!this.data || this.data.length <= 0) {
+        return
+      }
       this.initialSwiper()
     },
     initialSwiper() {
-      console.log('initialSwiper')
-      const swiper = new Swiper('.swiper-container', {
+      console.log('initialSwiper: ', this.id, '\t\tdata: ', this.data)
+      // const swiper = new Swiper('.swiper-container', {
+      const swiper = new Swiper(this.id, {
         direction: 'horizontal',
         autoplay: true,
         // height: auto,
@@ -50,6 +54,7 @@ export default {
         // spaceBetween: 0,
         // resistanceRatio: 0,
         // setWrapperSize: true,
+        nested: true,
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets'
@@ -83,7 +88,8 @@ export default {
 /* @import '~/assets/css/lib/swiper.css'; */
 
 .swiper-container {
-  width: 660px;
+  max-width: 660px;
+  width: 100%;
   height: 366px;
 }
 .swiper-slide,

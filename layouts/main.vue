@@ -1,16 +1,26 @@
 <template>
-  <div>
-    <Navigation></Navigation>
-    <div class="app-container">
-      <div style="white-space: nowrap;">
-        <div class="panel-left">
-          <MainHeader :type="$route.params.type || 'following'"></MainHeader>
-          <div class="app-content">
-            <nuxt/>
+  <div style="height: 2000px;">
+    <div style="position: relative;">
+      <Navigation></Navigation>
+      <div class="app-container">
+        <div style="white-space: nowrap;">
+          <div class="panel-left">
+            <MainHeader :type="$route.params.type || 'following'"></MainHeader>
+            <div class="app-content">
+              <nuxt></nuxt>
+            </div>
+          </div>
+          <div class="panel-right">
+            <PanelLeft></PanelLeft>
           </div>
         </div>
-        <div class="panel-right"></div>
       </div>
+      <!-- <div id="v-mask" v-if="showMask" @click="maskAction()">
+        <PostAlert :item="$store.state.post.postList[0]"></PostAlert>
+      </div>-->
+    </div>
+    <div id="v-mask" @click="maskAction">
+      <PostAlert :item="$store.state.post.postDetail" :key="$store.state.post.detailKey"></PostAlert>
     </div>
   </div>
 </template>
@@ -18,15 +28,74 @@
 <script>
 import Navigation from '~/components/vf-navigation'
 import MainHeader from '~/components/vf-main-header'
+import PanelLeft from '~/components/vf-panel-left'
+import PostAlert from '~/components/vf-post-alert'
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   components: {
     Navigation,
-    MainHeader
+    MainHeader,
+    PanelLeft,
+    PostAlert
+  },
+  data() {
+    return {
+      scrollTop: 0
+    }
+  },
+  computed: {
+    ...mapState({
+      showMask: state => state.post.showMask
+    })
+  },
+  watch: {
+    showMask(v) {
+      if (v) {
+        // 显示
+        document.getElementById('v-mask').style.display = 'block'
+        this.afterOpen()
+      } else {
+        // 隐藏
+        this.beforeClose()
+        document.getElementById('v-mask').style.display = 'none'
+      }
+    }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      if (this.showMask) {
+        document.getElementById('v-mask').style.display = 'block'
+        this.afterOpen()
+      }
+      this.__main()
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setShowMask: 'post/setShowMask'
+    }),
+    __main() {},
+    maskAction(e) {
+      if (e.target.innerHTML.search('v-wrapper') >= 0) {
+        this.setShowMask(!this.showMask)
+      }
+    },
+    afterOpen: function(bodyCls) {
+      this.scrollTop = document.scrollingElement.scrollTop
+      document.body.classList.add('modal-open')
+      document.body.style.top = -this.scrollTop + 'px'
+    },
+    beforeClose: function(bodyCls) {
+      document.body.classList.remove('modal-open')
+      // scrollTop lost after set position:fixed, restore it back.
+      document.scrollingElement.scrollTop = this.scrollTop
+    }
   }
 }
 </script>
 
-<style scoped>
+<style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -93,7 +162,21 @@ body {
   width: 320px;
   margin-left: 20px;
   height: 1000px;
-  background-color: #fff;
+  /* background-color: #fff; */
   vertical-align: top;
+}
+#v-mask {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 25, 0.3);
+}
+body.modal-open {
+  position: fixed;
+  width: 100%;
 }
 </style>
