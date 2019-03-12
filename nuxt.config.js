@@ -47,8 +47,9 @@ module.exports = {
    */
   css: [
     '~assets/css/normalize.css',
-    'assets/css/common.css',
-    'assets/css/router-transition.css'
+    // '~assets/css/lib/swiper.css',
+    '~assets/css/common.css',
+    '~assets/css/router-transition.css'
   ],
 
   // router: {

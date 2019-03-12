@@ -6,6 +6,7 @@
 
 <script>
 import Following from '~/components/vf-following'
+
 export default {
   layout: 'main',
   components: {
@@ -16,18 +17,16 @@ export default {
       type: 'following'
     }
   },
-  watch: {},
   mounted() {
     this.$nextTick(function() {
-      this.$nuxt.$loading.finish()
+      //   this.$nuxt.$loading.start()
       this.__main()
     })
   },
   methods: {
-    __main() {}
+    __main() {
+      this.$nuxt.$loading.finish()
+    }
   }
 }
 </script>
-
-<style scoped>
-</style>

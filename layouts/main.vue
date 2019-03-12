@@ -2,21 +2,31 @@
   <div>
     <Navigation></Navigation>
     <div class="app-container">
-      <nuxt/>
+      <div style="white-space: nowrap;">
+        <div class="panel-left">
+          <MainHeader :type="$route.params.type || 'following'"></MainHeader>
+          <div class="app-content">
+            <nuxt/>
+          </div>
+        </div>
+        <div class="panel-right"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Navigation from '~/components/vf-navigation'
+import MainHeader from '~/components/vf-main-header'
 export default {
   components: {
-    Navigation
+    Navigation,
+    MainHeader
   }
 }
 </script>
 
-<style>
+<style scoped>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -72,5 +82,18 @@ body {
   margin: 76px auto 0;
   width: 1000px;
   height: 2000px;
+}
+.panel-left {
+  display: inline-block;
+  width: 660px;
+  vertical-align: top;
+}
+.panel-right {
+  display: inline-block;
+  width: 320px;
+  margin-left: 20px;
+  height: 1000px;
+  background-color: #fff;
+  vertical-align: top;
 }
 </style>
