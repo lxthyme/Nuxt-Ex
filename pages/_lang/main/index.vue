@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Following></Following>
+    <Following />
   </div>
 </template>
 

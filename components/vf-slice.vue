@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="show-text" v-html="showText"></span>
+    <span class="show-text" v-html="showText" />
     <label class="expand-more" @click="showMore">{{ tips }}</label>
   </div>
 </template>
@@ -8,8 +8,18 @@
 <script>
 export default {
   props: {
-    text: String,
-    links: Array
+    text: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    links: {
+      type: Array,
+      required: true,
+      default() {
+        return []
+      }
+    }
   },
   data() {
     return {
@@ -27,9 +37,6 @@ export default {
   },
   methods: {
     __main() {
-      if (!this.text || this.text.length <= 0) {
-        return
-      }
       this.showText = this.sliceText = this.text.slice(0, 200) + '...'
       this.formatText = this.__formatText()
       this.isSlice = true

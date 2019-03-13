@@ -42,33 +42,33 @@ module.exports = {
     "vue/html-self-closing": ["error", {
       "html": {
         "void": "never",
-        "normal": "never",
-        "component": "never"
+        "normal": "always",
+        "component": "always"
       },
       "svg": "always",
       "math": "always"
     }],
-    "eslint.validate": [
-      "javascript",
-      "javascriptreact",
-      {
-        "language": "vue",
-        "autoFix": true
-      }
-    ],
+    // "eslint.validate": [
+    //   "javascript",
+    //   "javascriptreact",
+    //   {
+    //     "language": "vue",
+    //     "autoFix": true
+    //   }
+    // ],
     "vue/attributes-order": ["error", {
       "order": [
-        // "DEFINITION",
-        // "LIST_RENDERING",
-        // "CONDITIONALS",
-        // "RENDER_MODIFIERS",
-        // "GLOBAL",
-        // "UNIQUE",
-        // "TWO_WAY_BINDING",
-        // "OTHER_DIRECTIVES",
-        // "OTHER_ATTR",
-        // "EVENTS",
-        // "CONTENT"
+        "DEFINITION",
+        "LIST_RENDERING",
+        "CONDITIONALS",
+        "RENDER_MODIFIERS",
+        "GLOBAL",
+        "UNIQUE",
+        "TWO_WAY_BINDING",
+        "OTHER_DIRECTIVES",
+        "OTHER_ATTR",
+        "EVENTS",
+        "CONTENT"
       ]
     }]
   }

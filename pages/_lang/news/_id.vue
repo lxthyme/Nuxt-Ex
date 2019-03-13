@@ -3,7 +3,9 @@
     <h2>{{ $t('news.content') }}: [{{ $route.params.id }}]</h2>
     <ul>
       <li>
-        <nuxt-link :to="{name: 'lang'}" exact>{{ $t('links.home') }}</nuxt-link>
+        <nuxt-link :to="{name: 'lang'}" exact>
+          {{ $t('links.home') }}
+        </nuxt-link>
       </li>
     </ul>
   </div>

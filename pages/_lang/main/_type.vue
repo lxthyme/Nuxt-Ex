@@ -1,20 +1,17 @@
 <template>
   <div style="margin-bottom: 20px;">
     <div v-if="type === 'post'">
-      <Banner></Banner>
-      <Post v-for="item in $store.getters['post/getPostList']" :item="item" :key="item.key"></Post>
+      <Banner id="banner-top" key="banner-top" :data="$store.getters['post/getBannerList']" />
+      <Post v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" />
     </div>
     <div v-else-if="type === 'news'">
-      <News></News>
-      <News></News>
+      <News v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" />
     </div>
     <div v-else-if="type === 'qa'">
-      <QA></QA>
-      <QA></QA>
+      <QA v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" />
     </div>
     <div v-else>
-      <Following></Following>
-      <Following></Following>
+      <Following v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" />
     </div>
   </div>
 </template>
@@ -44,6 +41,7 @@ export default {
   mounted() {
     this.$nextTick(function() {
       this.$nuxt.$loading.start()
+      window.store = this.$store
       this.__main()
     })
   },

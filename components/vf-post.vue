@@ -1,16 +1,16 @@
 <template>
-  <div style="margin-top: 20px;" v-if="item">
+  <div v-if="item" style="margin-top: 20px;">
     <div class="v-item-post">
-      <Avatar></Avatar>
+      <Avatar />
       <div class="v-content" @click="showPostDetail">
-        <VPText :text="item.text" :links="item.links"></VPText>
+        <VPText :text="item.text" :links="item.links" />
       </div>
-      <Banner :id="item.key" :data="item.images" :key="item.key"></Banner>
+      <Banner :id="item.key" :key="item.key" :data="item.images" />
       <div class="v-content-achievement">
         <p>12.5k likes 15,065 comments</p>
       </div>
     </div>
-    <ToolBox></ToolBox>
+    <ToolBox />
   </div>
 </template>
 
@@ -29,7 +29,10 @@ export default {
     Avatar
   },
   props: {
-    item: Object
+    item: {
+      type: Object,
+      required: true
+    }
   },
   data() {
     return {}

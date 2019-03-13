@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <div>
-      <logo></logo>
+      <logo />
       <h1 class="title">
         {{ $t('pj.name') }}
       </h1>
@@ -18,30 +18,48 @@
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="{name: 'lang'}" exact>{{ $t('links.home') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang'}" exact>
+            {{ $t('links.home') }}
+          </nuxt-link>
         </li>
         <li>
-          <button @click="increment">{{ counter }}</button>
+          <button @click="increment">
+            {{ counter }}
+          </button>
           <!-- <nuxt-link :to="{name: 'about', path: $i18n.path('about')}">{{ $t('links.about') }}</nuxt-link> -->
-          <nuxt-link :to="{name: 'lang-about'}" exact>{{ $t('links.about') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang-about'}" exact>
+            {{ $t('links.about') }}
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="{name: 'lang-news', params: {id: 330}}" exact>{{ $t('links.news') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang-news', params: {id: 330}}" exact>
+            {{ $t('links.news') }}
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="{name: 'lang-async_data'}" exact>{{ $t('links.ansyc_data') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang-async_data'}" exact>
+            {{ $t('links.ansyc_data') }}
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="{name: 'lang-todos'}" exact>{{ $t('links.todos') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang-todos'}" exact>
+            {{ $t('links.todos') }}
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="{name: 'lang-secret'}" exact>{{ $t('links.secret') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang-secret'}" exact>
+            {{ $t('links.secret') }}
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="{name: 'lang-login'}" exact>{{ $t('links.login') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang-login'}" exact>
+            {{ $t('links.login') }}
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="{name: 'lang-report'}" exact>{{ $t('links.report') }}</nuxt-link>
+          <nuxt-link :to="{name: 'lang-report'}" exact>
+            {{ $t('links.report') }}
+          </nuxt-link>
         </li>
       </ul>
     </div>

@@ -1,17 +1,17 @@
 <template>
   <div style="height: 2000px;">
     <div style="position: relative;">
-      <Navigation></Navigation>
+      <Navigation />
       <div class="app-container">
         <div style="white-space: nowrap;">
           <div class="panel-left">
-            <MainHeader :type="$route.params.type || 'following'"></MainHeader>
+            <MainHeader :type="$route.params.type || 'following'" />
             <div class="app-content">
-              <nuxt></nuxt>
+              <nuxt />
             </div>
           </div>
           <div class="panel-right">
-            <PanelLeft></PanelLeft>
+            <PanelLeft />
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
       </div>-->
     </div>
     <div id="v-mask" @click="maskAction">
-      <PostAlert :item="$store.state.post.postDetail" :key="$store.state.post.detailKey"></PostAlert>
+      <PostAlert :key="$store.state.post.detailKey" :item="$store.state.post.postDetail" />
     </div>
   </div>
 </template>

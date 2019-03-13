@@ -1,6 +1,6 @@
 <template>
   <div class="v-toolbox">
-    <div class="v-line"></div>
+    <div class="v-line" />
     <!-- (div.v-toolbox-item>img)*4 -->
     <div class="v-toolbox-item">
       <img src="~/static/images/toolbox/like_red.png" alt>

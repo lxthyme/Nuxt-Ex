@@ -123,9 +123,7 @@ export const getters = {
   },
   getBannerList(state) {
     const p = state.bannerList
-    p.map((i, idx) => {
-      i.key = 'banner-' + idx
-    })
+    // p.key = 'banner-' + p.length + '-key'
     return p
   }
 }

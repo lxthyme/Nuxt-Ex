@@ -1,17 +1,17 @@
 <template>
   <!-- .swiper-container>.swiper-wrapper>.swiper-slide*5 -->
-  <div :id="id" class="swiper-container" v-if="data && data.length > 0">
+  <div v-if="data && data.length > 0" :id="id" class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="(item, idx) in data" v-bind:key="idx">
+      <div v-for="(item, idx) in data" :key="idx" class="swiper-slide">
         <div class="silde-item">
           <img :src="item.logo" alt>
           <!-- <img src="~/static/images/banner-placeholder.png" alt> -->
         </div>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination" />
+    <div class="swiper-button-prev" />
+    <div class="swiper-button-next" />
   </div>
 </template>
 <script>
@@ -19,8 +19,14 @@ import Swiper from 'swiper'
 
 export default {
   props: {
-    id: String,
-    data: Array
+    id: {
+      type: String,
+      required: true
+    },
+    data: {
+      type: Array,
+      required: true
+    }
   },
   mounted() {
     this.$nextTick(function() {

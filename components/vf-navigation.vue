@@ -2,7 +2,7 @@
   <div class="v-navigation v-shadow">
     <div class="v-navigation-container">
       <img class="v-logo" src="~static/images/logo.jpg" alt>
-      <input class="v-search" type="search" name id>
+      <input id class="v-search" type="search" name>
       <img class="v-logo-text" src="~static/images/vaffle-logo.png" alt>
     </div>
   </div>

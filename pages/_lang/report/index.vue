@@ -1,6 +1,8 @@
 <template>
   <div v-cloak class="swiper-container m-report">
-    <h2 style="background-color: white;">reportCounter: {{ reportCounter || -1 }}</h2>
+    <h2 style="background-color: white;">
+      reportCounter: {{ reportCounter || -1 }}
+    </h2>
     <!-- <button
       @click="$store.commit('loadData')"
       style="display: block;width: 100%;"
@@ -15,14 +17,18 @@
               swiper-animate-effect="fadeInDown"
               swiper-animate-duration="0.7s"
               swiper-animate-delay="0s"
-            >Vaffle is officially One Year Old</p>
+            >
+              Vaffle is officially One Year Old
+            </p>
             <!-- <p class="m-title ani animated bounce">Vaffle is officially One Year Old</p> -->
             <p
               class="m-desc ani"
               swiper-animate-effect="fadeIn"
               swiper-animate-duration="1.5s"
               swiper-animate-delay="0.6s"
-            >From February 28, 2018 to February 27, 2019</p>
+            >
+              From February 28, 2018 to February 27, 2019
+            </p>
           </div>
           <div style="margin-top: -42vw;transform:translate3d(0,0,0);overflow:hidden;">
             <div class="m-smoke">
@@ -48,7 +54,9 @@
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="0.1s"
-              >On Vaffle</p>
+              >
+                On Vaffle
+              </p>
             </div>
             <div class="m-text-line">
               <p
@@ -56,13 +64,17 @@
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="0.4s"
-              >Your level is</p>
+              >
+                Your level is
+              </p>
               <p
                 class="content ani"
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="0.7s"
-              >LV{{data.f_level || 0}}</p>
+              >
+                LV{{ data.f_level || 0 }}
+              </p>
             </div>
             <div class="m-text-line">
               <p
@@ -70,13 +82,17 @@
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="1.0s"
-              >You have published posts in total</p>
+              >
+                You have published posts in total
+              </p>
               <p
                 class="content ani"
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="1.3s"
-              >{{data.f_post_num || 0}}</p>
+              >
+                {{ data.f_post_num || 0 }}
+              </p>
             </div>
             <div class="m-text-line">
               <p
@@ -84,13 +100,17 @@
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="1.6s"
-              >You have published reviews in total</p>
+              >
+                You have published reviews in total
+              </p>
               <p
                 class="content ani"
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="1.9s"
-              >{{data.f_review_num || 0}}</p>
+              >
+                {{ data.f_review_num || 0 }}
+              </p>
             </div>
             <div class="m-text-line">
               <p
@@ -98,13 +118,17 @@
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="2.2s"
-              >You have got likes in tottal</p>
+              >
+                You have got likes in tottal
+              </p>
               <p
                 class="content ani"
                 swiper-animate-effect="fadeInUp"
                 swiper-animate-duration="0.5s"
                 swiper-animate-delay="2.5s"
-              >{{data.f_likes_num || 0}}</p>
+              >
+                {{ data.f_likes_num || 0 }}
+              </p>
             </div>
             <img
               class="m-round animated infinite x-rotateIn-round"
@@ -129,61 +153,81 @@
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="0.1s"
-          >You have joined challenges in total</p>
+          >
+            You have joined challenges in total
+          </p>
           <p
             class="content ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="0.4s"
-          >{{data.f_challenge_num || 0}}</p>
+          >
+            {{ data.f_challenge_num || 0 }}
+          </p>
           <p
             class="title item-interval ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="0.7s"
-          >You have answered questions in total</p>
+          >
+            You have answered questions in total
+          </p>
           <p
             class="content ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="1.1s"
-          >{{data.f_answer_num || 0}}</p>
+          >
+            {{ data.f_answer_num || 0 }}
+          </p>
           <p
             class="title item-interval ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="1.4s"
-          >You have submitted vape stores in total</p>
+          >
+            You have submitted vape stores in total
+          </p>
           <p
             class="content ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="1.7s"
-          >{{data.f_shop_num || 0}}</p>
+          >
+            {{ data.f_shop_num || 0 }}
+          </p>
           <p
             class="title item-interval ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="2.0s"
-          >You have invited new users in total</p>
+          >
+            You have invited new users in total
+          </p>
           <p
             class="content ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="2.3s"
-          >{{data.f_invite_num || 0}}</p>
+          >
+            {{ data.f_invite_num || 0 }}
+          </p>
           <p
             class="title item-interval ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="2.6s"
-          >You have redeemed gifts in total</p>
+          >
+            You have redeemed gifts in total
+          </p>
           <p
             class="content ani"
             swiper-animate-effect="fadeInUp"
             swiper-animate-duration="0.5s"
             swiper-animate-delay="2.9s"
-          >{{data.f_exchange_num || 0}}</p>
+          >
+            {{ data.f_exchange_num || 0 }}
+          </p>
           <img class="m-flag-2" src="~/static/images/year/part_2/1.png" width="100%" alt srcset>
           <img
             class="m-water-2 animated infinite y-lightSpeedOut"
@@ -241,7 +285,7 @@
           <img src="~/static/images/year/bottom.png" width="100%" alt srcset>
         </div>
       </div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-next" />
     </div>
   </div>
 </template>
@@ -252,9 +296,8 @@ import Swiper from 'swiper'
 import Util from '~/plugins/util'
 // import { mapActions, mapGetters, mapMutations } from 'vuex'
 // import { mapActions } from 'vuex'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 // import { mapMutations } from 'vuex'
-import { mapState } from 'vuex'
 // import $ from '/assets/js/lib/jquery.min.js'
 
 export default {
@@ -287,11 +330,6 @@ export default {
   //   console.log('5. render', window)
   //   return {}
   // },
-  watch: {
-    data(v) {
-      this.$nuxt.$loading.finish()
-    }
-  },
   computed: {
     // ...mapState([statistics, reportCounter])
     ...mapState({
@@ -301,6 +339,11 @@ export default {
     ...mapGetters({
       data: 'report/statisticsFormat'
     })
+  },
+  watch: {
+    data(v) {
+      this.$nuxt.$loading.finish()
+    }
   },
   // fetch({ store, params, ccc }) {
   fetch(ctx) {

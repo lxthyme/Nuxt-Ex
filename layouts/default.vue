@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Navigation></Navigation>
+    <Navigation />
     <div class="app-container">
-      <nuxt></nuxt>
+      <nuxt />
     </div>
   </div>
 </template>

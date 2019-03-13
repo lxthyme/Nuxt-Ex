@@ -1,7 +1,7 @@
 <template>
   <div class="v-container">
     <div class="v-wrapper">
-      <Post :key="item.key" :item="item"></Post>
+      <Post :key="item.key" :item="item" />
     </div>
   </div>
 </template>
@@ -14,7 +14,10 @@ export default {
     Post
   },
   props: {
-    item: Object
+    item: {
+      type: Object,
+      required: true
+    }
   },
   mounted() {
     this.$nextTick(function() {

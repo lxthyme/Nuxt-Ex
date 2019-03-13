@@ -15,32 +15,32 @@
     </div>
     <div class="panel-bottom-content v-shadow">
       <span class="content-header">Suggestion for you</span>
-      <div class="v-line"></div>
+      <div class="v-line" />
       <div class="v-suggestion">
         <div class="suggestion-item">
-          <Avatar></Avatar>
+          <Avatar />
           <button>Follow</button>
-          <div class="v-line"></div>
+          <div class="v-line" />
         </div>
         <div class="suggestion-item">
-          <Avatar></Avatar>
+          <Avatar />
           <button>Follow</button>
-          <div class="v-line"></div>
+          <div class="v-line" />
         </div>
         <div class="suggestion-item">
-          <Avatar></Avatar>
+          <Avatar />
           <button>Follow</button>
-          <div class="v-line"></div>
+          <div class="v-line" />
         </div>
         <div class="suggestion-item">
-          <Avatar></Avatar>
+          <Avatar />
           <button>Follow</button>
-          <div class="v-line"></div>
+          <div class="v-line" />
         </div>
         <div class="suggestion-item">
-          <Avatar></Avatar>
+          <Avatar />
           <button>Follow</button>
-          <div class="v-line"></div>
+          <div class="v-line" />
         </div>
         <div class="see-all">
           <button>See all</button>

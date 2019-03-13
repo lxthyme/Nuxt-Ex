@@ -5,32 +5,36 @@
       tag="button"
       :class="{active: type === 'following'}"
       exact
-    >Following
-      <div class="active-bar" v-if="type === 'following'"></div>
+    >
+      Following
+      <div v-if="type === 'following'" class="active-bar" />
     </nuxt-link>
     <nuxt-link
       :to="{name: 'lang-main-type', params: {type: 'post'}}"
       tag="button"
       :class="{active: type === 'post'}"
       exact
-    >Post
-      <div class="active-bar" v-if="type === 'post'"></div>
+    >
+      Post
+      <div v-if="type === 'post'" class="active-bar" />
     </nuxt-link>
     <nuxt-link
       :to="{name: 'lang-main-type', params: {type: 'news'}}"
       tag="button"
       :class="{active: type === 'news'}"
       exact
-    >News
-      <div class="active-bar" v-if="type === 'news'"></div>
+    >
+      News
+      <div v-if="type === 'news'" class="active-bar" />
     </nuxt-link>
     <nuxt-link
       :to="{name: 'lang-main-type', params: {type: 'qa'}}"
       tag="button"
       :class="{active: type === 'qa'}"
       exact
-    >Q/A
-      <div class="active-bar" v-if="type === 'qa'"></div>
+    >
+      Q/A
+      <div v-if="type === 'qa'" class="active-bar" />
     </nuxt-link>
   </div>
 </template>
@@ -38,7 +42,10 @@
 <script>
 export default {
   props: {
-    type: String
+    type: {
+      type: String,
+      required: true
+    }
   }
 }
 </script>

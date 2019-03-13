@@ -2,8 +2,8 @@
 // import session from 'express-session'
 // import bodyParser from 'body-parser'
 // import session from 'express-session'
-const bodyParser = require('body-parser')
-const session = require('express-session')
+// const bodyParser = require('body-parser')
+// const session = require('express-session')
 const pkg = require('./package')
 
 module.exports = {
@@ -14,7 +14,8 @@ module.exports = {
    */
   head: {
     title: pkg.name,
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8'
       },
       {
@@ -27,11 +28,13 @@ module.exports = {
         content: pkg.description
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      }
+    ]
   },
 
   /*
@@ -61,7 +64,8 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{
+  plugins: [
+    {
       src: '~/plugins/axios',
       ssr: false
     },
@@ -95,9 +99,12 @@ module.exports = {
     retry: {
       retries: 2
     },
-    debug: process.env._ENV === 'production' ? false : true,
+    debug: process.env._ENV !== 'production',
     // baseURL: 'https://apitest.vaffle.com',
-    browserBaseURL: process.env._ENV === 'production' ? 'https://api.vaffle.com' : 'https://apitest.vaffle.com',
+    browserBaseURL:
+      process.env._ENV === 'production'
+        ? 'https://api.vaffle.com'
+        : 'https://apitest.vaffle.com',
     // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest3.vaffle.com',
     // prefix: '/233',
     // withCredentials: true,
@@ -142,9 +149,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: [
-      'util'
-    ],
+    vendor: ['util'],
     /*
      ** You can extend webpack config here
      */
@@ -159,13 +164,15 @@ module.exports = {
         })
       }
     },
-    loaders: [{
-      test: /\.(png|jpe?g|gif|svg)$/,
-      loader: 'url-loader',
-      query: {
-        limit: 10000,
-        name: 'img/[name].[hash].[ext]'
+    loaders: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: 'img/[name].[hash].[ext]'
+        }
       }
-    }]
+    ]
   }
 }

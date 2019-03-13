@@ -9,7 +9,9 @@
     </h2>
     <ul>
       <li>
-        <nuxt-link :to="{name: 'lang'}" exact>{{ $t('links.home') }}</nuxt-link>
+        <nuxt-link :to="{name: 'lang'}" exact>
+          {{ $t('links.home') }}
+        </nuxt-link>
       </li>
     </ul>
   </div>
@@ -17,6 +19,13 @@
 
 <script>
 export default {
-  props: ['error']
+  props: {
+    error: {
+      type: Object,
+      default() {
+        return 'Error'
+      }
+    }
+  }
 }
 </script>

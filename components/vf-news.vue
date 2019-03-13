@@ -34,12 +34,12 @@
           But understanding how important radio astronomy is will only deepen and make more meaningful your love and grasp of this big field of knowledge known as astronomy.
         </p>
       </div>
-      <Banner></Banner>
+      <Banner />
       <div class="v-content-achievement">
         <p>12.5k likes 15,065 comments</p>
       </div>
       <div class="v-toolbox">
-        <div class="v-line"></div>
+        <div class="v-line" />
         <!-- (div.v-toolbox-item>img)*4 -->
         <div class="v-toolbox-item">
           <img src="~/static/images/toolbox/like_red.png" alt>
