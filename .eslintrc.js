@@ -28,7 +28,11 @@ module.exports = {
     },
     "max-len": ["error", {
       "code": 200,
-      "ignoreUrls": true
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      ignoreComments: true,
+      ignoreRegExpLiterals: true,
+      // ignoreTemplateLiterals: false,
     }],
     "eslintIntegration": true,
     parserOptions: {
@@ -39,6 +43,7 @@ module.exports = {
     //   "ignoreWhenEmpty": true,
     //   "ignores": ["pre", "textarea", ...INLINE_ELEMENTS]
     // }]
+    "vue/html-closing-bracket-spacing": false,
     "vue/html-self-closing": ["error", {
       "html": {
         "void": "never",

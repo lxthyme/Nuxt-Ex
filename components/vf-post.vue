@@ -1,5 +1,5 @@
 <template>
-  <div v-if="item" style="margin-top: 20px;">
+  <div v-if="item" style="padding-bottom: 5.333333333vw;">
     <div class="v-item-post">
       <Avatar />
       <div class="v-content" @click="showPostDetail">
@@ -64,12 +64,12 @@ export default {
 
 <style scoped>
 .v-item-post {
-  border-radius: 4px;
+  border-radius: 1.066666667vw;
   background-color: #fff;
 }
 .v-content {
-  padding: 0 16px 14px;
-  font-size: 14px;
+  padding: 0 4.266666667vw 3.733333333vw;
+  font-size: 3.733333333;
   color: #2c2c2c;
   line-height: 1.5;
   white-space: normal;
@@ -90,9 +90,9 @@ export default {
   box-orient: horizontal;
 } */
 .v-content-achievement {
-  font-size: 13px;
+  font-size: 3.466666667vw;
   color: #2c2c2c;
   font-weight: bold;
-  padding: 12px 20px;
+  padding: 3.2vw 5.333333333vw;
 }
 </style>
