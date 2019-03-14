@@ -1,23 +1,14 @@
 <template>
   <div>
-    <div v-if="1 === 0">
       <Post v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item"/>
-    </div>
-    <News />
-    <Review/>
-    <Review/>
   </div>
 </template>
 
 <script>
 import Post from '~/components/vf-post'
-import News from '~/components/vf-news'
-import Review from '~/components/vf-review'
 export default {
   components: {
-    Post,
-    Review,
-    News
+    Post
   }
 }
 </script>

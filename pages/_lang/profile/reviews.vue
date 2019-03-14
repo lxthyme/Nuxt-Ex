@@ -1,49 +1,19 @@
 <template>
   <div>
-    <div class="influence">
-      <div class="icon">
-        <img src="~/static/images/profile/infulence.png" alt>
-        <span>Reviews</span>
-      </div>
-      <div class="influence-content">
-        <div class="item">
-          <span class="value">3</span>
-          <span class="name">Number of posts yesterday</span>
-        </div>
-        <div class="item">
-          <span class="value">8,127</span>
-          <span class="name">Number of posts yesterday</span>
-        </div>
-      </div>
-      <div class="basic-information">
-        <span class="title">Basic information</span>
-        <div class="item">
-          <img class="logo" src="~/static/images/profile/Group 7 Copy 6.png" alt>
-          <span class="value">2JNT Mods/Supremo</span>
-        </div>
-        <div class="item">
-          <img class="logo" src="~/static/images/profile/position.png" alt>
-          <span class="value">Tokyo, Japan</span>
-        </div>
-        <div class="item">
-          <img class="logo" src="~/static/images/profile/birth.png" alt>
-          <span class="value">16 Feb 1992</span>
-        </div>
-        <div class="item">
-          <img class="logo" src="~/static/images/profile/ic_language_change copy.png" alt>
-          <a href="https://www.heavengifts.com" class="value">https://www.heavengifts.com</a>
-        </div>
-      </div>
-      <div class="introduction">
-        <span class="title">Introduction</span>
-        <p>{{ intro }}</p>
-      </div>
-    </div>
+    <News />
+    <Review/>
+    <Review/>
   </div>
 </template>
 
 <script>
+import News from '~/components/vf-news'
+import Review from '~/components/vf-review'
 export default {
+  components: {
+    Review,
+    News
+  },
   data() {
     return {
       intro:

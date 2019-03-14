@@ -2,7 +2,9 @@
   <div class="v-follow-list">
     <div v-for="(_, idx) in list" :key="idx" class="list-item">
       <Avatar/>
-      <button :class="{'unfollow': idx % 2 === 0}">Follow</button>
+      <button :class="{'unfollow': idx % 2 === 0}">
+        Follow
+      </button>
     </div>
   </div>
 </template>
