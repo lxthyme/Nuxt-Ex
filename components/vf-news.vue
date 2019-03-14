@@ -1,45 +1,16 @@
 <template>
-  <div style="margin-top: 20px;">
+  <div class="v-item-post-s">
     <div class="v-item-post">
-      <div class="v-avatar">
-        <div class="v-avatar-logo">
-          <img src alt>
-        </div>
-        <div class="v-profile">
-          <span class="v-username">Pauline Harmon</span>
-          <span class="v-timeline">8 hrs ago</span>
-        </div>
-      </div>
+      <Avatar/>
       <div class="v-content">
-        <p>
-          For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens. And to be sure, that is the exciting
-          area of astronomy that accounts for it’s huge popularity. So to the uninitiated, the idea of “radio astronomy” seems strange. There are two reasons for that. First is that humans are
-          far more visual than audio oriented. And the second is that radio astronomy doesn’t really involve “listening” to the cosmos except to the extent that scientists who use this
-          sophisticated form of “stargazing” do not rely on visual study to conduct their work. To appreciate what is really exciting about radio astronomy, first we have to shift how we
-          view astronomy. That is because to professional astronomers, studying the universe is more about frequencies than it is about visual documentation of phenomenon. This takes us
-          back to Physics 101. Light, obviously, is the physical phenomenon that empowers our ability to use our visual confirmation system, e.g. our eyes to appreciate something, in this
-          case the stars. So when we look up at the heavens, we can see the light emitting from a star or reflecting from a planet or moon. In many cases, if we see a far away star, we are
-          actually seeing it hundreds or thousands of years ago because that is how long it takes for that light to cross the universe and be visible in our sky. That alone is a pretty mind
-          blowing idea. Now light itself is a pretty strange substance. But to our astronomy scientists, light is just another energy that exists in a certain frequency. Now, we tend to think
-          of frequencies when we talk about sound waves. In scientific terms light, energy and sound are just a few forms of the same thing, frequencies of energy that are emulating from a
-          source. Now we get to why radio astronomy is so necessary. The range of frequency that light occupies in the big spectrum of frequencies is really pretty small. To put that more
-          bluntly, we can only “see” a tiny part of the universe that is actually there. Now when you look up in the night sky and it is so overwhelming, when you then that we are seeing
-          just a tiny amount of what is actually going on up there, again, our minds can get pretty overwhelmed. Radio astronomy uses sophisticated sensor equipment to study ALL of the
-          frequencies of energy coming to us from the cosmos. In that way, these scientists can “see” everything that is going on out there and so get a precise idea of how the stars look,
-          behave now and will behave in the future. For some of us who have heard about radio astronomy, we think of it in terms of “listening” for signs of life in the universe.
-          And yes, SETI, or “the Search for Extra Terrestrial Intelligence” is a part of radio astronomy, albeit a tiny part. But of much greater importance is how radio astronomy
-          has empowered serious astronomers (that is those who get paid to do it) to study stars many light years away, to study black holes which we could never see with our
-          telescopes and to gather research and data about the whole of the universe that otherwise would be impossible to know and understand. This is important work that is
-          constantly ongoing in the world of astronomy. It is worth keeping up with and learning more about as we have barely scratched the surface in our brief discussion today.
-          But understanding how important radio astronomy is will only deepen and make more meaningful your love and grasp of this big field of knowledge known as astronomy.
-        </p>
+        <VFText :text="text"/>
       </div>
-      <Banner />
+      <Banner/>
       <div class="v-content-achievement">
         <p>12.5k likes 15,065 comments</p>
       </div>
       <div class="v-toolbox">
-        <div class="v-line" />
+        <div class="v-line"/>
         <!-- (div.v-toolbox-item>img)*4 -->
         <div class="v-toolbox-item">
           <img src="~/static/images/toolbox/like_red.png" alt>
@@ -60,9 +31,19 @@
 
 <script>
 import Banner from '~/components/vf-banner'
+import Avatar from '~/components/vf-avatar'
+import VFText from '~/components/vf-slice'
 export default {
   components: {
-    Banner
+    Banner,
+    Avatar,
+    VFText
+  },
+  data() {
+    return {
+      text:
+        'The state of Utah in the United States is home to lots of beautiful National Parks, & Bryce Canyon National Park ranks as three… the most magnificent & awe inspiring. Bryce Canyon isn’t a canyon. it is the spectacular edge of the Paunsaugunt Plateau, a place where intricately carved towers & archways of stone shimmer in a dazzling array of colour under the bright sun. The rock in Bryce Canyon is composed of layer after layer of sediment deposits, deposited millions of years ago when the area was at the bottom of a lake. Now the Paria River has exposed the layers, allowing a detailed history of the lake to be determined. 15 million years ago the earth in this region began to shift, forming a series of plateaus. The Paunsaugunt is an extensive plateau, with the Paria River gradually eroding away the edge to form Bryce Canyon. The Park itself was established in 1924, & was named after an early settler in the area, Ebenezer Bryce. they emigrated from Scotland, married a local girl then moved southwards in stages, building sawmills as they went. In the mid 1870s they reached the Paria River, where they & his relatives settled for a number of years. It was at this time that Bryce made his immortal comment about Bryce Canyon – they called it “one hell of a place to lose a cow”. The area remained basically undiscovered by European tourists, the first guest houses only being constructed around the time when the park was officially established. Luckily this has led to Bryce Canyon being an area of largely unspoiled beauty, as well as the enormous scientific value of the historic information trapped in its pinnacles & spires. The canyon is by no means a stagnant place – the rim recedes by an average of about a foot every 50 years, & in this ever changing scene it is water that plays the most vital role in the shaping & eventual destruction of the magnificent scenery. Because the rock was laid down in layers, there is a variation in the hardness of the rock formed. When water runoff trickles across the rock, some areas erode rapidly whereas others hold firm. This variation in erosion speed causes the formation of pinnacles, or “hoodoos” of stable rock. In some places the water seeps down through cracks & eats out holes beneath the surface. When the side rock erodes away, an archway is left behind. Eventually the arch collapses, leaving one more pillars to join the rest. The ever changing vista of colours, spires, walls & archways is spectacular at any season, & the park is open all year round. Here you can wander through the Queen’s Garden, or gaze up at Queen Victoria herself surveying the ‘flowers’ in her garden. Some of the most awe inspiring lookouts are situated in this area, including Sunset Point & Inspiration Point – a must for any visitor. In the warmer months there’s lots of trails for the visitor to explore, ranging from easy strolls to hard hikes. Some of the best trails are located in the Bryce Amphitheatre, located near the entry to the park. Summer months can cause temperatures in the base of the canyon to soar, so it is very important to be prepared for the heat, & over lots of water. Walkers can also follow the Fairyland, Riggs Spring & Under-the-Rim trails, which are longer, but permit more opportunities to see the different elements of the park at close quarters. For the energetic, it is possible to cross-country ski in a number of areas in the park, & on some trails it is possible to go snowshoeing instead of hiking. In winter the roads are opened between snowfalls, allowing a different perspective of the park. Snow capped pinnacles stand out sharply against the background of white snow & dark green trees. The air is also cleaner, allowing visitors to see great distances. If you require a slightly different view of the park, it is possible to explore the park in a 1930 limousine. Alternatively, you can rent a horse on an hourly basis to trek some of the better trails. there is lots of interest to explore in the park, apart from the marvellous scenery of the ‘silent city’, as the hoodoos are sometimes called. The park also contains a large variety of plants & wildlife, including meadows & forests. Some bears & mountain lions also enter the park occasionally, but are seldom seen by tourists. Ground squirrels abound near the viewing areas, & their antics are to distract the visitor’s eyes from the scenery. On quiet mornings & evenings it is also possible to see deer, elk & antelope grazing on the meadows. Bryce Canyon is a hidden jewel, thoroughly deserving to be as widely known as its southern neighbour, the Grand Canyon. Include it on your itinerary, & you definitely won’t be disappointed. In fact, you may be completely overwhelmed by the fascinating & awe inspiring beauty of Bryce Canyon, like every other visitor.'
+    }
   },
   mounted() {
     this.$nextTick(function() {
@@ -78,72 +59,45 @@ export default {
 }
 </script>
 
-<style scoped>
-.v-item-post {
-  border-radius: 4px;
-  background-color: #fff;
-}
-
-.v-avatar {
-  padding: 10px 16px;
-}
-.v-avatar-logo,
-.v-avatar-logo > img {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  background-color: #d8d8d8;
-}
-.v-profile {
-  display: inline-block;
-  margin-left: 10px;
-  vertical-align: top;
-}
-.v-username {
-  display: block;
-  color: #2c2c2c;
-  font-size: 14px;
-  font-weight: bold;
-}
-.v-timeline {
-  display: block;
-  color: #818488;
-  font-size: 12px;
-}
-.v-content {
-  padding: 0 16px 14px;
-  font-size: 14px;
-  color: #2c2c2c;
-  line-height: 1.3;
-  white-space: normal;
-}
-.v-content-achievement {
-  font-size: 13px;
-  color: #2c2c2c;
-  font-weight: bold;
-  padding: 12px 20px;
-}
-.v-line {
-  background-color: #e8e9ed;
-  height: 1px;
-  width: 100%;
-  vertical-align: top;
-}
-.v-toolbox {
-  height: 40px;
-  padding: 0 20px;
-  white-space: nowrap;
-  vertical-align: top;
-}
-.v-toolbox-item {
-  display: inline-block;
-  vertical-align: top;
-  width: 25%;
-  height: 100%;
-  text-align: center;
-  line-height: 40px;
-}
-.v-toolbox-item > img {
-  vertical-align: middle;
+<style lang="scss">
+.v-item-post-s {
+  @include fit2(margin-top, 20px);
+  font-size: 0;
+  .v-item-post {
+    @include fit2(border-radius, 4px);
+    background-color: $whiteColor;
+  }
+  .v-content {
+    @include fit2(padding-left padding-right, 16px);
+    @include fit2(padding-bottom, 14px);
+    @include fit(14px);
+    color: $blackColor;
+    line-height: 1.3;
+    white-space: normal;
+  }
+  .v-content-achievement {
+    @include fit(13px);
+    color: $blackColor;
+    font-weight: bold;
+    @include fit2(padding-top padding-bottom, 12px);
+    @include fit2(padding-left padding-right, 20px);
+  }
+  .v-toolbox {
+    height: 40px;
+    padding: 0 20px;
+    white-space: nowrap;
+    vertical-align: top;
+    .v-toolbox-item {
+      display: inline-block;
+      vertical-align: top;
+      width: 25%;
+      height: 100%;
+      text-align: center;
+      line-height: 40px;
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
 }
 </style>

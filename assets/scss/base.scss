@@ -19,10 +19,6 @@ $redColor: #ff2d55;
 // 完成状态
 $greenColor: #4cd964;
 
-%v-mask {
-  box-shadow: 2px 2px 15px #e8e9ed
-}
-
 $screen_base_width: 375px;
 $screen_max_width: 660px;
 $screen_min_width: 320px;
@@ -127,4 +123,20 @@ html {
 }
 * {
   box-sizing: border-box;
+}
+
+%v-mask {
+  box-shadow: 2px 2px 15px #e8e9ed
+}
+
+%v-line {
+  @include fit2(border-bottom-width, 1px);
+  border-bottom-color: $lineColor;
+  border-bottom-style: solid;
+}
+
+%v-blue-line {
+  @include fit2(border-bottom-width, 1px);
+  border-bottom-color: $brightBlueColor;
+  border-bottom-style: solid;
 }

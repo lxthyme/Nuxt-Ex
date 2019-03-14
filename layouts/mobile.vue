@@ -73,4 +73,10 @@ body {
   min-height: 480px;
   @extend %v-mask;
 }
+body,
+#__nuxt,
+#__layout,
+.app-container {
+  min-height: 100%;
+}
 </style>

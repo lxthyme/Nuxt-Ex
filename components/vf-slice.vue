@@ -55,7 +55,7 @@ export default {
       let t = this.text
       const l = this.links
       if (!l || l.length <= 0) {
-        return
+        return t
       }
       l.forEach(s => {
         t = t.replace(s, '<a href="">@' + s + '</a>')

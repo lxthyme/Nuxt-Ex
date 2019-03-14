@@ -173,3 +173,22 @@ body {
 button {
   outline: none;
 }
+
+.v-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: #000;
+}
+.swiper-container {
+  max-width: 660px;
+}
+.v-line {
+  background-color: #e8e9ed;
+  height: 1px;
+  width: 100%;
+  vertical-align: top;
+}
