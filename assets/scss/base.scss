@@ -1,0 +1,123 @@
+// Color properties
+$whiteColor: #fff;
+$blackColor: #2c2c2c;
+$brightBlueColor: #0094fe;
+$grayColor: #818488;
+$darkBlueColor: #2a5cc2;
+$lineColor: #d4d6dd;
+$placeholderColor: #f4f4f4;
+$lightBlueColor: #94d2ff;
+$brownColor: #ff9500;
+$redColor: #ff2d55;
+$greenColor: #4cd964;
+
+%v-mask {
+  box-shadow: 2px 2px 15px #e8e9ed
+}
+
+$screen_base_width: 375px;
+$screen_max_width: 660px;
+$screen_min_width: 320px;
+
+// fit properties
+$min_width: 320px;
+// $max_width: 1200px;
+$max_width: 660px;
+$min_font: 16px;
+$max_font: 24px;
+
+$mod_1: 1.2; // mobile
+$mod_2: 1.5; // desktop
+
+@function pin($px) {
+  @return #{$px * $screen_min_width / $screen_base_width}px;
+}
+
+@function pax($px) {
+  @return #{$px * $screen_max_width / $screen_base_width}px;
+}
+
+@function vw($px) {
+  $cur: $px / 375 * 100vw;
+  @return $cur;
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fit($min-font: $min_font,
+$max-font: $min_font,
+$min-vw: $min_width,
+$max-vw: $max_width) {
+  // $min-font-size: $mod_1 * $mod_1 * $mod_1 * $min-font;
+  $min-font-size: $min-font;
+  $max-font-size: $mod_2 * $mod_2 * $mod_2 * $max-font;
+
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+
+  @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+    & {
+      font-size: $min-font-size;
+
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+@mixin fit2($properties, $min-font: $min_font,
+$max-font: $min_font,
+$min-vw: $min_width,
+$max-vw: $max_width) {
+  // $min-font-size: $mod_1 * $mod_1 * $mod_1 * $min-font;
+  $min-font-size: $min-font;
+  $max-font-size: $mod_2 * $mod_2 * $mod_2 * $max-font;
+
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+
+  @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+    & {
+      @each $property in $properties {
+        // #{$property}: #{$min-font-size}px;
+        #{$property}: 13.14px;
+      }
+
+      @media screen and (min-width: $min-vw) {
+        @each $property in $properties {
+          #{$property}: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+        }
+      }
+
+      @media screen and (min-width: $max-vw) {
+        @each $property in $properties {
+          #{$property}: $max-font-size;
+        }
+      }
+    }
+  }
+}
+
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  text-rendering: optimizeLegibility;
+  @include fit($min_font, $max_font, $min_width, $max_width);
+}
+* {
+  box-sizing: border-box;
+}

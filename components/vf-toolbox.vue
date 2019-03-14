@@ -19,8 +19,8 @@
 
 <style scoped>
 .v-toolbox {
-  height: 40px;
-  padding: 0 20px;
+  height: 10.666666667vw;
+  padding: 0 5.333333333vw;
   white-space: nowrap;
   vertical-align: top;
   background-color: #fff;
@@ -31,9 +31,10 @@
   width: 25%;
   height: 100%;
   text-align: center;
-  line-height: 40px;
+  line-height: 10.666666667vw;
 }
 .v-toolbox-item > img {
   vertical-align: middle;
+  width: 5.333333333vw;
 }
 </style>

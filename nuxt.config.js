@@ -14,8 +14,7 @@ module.exports = {
    */
   head: {
     title: pkg.name,
-    meta: [
-      {
+    meta: [{
         charset: 'utf-8'
       },
       {
@@ -28,13 +27,11 @@ module.exports = {
         content: pkg.description
       }
     ],
-    link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
-      }
-    ]
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    }]
   },
 
   
@@ -55,8 +52,12 @@ module.exports = {
   css: [
     '~assets/css/normalize.css',
     // '~assets/css/lib/swiper.css',
+    '~assets/css/router-transition.css',
     '~assets/css/common.css',
-    '~assets/css/router-transition.css'
+    {
+      src: '~assets/scss/base.scss',
+      lang: 'scss'
+    }
   ],
 
   // router: {
@@ -68,8 +69,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    {
+  plugins: [{
       src: '~/plugins/axios',
       ssr: false
     },
@@ -93,7 +93,8 @@ module.exports = {
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/style-resources'
   ],
   /*
    ** Axios module configuration
@@ -105,16 +106,14 @@ module.exports = {
     },
     debug: process.env._ENV !== 'production',
     // baseURL: 'https://apitest.vaffle.com',
-    browserBaseURL:
-      process.env._ENV === 'production'
-        ? 'https://api.vaffle.com'
-        : 'https://apitest.vaffle.com',
+    browserBaseURL: process.env._ENV === 'production' ?
+      'https://api.vaffle.com' : 'https://apitest.vaffle.com',
     // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest3.vaffle.com',
     // prefix: '/233',
     // withCredentials: true,
     timeout: 60000,
     proxy: process.env._ENV !== 'production',
-    validateStatus: function(status) {
+    validateStatus: function (status) {
       console.log('status: ', status)
       return status >= 200 && status < 300 // default
     }
@@ -128,10 +127,10 @@ module.exports = {
   },
 
   /*
-  ** Add server middleware
-  ** Nuxt.js uses `connect` module as server
-  ** So most of express middleware works with nuxt.js server middleware
-  */
+   ** Add server middleware
+   ** Nuxt.js uses `connect` module as server
+   ** So most of express middleware works with nuxt.js server middleware
+   */
   // serverMiddleware: [
   //   // body-parser middleware
   //   bodyParser.json(),
@@ -166,17 +165,33 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+        // const vueLoader = config.module.rules.find((rule) => rule.loader === 'vue-loader')
+        // vueLoader.options.loaders.sass = 'vue-style-loader!css-loader!sass-loader'
       }
     },
-    loaders: [
-      {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 10000,
-          name: 'img/[name].[hash].[ext]'
+    loaders: [{
+      test: /\.(png|jpe?g|gif|svg)$/,
+      loader: 'url-loader',
+      query: {
+        limit: 10000,
+        name: 'img/[name].[hash].[ext]'
+      }
+    }],
+    styleResources: {
+      scss: '~assets/scss/base.scss'
+    },
+    postcss: {
+      plugins: {
+        'postcss-url': false,
+        'postcss-nested': {},
+        'postcss-responsive-type': {},
+        'postcss-hexrgba': {}
+      },
+      preset: {
+        autoprefixer: {
+          grid: true
         }
       }
-    ]
+    }
   }
 }

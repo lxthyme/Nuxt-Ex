@@ -1,7 +1,7 @@
 <template>
   <div class="v-avatar">
     <div class="v-avatar-logo">
-      <img src alt>
+      <img src="~/static/images/profile/avatar.png" alt>
     </div>
     <div class="v-profile">
       <span class="v-username">Pauline Harmon</span>

@@ -3,13 +3,16 @@ export const state = () => ({
   postDetail: {},
   bannerList: [
     {
-      logo: '/_nuxt/static/images/banner-placeholder.png'
+      logo: '/_nuxt/static/images/placeholder/1.png'
     },
     {
-      logo: '/_nuxt/static/images/banner-placeholder.png'
+      logo: '/_nuxt/static/images/placeholder/2.png'
     },
     {
-      logo: '/_nuxt/static/images/banner-placeholder.png'
+      logo: '/_nuxt/static/images/placeholder/3.png'
+    },
+    {
+      logo: '/_nuxt/static/images/placeholder/4.png'
     }
   ],
   postList: [
@@ -21,7 +24,7 @@ export const state = () => ({
       links: ['astronomy'],
       images: [
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/1.png'
         }
       ]
     },
@@ -33,10 +36,10 @@ export const state = () => ({
       links: ['astronomy', 'something we'],
       images: [
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/1.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/2.png'
         }
       ]
     },
@@ -48,13 +51,13 @@ export const state = () => ({
       links: ['astronomy', 'something we', 'magnificent'],
       images: [
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/1.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/2.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/3.png'
         }
       ]
     },
@@ -66,16 +69,16 @@ export const state = () => ({
       links: ['astronomy', 'something we', 'magnificent', 'radio astronomy'],
       images: [
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/1.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/2.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/3.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/4.png'
         }
       ]
     },
@@ -94,19 +97,19 @@ export const state = () => ({
       ],
       images: [
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/1.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/2.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/3.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/4.png'
         },
         {
-          logo: '/_nuxt/static/images/banner-placeholder.png'
+          logo: '/_nuxt/static/images/placeholder/2.png'
         }
       ]
     }

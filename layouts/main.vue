@@ -143,10 +143,6 @@ html {
   color: #fff;
   background-color: #35495e;
 }
-
-body {
-  background-color: #eff0f2;
-}
 .app-container {
   margin: 76px auto 0;
   width: 1000px;
@@ -165,15 +161,18 @@ body {
   /* background-color: #fff; */
   vertical-align: top;
 }
+.v-mask,
 #v-mask {
-  display: none;
   position: fixed;
-  z-index: 999;
+  z-index: 998;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 25, 0.3);
+}
+#v-mask {
+  display: none;
 }
 body.modal-open {
   position: fixed;

@@ -1,17 +1,14 @@
 <template>
-  <div>
-    <Navigation />
-    <div class="app-container">
-      <nuxt />
-    </div>
+  <div class="app-container">
+    <nuxt />
   </div>
 </template>
 
 <script>
-import Navigation from '~/components/vf-navigation'
+// import Navigation from '~/components/vf-navigation'
 export default {
   components: {
-    Navigation
+    // Navigation
   }
 }
 </script>
