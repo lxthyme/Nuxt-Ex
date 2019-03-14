@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <nuxt />
+    <nuxt/>
   </div>
 </template>
 
@@ -12,8 +12,7 @@ export default {
   }
 }
 </script>
-
-<style>
+<style scoped>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -61,9 +60,17 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+</style>
+
+<style lang="scss">
+body {
+  background-color: $placeholderColor;
+}
 .app-container {
-  margin: 76px auto 0;
-  width: 1000px;
-  height: 2000px;
+  margin: 0 auto;
+  max-width: 660px;
+  min-width: 320px;
+  min-height: 480px;
+  @extend %v-mask;
 }
 </style>

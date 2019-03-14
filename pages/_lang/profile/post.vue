@@ -3,7 +3,7 @@
     <div class="influence">
       <div class="icon">
         <img src="~/static/images/profile/infulence.png" alt>
-        <span>Influence</span>
+        <span>Post</span>
       </div>
       <div class="influence-content">
         <div class="item">

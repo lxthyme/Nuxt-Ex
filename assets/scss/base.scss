@@ -1,14 +1,22 @@
 // Color properties
 $whiteColor: #fff;
+// 黑色字体
 $blackColor: #2c2c2c;
 $brightBlueColor: #0094fe;
+// 灰色字体
 $grayColor: #818488;
+// 深蓝色字体|标记@#
 $darkBlueColor: #2a5cc2;
+// 线颜色
 $lineColor: #d4d6dd;
+// 背景颜色、占位图颜色（头像，图片）
 $placeholderColor: #f4f4f4;
+// 蓝色不可点击状态
 $lightBlueColor: #94d2ff;
 $brownColor: #ff9500;
+// 错误状态
 $redColor: #ff2d55;
+// 完成状态
 $greenColor: #4cd964;
 
 %v-mask {
@@ -52,7 +60,7 @@ $min-vw: $min_width,
 $max-vw: $max_width) {
   // $min-font-size: $mod_1 * $mod_1 * $mod_1 * $min-font;
   $min-font-size: $min-font;
-  $max-font-size: $mod_2 * $mod_2 * $mod_2 * $max-font;
+  $max-font-size: $mod_1 * $mod_1 * $mod_1 * $max-font;
 
   $u1: unit($min-vw);
   $u2: unit($max-vw);
@@ -81,7 +89,7 @@ $min-vw: $min_width,
 $max-vw: $max_width) {
   // $min-font-size: $mod_1 * $mod_1 * $mod_1 * $min-font;
   $min-font-size: $min-font;
-  $max-font-size: $mod_2 * $mod_2 * $mod_2 * $max-font;
+  $max-font-size: $mod_1 * $mod_1 * $mod_1 * $max-font;
 
   $u1: unit($min-vw);
   $u2: unit($max-vw);
@@ -92,8 +100,7 @@ $max-vw: $max_width) {
   @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
     & {
       @each $property in $properties {
-        // #{$property}: #{$min-font-size}px;
-        #{$property}: 13.14px;
+        #{$property}: $min-font-size;
       }
 
       @media screen and (min-width: $min-vw) {

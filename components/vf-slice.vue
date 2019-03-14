@@ -65,3 +65,11 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss">
+.show-text {
+  @include fit(14px);
+  color: $blackColor;
+}
+</style>

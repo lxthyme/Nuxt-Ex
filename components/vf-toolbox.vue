@@ -17,13 +17,13 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
 .v-toolbox {
-  height: 10.666666667vw;
-  padding: 0 5.333333333vw;
+  @include fit2(height, 40px);
+  @include fit2(padding-left padding-right, 20px);
   white-space: nowrap;
   vertical-align: top;
-  background-color: #fff;
+  background-color: $whiteColor;
 }
 .v-toolbox-item {
   display: inline-block;
@@ -31,10 +31,10 @@
   width: 25%;
   height: 100%;
   text-align: center;
-  line-height: 10.666666667vw;
+  @include fit2(line-height, 40px);
 }
 .v-toolbox-item > img {
   vertical-align: middle;
-  width: 5.333333333vw;
+  @include fit2(width, 20px);
 }
 </style>
