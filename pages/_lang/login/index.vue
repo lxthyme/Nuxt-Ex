@@ -59,6 +59,14 @@
         Google
       </button>
     </form>
+    <form v-if="!$store.state.authUser" @submit.prevent="instegrameLoginAction">
+      <p v-if="formError" class="error">
+        {{ formError }}
+      </p>
+      <button type="submit">
+        Instegram
+      </button>
+    </form>
 
 
     <div v-else>
@@ -141,7 +149,7 @@ export default {
         // Retrieve the singleton for the GoogleAuth library and set up the client.
         window.gapi.auth2.init({
           // 客户端ID
-          client_id: '910367309122-35414qpalpuqbr3s93poslhqisqfhe4u.apps.googleusercontent.com',
+          client_id: 'focal-grin-234502',
           cookiepolicy: 'single_host_origin',
           // 可以请求除了默认的'profile' and 'email'之外的数据
           scope: 'profile'
@@ -149,6 +157,9 @@ export default {
       })
     }
     startApp()
+    window.hello.init({
+      instagram: 'ce6d9284ca32486299bd0e70e19ff106'
+    })
   },
   methods: {
     async login() {
@@ -256,16 +267,37 @@ export default {
       })
     },
     googleLoginAction() {
-      const googleUser = {}
-      const basicprofile = googleUser.getBasicProfile()
-      console.log('name: ' + basicprofile.getName())
+      // const googleUser = {}
+      // const basicprofile = googleUser.getBasicProfile().getName()
+      // console.log('name: ' + basicprofile.getName())
       const profile = window.gapi.auth2.currentUser.get().getBasicProfile()
-      console.log('ID: ' + profile.getId())
-      console.log('Full Name: ' + profile.getName())
-      console.log('Given Name: ' + profile.getGivenName())
-      console.log('Family Name: ' + profile.getFamilyName())
-      console.log('Image URL: ' + profile.getImageUrl())
-      console.log('Email: ' + profile.getEmail())
+      console.log('profile: ' + profile)
+      // console.log('ID: ' + profile.getId())
+      // console.log('Full Name: ' + profile.getName())
+      // console.log('Given Name: ' + profile.getGivenName())
+      // console.log('Family Name: ' + profile.getFamilyName())
+      // console.log('Image URL: ' + profile.getImageUrl())
+      // console.log('Email: ' + profile.getEmail())
+    },
+    instegrameLoginAction() {
+      window.hello('instagram').login(
+        {
+          redirect_uri: 'https://www.vaffle.com',
+          scope: 'basic, publish'
+        },
+        function(e) {
+          if (e.error) {
+          } else {
+            const instagramAccessToken = window
+              .hello('instagram')
+              .getAuthResponse().oauth_token
+            const instagramSecret = window.hello('instagram').getAuthResponse()
+              .oauth_token_secret
+            console.log(instagramAccessToken)
+            console.log(instagramSecret)
+          }
+        }
+      )
     }
   }
 }
