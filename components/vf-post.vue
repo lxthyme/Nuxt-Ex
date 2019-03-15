@@ -62,15 +62,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .v-item-post {
-  border-radius: 1.066666667vw;
-  background-color: #fff;
+  @include fit2(border-radius, 4px);
+  background-color: $whiteColor;
 }
 .v-content {
-  padding: 0 4.266666667vw 3.733333333vw;
-  font-size: 3.733333333;
-  color: #2c2c2c;
+  @include fit2(padding-left padding-right, 16px);
+  @include fit2(padding-bottom, 14px);
+  @include fit(14px);
+  color: $blackColor;
   line-height: 1.5;
   white-space: normal;
 }
@@ -90,9 +91,10 @@ export default {
   box-orient: horizontal;
 } */
 .v-content-achievement {
-  font-size: 3.466666667vw;
-  color: #2c2c2c;
+  @include fit(13px);
+  color: $blackColor;
   font-weight: bold;
-  padding: 3.2vw 5.333333333vw;
+  @include fit2(padding-left padding-right, 20px);
+  @include fit2(padding-top padding-bottom, 12px);
 }
 </style>

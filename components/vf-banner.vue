@@ -124,6 +124,9 @@ export default {
 
 <style>
 @import '~/assets/css/lib/swiper.min.css';
+</style>
+
+<style lang="scss">
 /* @import '~/assets/css/lib/swiper.css'; */
 
 .banner-placeholder {
@@ -135,9 +138,8 @@ export default {
   z-index: 999;
 }
 .swiper-container {
-  max-width: 660px;
   width: 100%;
-  height: 366px;
+  @include fit2(height, 366px);
 }
 .swiper-slide,
 .silde-item {
@@ -149,16 +151,15 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
-  /* background-color: #d8d8d8; */
-  background-color: var(--placeholderColor);
+  background-color: $placeholderColor;
 }
 .silde-item h1 {
   position: absolute;
   top: 0;
-  font-size: 14px;
+  @include fit(14px);
 }
 .swiper-pagination-bullet-active {
-  background-color: #fff;
+  background-color: $whiteColor;
 }
 .swiper-pagination-bullet {
   background-color: #e8e9ed;

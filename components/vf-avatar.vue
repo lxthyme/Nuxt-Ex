@@ -10,33 +10,36 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
 .v-avatar {
-  padding: 10px 16px;
-}
-.v-avatar-logo,
-.v-avatar-logo > img {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: #d8d8d8;
-}
-.v-profile {
-  display: inline-block;
-  margin-top: 5px;
-  margin-left: 10px;
-  vertical-align: top;
-}
-.v-username {
-  display: block;
-  color: #2c2c2c;
-  font-size: 14px;
-  font-weight: bold;
-}
-.v-timeline {
-  display: block;
-  color: #818488;
-  font-size: 12px;
+  @include fit2(padding-top padding-bottom, 10px);
+  @include fit2(padding-left padding-right, 16px);
+  .v-avatar-logo {
+    display: inline-block;
+    @include fit2(width height, 40px);
+    @include fit2(border-radius, 20px);
+    background-color: $placeholderColor;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .v-profile {
+    display: inline-block;
+    @include fit2(margin-top, 5px);
+    @include fit2(margin-left, 10px);
+    vertical-align: top;
+    .v-username {
+      display: block;
+      color: $blackColor;
+      @include fit(14px);
+      font-weight: bold;
+    }
+    .v-timeline {
+      display: block;
+      color: $grayColor;
+      @include fit(12px);
+    }
+  }
 }
 </style>
