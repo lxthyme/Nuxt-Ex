@@ -44,7 +44,7 @@ module.exports = {
     //   "ignores": ["pre", "textarea", ...INLINE_ELEMENTS]
     // }]
     "vue/html-closing-bracket-spacing": false,
-    "vue/html-self-closing": ["error", {
+    "vue/html-self-closing": ["warning", {
       "html": {
         "void": "never",
         "normal": "always",

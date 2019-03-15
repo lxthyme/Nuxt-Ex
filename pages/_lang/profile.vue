@@ -5,7 +5,10 @@
         <div style="position: relative;">
           <img class="bg" src="~/static/images/profile/profile.png" alt>
           <div class="edit">
-            <button>Edit Profile</button>
+            <!-- <button>Edit Profile</button> -->
+            <nuxt-link :to="{name: 'lang-profile-edit'}" tag="button">
+              Edit Profile
+            </nuxt-link>
           </div>
           <div class="avatar">
             <img src="~/static/images/profile/avatar.png" alt>

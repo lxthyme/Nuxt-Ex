@@ -1,7 +1,11 @@
 <template>
-  <div v-if="item" class="v-item-post-s">
+  <div v-if="item" class="v-challenge-s">
     <div class="v-item-post">
       <Avatar/>
+      <div class="v-challenge">
+        <img src="~/static/images/post/topic.png" alt>
+        <span>7311 Macejkovic Mountain Suite 743</span>
+      </div>
       <div class="v-content" @click="showPostDetail">
         <VPText :text="item.text" :links="item.links"/>
       </div>
@@ -10,7 +14,7 @@
         <p>12.5k likes 15,065 comments</p>
       </div>
     </div>
-    <ToolBox/>
+    <ToolBox type="challenge" />
   </div>
 </template>
 
@@ -63,11 +67,26 @@ export default {
 </script>
 
 <style lang="scss">
-.v-item-post-s {
+.v-challenge-s {
   @include fit2(padding-bottom, 20px);
   .v-item-post {
     @include fit2(border-radius, 4px);
     background-color: $whiteColor;
+    .v-challenge {
+      font-size: 0;
+      @include fit2(padding-bottom, 8px);
+      @include fit2(padding-left padding-right, 16px);
+      img {
+        @include fit2(width height, 22px);
+        vertical-align: middle;
+      }
+      span {
+        @include fit2(padding-left, 4px);
+        @include fit(14px);
+        color: $brownColor;
+        vertical-align: middle;
+      }
+    }
     .v-content {
       @include fit2(padding-left padding-right, 16px);
       @include fit2(padding-bottom, 14px);
@@ -75,13 +94,13 @@ export default {
       color: $blackColor;
       line-height: 1.5;
       white-space: normal;
-    }
-    .v-content-achievement {
-      @include fit(13px);
-      color: $blackColor;
-      font-weight: bold;
-      @include fit2(padding-left padding-right, 20px);
-      @include fit2(padding-top padding-bottom, 12px);
+      .v-content-achievement {
+        @include fit(13px);
+        color: $blackColor;
+        font-weight: bold;
+        @include fit2(padding-left padding-right, 20px);
+        @include fit2(padding-top padding-bottom, 12px);
+      }
     }
   }
 }

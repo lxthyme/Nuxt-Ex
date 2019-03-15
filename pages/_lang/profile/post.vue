@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Post v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item"/>
+      <Post v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" />
   </div>
 </template>
 

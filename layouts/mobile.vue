@@ -1,17 +1,44 @@
 <template>
-  <div class="app-container">
-    <nuxt/>
+  <div>
+    <div>
+      <MobileNavigation/>
+    </div>
+    <div id="mobile-container">
+      <div class="page">
+        <div class="page-content infinite-scroll-content infinite-scroll-top">
+          <div class="preloader infinite-scroll-preloader"></div>
+          <div class="app-container">
+            <nuxt/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
-// import Navigation from '~/components/vf-navigation'
+import MobileNavigation from '~/components/vf-mobile-navigation.vue'
 export default {
   components: {
-    // Navigation
-  }
+    MobileNavigation
+  },
+  mounted() {}
 }
 </script>
+
+<style lang="css">
+@import 'framework7/css/framework7.css';
+</style>
+
+<style lang="scss">
+#mobile-container {
+  .page {
+    top: auto;
+    // z-index: -1;
+  }
+}
+</style>
+
+
 <style scoped>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

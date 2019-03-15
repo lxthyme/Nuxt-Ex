@@ -13,7 +13,7 @@
       <div class="edit-item">
         <label for="bio">Bio</label>
         <!-- <input id="bio" type="text" name="bio"> -->
-        <textarea id="bio" name="bio" cols="30" rows="2" placeholder="请编辑个人简介" />
+        <textarea id="bio" name="bio" cols="30" rows="2" placeholder="请编辑个人简介"/>
       </div>
       <div class="edit-item">
         <label for="website">Website</label>
@@ -21,7 +21,11 @@
       </div>
       <div class="edit-item">
         <label for="email">Email</label>
-        <input id="email" type="text" name="email">
+        <div style="position: relative;">
+          <input id="email" type="text" name="email" value="hettinger.yoshiko@yahoo.com">
+          <button class="send-email">Send email</button>
+        </div>
+        <p class="mail-introd">Your new email hettinger.yoshiko@yahoo.com has not been verifield, and you can change.</p>
       </div>
       <div class="edit-item">
         <label for="birthday">Birthday</label>
@@ -42,6 +46,7 @@ export default {}
 <style lang="scss">
 .edit-profile {
   @include fit2(padding-bottom, 40px);
+  background-color: $whiteColor;
   .profile-header {
     text-align: center;
     padding: 16px 0;
@@ -80,6 +85,24 @@ export default {}
         border-style: solid;
         border-color: $lineColor;
         outline: none;
+      }
+      .send-email {
+        @include fit(12px);
+        @include fit2(right, 10px);
+        @include fit2(padding-top, 12px);
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: $whiteColor;
+        color: $brightBlueColor;
+        font-weight: bold;
+        width: auto;
+      }
+      .mail-introd {
+        @include fit2(padding-top, 4px);
+        @include fit(11px);
+        color: $grayColor;
       }
     }
   }
