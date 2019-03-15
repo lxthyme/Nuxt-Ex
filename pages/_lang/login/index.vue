@@ -1,73 +1,40 @@
 <template>
   <div class="container">
-    <h1>Please login to see the secret content</h1>
+    <label class="login-title">Log In</label>
+    <div><label class="login-error-tip">同意错误提示文本信息</label></div>
     <form v-if="!$store.state.authUser" @submit.prevent="login">
       <p v-if="formError" class="error">
         {{ formError }}
       </p>
-      <p>
-        <i>To login, use
-          <b>demo</b> as username and
-          <b>demo</b> as password.
-        </i>
-      </p>
-      <p>
-        Username:
-        <input v-model="formUsername" type="text" name="username">
-      </p>
-      <p>
-        Password:
-        <input v-model="formPassword" type="password" name="password">
-      </p>
-      <button type="submit">
-        Login
-      </button>
-      
+      <div class="user-name-container">
+        <input v-model="formUsername" type="text" name="username" placeholder="Email or Nickname">
+      </div>
+      <div class="user-pwd-container">
+        <input v-model="formPassword" type="password" name="password" placeholder="Password">
+      </div>
+      <button class="login-submit" type="submit">Log in</button>
+      <button class="forget-pwd" @click="forgetPasswordAction">Forgot your password</button>
+      <div id="third-button-back" class="login-facebook" @click="facebookLoginAction">
+        <img id="third-icon" src="~/static/images/login/facebook.png" alt="" srcset="">
+        <div id="third-title">Facebook</div>
+      </div>
+      <div id="third-button-back" class="login-twitter" @click="twitterLoginAction">
+        <img id="third-icon" src="~/static/images/login/twitter.png" alt="" srcset="">
+        <span id="third-title">Twitter</span>
+      </div>
+      <div id="third-button-back" class="login-vk" @click="vkLoginAction">
+        <img id="third-icon" src="~/static/images/login/vk.png" alt="" srcset="">
+        <span id="third-title">VK</span>
+      </div>
+      <div id="third-button-back" class="login-ins" @click="instegrameLoginAction">
+        <img id="third-icon" src="~/static/images/login/instagram.png" alt="" srcset="">
+        <span id="third-title">Instagram</span>
+      </div>
+      <div id="third-button-back" class="login-google" @click="googleLoginAction">
+        <img id="third-icon" src="~/static/images/login/google.png" alt="" srcset="">
+        <span id="third-title">Google</span>
+      </div>
     </form>
-
-    <form v-if="!$store.state.authUser" @submit.prevent="facebookLoginAction">
-      <p v-if="formError" class="error">
-        {{ formError }}
-      </p>
-      
-      <button type="submit">
-        Facebook
-      </button>
-      
-    </form>
-    <form v-if="!$store.state.authUser" @submit.prevent="twitterLoginAction">
-      <p v-if="formError" class="error">
-        {{ formError }}
-      </p>
-      <button type="submit">
-        twitter
-      </button>
-    </form>
-    <form v-if="!$store.state.authUser" @submit.prevent="vkLoginAction">
-      <p v-if="formError" class="error">
-        {{ formError }}
-      </p>
-      <button type="submit">
-        VK
-      </button>
-    </form>
-    <form v-if="!$store.state.authUser" @submit.prevent="googleLoginAction">
-      <p v-if="formError" class="error">
-        {{ formError }}
-      </p>
-      <button type="submit">
-        Google
-      </button>
-    </form>
-    <form v-if="!$store.state.authUser" @submit.prevent="instegrameLoginAction">
-      <p v-if="formError" class="error">
-        {{ formError }}
-      </p>
-      <button type="submit">
-        Instegram
-      </button>
-    </form>
-
 
     <div v-else>
       Hello {{ $store.state.authUser.username }}!
@@ -102,7 +69,6 @@ export default {
   mounted() {
     console.log('mounted')
     const vm = this
-
     const installFacebookSdkScript = (d, s, id) => {
       if (d.getElementById(id)) {
         this.facebookSdkReady = true
@@ -298,16 +264,240 @@ export default {
           }
         }
       )
+    },
+    forgetPasswordAction() {
+      alert('忘记密码')
+      this.$rounter.push({ name: 'lang-login-forget_password' })
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+body {
+  background-color: white;
+}
 .container {
-  padding: 100px;
+  @include fit2(padding, 16px);
+  background-color: white;
+  .login-title {
+    @include fit2(margin-top, 45px);
+    @include fit(24px);
+    font-weight: bold;
+    color: #2c2c2c;
+  }
+  .login-error-tip {
+    @include fit(11px);
+    @include fit2(margin-top, 4px);
+    color: #ff2d55;
+  }
+  .user-name-container {
+    @include fit2(margin-top, 0px);
+    @include fit2(height, 38px);
+    @include fit2(border-bottom-width, 1px);
+    width: 100%;
+    border-bottom-color: $lineColor;
+    border-bottom-style: solid;
+    line-height: 100%;
+  }
+  .user-pwd-container {
+    @include fit2(margin-top, 15px);
+    @include fit2(height, 38px);
+    @include fit2(border-bottom-width, 1px);
+    width: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: $lineColor;
+  }
+  input {
+    border: none;
+    @include fit2(height, 35px);
+    @include fit(14px);
+    width: 100%;
+    margin-top: 0px;
+    align-items: center;
+  }
+  .login-submit {
+    @include fit2(margin-top, 19px);
+    @include fit2(height, 44px);
+    @include fit2(border-radius, 4px);
+    @include fit(14);
+    background-color: #0094fe;
+    color: white;
+    border-radius: 4px;
+    width: 100%;
+  }
+  .forget-pwd {
+    @include fit2(margin-top, 10px);
+    @include fit(12px);
+    @include fit2(height, 26px);
+    color: #0094fe;
+    background-color: white;
+    height: 26px;
+    width: 100%;
+  }
+  .login-facebook {
+    background-color: #4672cb;
+  }
+  .login-twitter {
+    background-color: #1ca1f2;
+  }
+  .login-vk {
+    background-color: #4a76a8;
+  }
+  .login-ins {
+    background-color: #0d1117;
+    color: white;
+  }
+  .login-google {
+    background-color: #ffffff;
+    @include fit2(border-width, 1px);
+    border-style: solid;
+    border-color: #dddddd;
+  }
+  #third-button-back {
+    @include fit2(margin-top, 40px);
+    @include fit2(height, 40px);
+    @include fit2(border-radius, 4px);
+    @include fit2(line-height, 40px);
+    @include fit2(padding-top padding-bottom, 5px);
+    @include fit2(padding-left padding-right, 0px);
+    width: 100%;
+    #third-icon {
+      @include fit2(width, 30px);
+      @include fit2(margin-left, 15px);
+      height: auto;
+      padding: 0px;
+      font-size: 0px;
+      vertical-align: middle;
+      float: left;
+    }
+    #third-title {
+      @include fit2(line-height, 30px);
+      width: 80%;
+      vertical-align: middle;
+      padding: 0px;
+      margin-left: 0px;
+      float: left;
+      text-align: center;
+    }
+  }
 }
-.error {
-  color: red;
-}
+// .container {
+//   padding: 16px;
+//   background-color: white;
+// }
+// .login-title {
+//   margin-top: 45px;
+//   font-size: 24px;
+//   font-weight: bold;
+//   color: #2c2c2c;
+// }
+// .login-error-tip {
+//   font-size: 11px;
+//   margin-top: 4px;
+//   color: #ff2d55;
+// }
+// .user-name-container {
+//   margin-top: 0px;
+//   width: 100%;
+//   height: 38px;
+//   border-bottom: 1px solid #e8e9ed;
+//   line-height: 100%;
+// }
+// .user-pwd-container {
+//   margin-top: 15px;
+//   width: 100%;
+//   height: 38px;
+//   border-bottom: 1px solid #e8e9ed;
+// }
+// input {
+//   border: none;
+//   width: 100%;
+//   height: 35px;
+//   font-size: 14px;
+//   color: #2c2c2c;
+//   margin-top: 0px;
+//   align-items: center;
+// }
+// .login-submit {
+//   margin-top: 19px;
+//   background-color: #0094fe;
+//   color: white;
+//   height: 44px;
+//   border-radius: 4px;
+//   width: 100%;
+//   font-size: 14px;
+// }
+// .forget-pwd {
+//   margin-top: 10px;
+//   color: #0094fe;
+//   font-size: 12px;
+//   background-color: white;
+//   height: 26px;
+//   width: 100%;
+// }
+// .login-facebook {
+//   margin-top: 40px;
+//   height: 40px;
+//   width: 100%;
+//   background-color: #4672cb;
+//   border-radius: 4px;
+//   line-height: 40px;
+// }
+// .login-twitter {
+//   margin-top: 40px;
+//   height: 40px;
+//   width: 100%;
+//   background-color: #1ca1f2;
+//   border-radius: 4px;
+//   line-height: 40px;
+// }
+// .login-vk {
+//   margin-top: 40px;
+//   height: 40px;
+//   width: 100%;
+//   background-color: #4a76a8;
+//   border-radius: 4px;
+//   line-height: 40px;
+// }
+// .login-ins {
+//   margin-top: 40px;
+//   height: 40px;
+//   width: 100%;
+//   background-color: #0d1117;
+//   border-radius: 4px;
+//   line-height: 40px;
+//   color: white;
+// }
+// .login-google {
+//   margin-top: 40px;
+//   height: 40px;
+//   width: 100%;
+//   background-color: #ffffff;
+//   border-radius: 4px;
+//   line-height: 40px;
+//   border: solid 1px #dddddd;
+// }
+// #third-icon {
+//   width: 30px;
+//   height: auto;
+//   margin-left: 15px;
+//   padding: 0px;
+//   font-size: 0px;
+//   vertical-align: middle;
+//   float: left;
+// }
+// #third-title {
+//   width: 80%;
+//   vertical-align: middle;
+//   padding: 0px;
+//   line-height: 30px;
+//   margin-left: 0px;
+//   float: left;
+//   text-align: center;
+// }
+// #third-button-back {
+//   padding: 5px 0px 5px 0px;
+//   line-height: 40px;
+// }
 </style>
