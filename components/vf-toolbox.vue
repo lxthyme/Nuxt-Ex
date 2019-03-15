@@ -1,21 +1,67 @@
 <template>
   <div class="v-toolbox">
-    <div class="v-line" />
+    <div class="v-line"/>
     <!-- (div.v-toolbox-item>img)*4 -->
-    <div class="v-toolbox-item">
-      <img src="~/static/images/toolbox/like_red.png" alt>
+    <div v-if="type === 'review' || type === 'news'">
+      <div class="v-toolbox-item w-half">
+        <img src="~/static/images/toolbox/like_red.png" alt>
+      </div>
+      <div class="v-toolbox-item w-half">
+        <img src="~/static/images/toolbox/comment.png" alt>
+      </div>
     </div>
-    <div class="v-toolbox-item">
-      <img src="~/static/images/toolbox/comment.png" alt>
+    <div v-else-if="type === 'challenge' || type === 'repost'">
+      <div class="v-toolbox-item w-third">
+        <img src="~/static/images/toolbox/like_red.png" alt>
+      </div>
+      <div class="v-toolbox-item w-third">
+        <img src="~/static/images/toolbox/comment.png" alt>
+      </div>
+      <div class="v-toolbox-item w-third">
+        <img src="~/static/images/toolbox/collection.png" alt>
+      </div>
     </div>
-    <div class="v-toolbox-item">
-      <img src="~/static/images/toolbox/repost.png" alt>
-    </div>
-    <div class="v-toolbox-item">
-      <img src="~/static/images/toolbox/collection.png" alt>
+    <div v-else>
+      <div class="v-toolbox-item w-quarter">
+        <img src="~/static/images/toolbox/like_red.png" alt>
+      </div>
+      <div class="v-toolbox-item w-quarter">
+        <img src="~/static/images/toolbox/comment.png" alt>
+      </div>
+      <div class="v-toolbox-item w-quarter">
+        <img src="~/static/images/toolbox/repost.png" alt>
+      </div>
+      <div class="v-toolbox-item w-quarter">
+        <img src="~/static/images/toolbox/collection.png" alt>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    // Post: 喜欢 评论 转发 收藏
+    // Challenge/repost: 喜欢 评论 收藏
+    // Review/News: 喜欢 评论
+    type: {
+      type: String,
+      required: false,
+      default: () => {
+        return 'post'
+      }
+    }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.__main()
+    })
+  },
+  methods: {
+    __main() {}
+  }
+}
+</script>
 
 <style lang="scss">
 .v-toolbox {
@@ -24,17 +70,26 @@
   white-space: nowrap;
   vertical-align: top;
   background-color: $whiteColor;
-}
-.v-toolbox-item {
-  display: inline-block;
-  vertical-align: top;
-  width: 25%;
-  height: 100%;
-  text-align: center;
-  @include fit2(line-height, 40px);
-}
-.v-toolbox-item > img {
-  vertical-align: middle;
-  @include fit2(width, 20px);
+  .w-quarter {
+    width: 25%;
+  }
+  .w-half {
+    width: 50%;
+  }
+  .w-third {
+    width: 33.3%;
+  }
+  .v-toolbox-item {
+    display: inline-block;
+    vertical-align: top;
+    // width: 25%;
+    height: 100%;
+    text-align: center;
+    @include fit2(line-height, 40px);
+    img {
+      vertical-align: middle;
+      @include fit2(width, 20px);
+    }
+  }
 }
 </style>

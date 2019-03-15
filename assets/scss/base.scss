@@ -125,8 +125,17 @@ html {
   box-sizing: border-box;
 }
 
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+%v-shadow,
 %v-mask {
-  box-shadow: 2px 2px 15px #e8e9ed
+  box-shadow: 0px 1px 6px #e8e9ed
 }
 
 %v-line {

@@ -1,6 +1,9 @@
 <template>
-  <div v-if="item" class="v-item-post-s">
-    <div class="v-item-post">
+  <div v-if="item" class="v-item-repost-s">
+    <div class="repost-avatar">
+      <Avatar/>
+    </div>
+    <div class="v-item-repost">
       <Avatar/>
       <div class="v-content" @click="showPostDetail">
         <VPText :text="item.text" :links="item.links"/>
@@ -10,23 +13,21 @@
         <p>12.5k likes 15,065 comments</p>
       </div>
     </div>
-    <ToolBox/>
+    <ToolBox type="challenge"/>
   </div>
 </template>
 
 <script>
-import Banner from '~/components/vf-banner'
+import Avatar from '~/components/vf-avatar'
 import VPText from '~/components/vf-slice'
 import ToolBox from '~/components/vf-toolbox'
-import Avatar from '~/components/vf-avatar'
-import { mapMutations } from 'vuex'
-
+import Banner from '~/components/vf-banner'
 export default {
   components: {
-    Banner,
     VPText,
     ToolBox,
-    Avatar
+    Avatar,
+    Banner
   },
   props: {
     item: {
@@ -34,23 +35,7 @@ export default {
       required: true
     }
   },
-  data() {
-    return {}
-  },
-  mounted() {
-    this.$nextTick(function() {
-      this.$nuxt.$loading.start()
-      this.__main()
-    })
-  },
   methods: {
-    ...mapMutations({
-      setShowMask: 'post/setShowMask',
-      setPostDetail: 'post/setPostDetail'
-    }),
-    __main() {
-      this.$nuxt.$loading.finish()
-    },
     showPostDetail(e) {
       document.querySelector('show-text')
       if (e.target.nodeName !== 'LABEL' && e.target.nodeName !== 'A') {
@@ -63,11 +48,14 @@ export default {
 </script>
 
 <style lang="scss">
-.v-item-post-s {
+.v-item-repost-s {
   @include fit2(padding-bottom, 20px);
-  .v-item-post {
-    @include fit2(border-radius, 4px);
+  .repost-avatar {
     background-color: $whiteColor;
+  }
+  .v-item-repost {
+    @include fit2(border-radius, 4px);
+    background-color: $placeholderColor;
     .v-content {
       @include fit2(padding-left padding-right, 16px);
       @include fit2(padding-bottom, 14px);

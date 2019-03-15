@@ -1,18 +1,24 @@
 <template>
   <div>
-    <News />
+    <!-- <Repost v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" /> -->
+    <!-- <Challenge v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" /> -->
+    <!-- <News /> -->
     <Review/>
-    <Review/>
+    <!-- <Review/> -->
   </div>
 </template>
 
 <script>
-import News from '~/components/vf-news'
+// import News from '~/components/vf-news'
+// import Challenge from '~/components/vf-challenge'
 import Review from '~/components/vf-review'
+// import Repost from '~/components/vf-repost'
 export default {
   components: {
-    Review,
-    News
+    Review
+    // News,
+    // Challenge,
+    // Repost
   },
   data() {
     return {

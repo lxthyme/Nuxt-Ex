@@ -1,10 +1,10 @@
 <template>
-  <div class="v-follow-list">
-    <div v-for="(_, idx) in list" :key="idx" class="list-item">
-      <Avatar/>
-      <button :class="{'unfollow': idx % 2 === 0}">
-        Follow
-      </button>
+  <div class="d-followers">
+    <div class="v-follow-list">
+      <div v-for="(_, idx) in list" :key="idx" class="list-item">
+        <Avatar/>
+        <button :class="{'unfollow': idx % 2 === 0}">Follow</button>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +45,7 @@ export default {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        width: auto;
       }
     }
   }

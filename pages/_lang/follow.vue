@@ -7,6 +7,7 @@
           :to="{name: 'lang-follow'}"
           tag="span"
           :class="{active: !$route.path.includes('following')}"
+          replace
         >Followers</nuxt-link>
       </div>
       <div class="item">
@@ -15,6 +16,7 @@
           :to="{name: 'lang-follow-following'}"
           tag="span"
           :class="{active: $route.path.includes('following')}"
+          replace
         >Following</nuxt-link>
       </div>
     </div>
