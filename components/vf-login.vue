@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <nuxt-child />
     <label class="login-title">Log In</label>
     <div><label class="login-error-tip">同意错误提示文本信息</label></div>
     <form v-if="!$store.state.authUser" @submit.prevent="login">
@@ -57,6 +56,7 @@
         Super secret page
       </nuxt-link>
     </p>
+    <nuxt-child />
   </div>
 </template>
 
@@ -329,6 +329,7 @@ body {
     @include fit(14);
     background-color: #0094fe;
     color: white;
+    border-radius: 4px;
     width: 100%;
   }
   .forget-pwd {

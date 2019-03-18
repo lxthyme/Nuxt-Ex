@@ -78,6 +78,9 @@ module.exports = {
     },
     {
       src: '~/plugins/api'
+    },
+    {
+      src: '~/plugins/player'
     }
   ],
 
