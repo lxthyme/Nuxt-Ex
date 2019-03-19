@@ -5,10 +5,18 @@
     </div>
     <div id="mobile-container">
       <div class="page">
-        <div class="page-content infinite-scroll-content infinite-scroll-top">
-          <div class="preloader infinite-scroll-preloader"></div>
-          <div class="app-container">
+        <div class="page-content pull-to-refresh-content infinite-scroll-content" data-ptr-distance="55">
+          <div class="pull-to-refresh-layer">
+            <div class="preloader"></div>
+            <div class="pull-to-refresh-arrow"></div>
+          </div>
+          <div class="list-block app-container">
             <nuxt/>
+          </div>
+          <!-- <div class="preloader infinite-scroll-preloader"></div> -->
+          <div class="ptr-preloader">
+            <div class="preloader"></div>
+            <div class="ptr-arrow"></div>
           </div>
         </div>
       </div>
@@ -17,17 +25,45 @@
 </template>
 <script>
 import MobileNavigation from '~/components/vf-mobile-navigation.vue'
+import Framework7 from 'framework7'
 export default {
   components: {
     MobileNavigation
   },
-  mounted() {}
+  mounted() {
+    this.__main()
+    // this.$nextTick(function() {
+    // })
+  },
+  methods: {
+    __main() {
+      this.initInfiniteScroll()
+    },
+    initInfiniteScroll() {
+      console.log('------>initInfiniteScroll')
+      const app = new Framework7({
+        // App root element
+        root: '#app',
+        // App Name
+        name: 'My App',
+        // App id
+        id: 'com.myapp.test'
+        // ... other parameters
+      })
+      window.app = app
+      if (!app) {
+      }
+    }
+  }
 }
 </script>
 
 <style lang="css">
-@import 'framework7/css/framework7.css';
+/* @import 'framework7/css/framework7.css'; */
+@import 'framework7/css/framework7.bundle.css';
 </style>
+<!--
+-->
 
 <style lang="scss">
 #mobile-container {

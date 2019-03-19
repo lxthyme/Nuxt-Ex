@@ -1,7 +1,9 @@
-export const state = {
-  followList: {
-    follower: [0, 1, 2, 3, 4, 5],
-    following: [0, 1, 2, 3, 4, 5]
+export const state = () => {
+  return {
+    followList: {
+      follower: [0, 1, 2, 3, 4, 5],
+      following: [0, 1, 2, 3, 4, 5]
+    }
   }
 }
 

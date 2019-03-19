@@ -1,20 +1,20 @@
 <template>
   <div v-if="item" class="v-challenge-s">
     <div class="v-item-post">
-      <Avatar/>
+      <Avatar :data="item.avatar"/>
       <div class="v-challenge">
         <img src="~/static/images/post/topic.png" alt>
-        <span>7311 Macejkovic Mountain Suite 743</span>
+        <span>{{ item.challenge.them }}</span>
       </div>
-      <div class="v-content" @click="showPostDetail">
-        <VPText :text="item.text" :links="item.links"/>
+      <div v-if="item.content.length > 0" class="v-content" @click="showPostDetail">
+        <VPText :text="item.content" :links="item.attention"/>
       </div>
       <Banner :id="item.key" :key="item.key" :data="item.images"/>
-      <div class="v-content-achievement">
+      <!-- <div class="v-content-achievement">
         <p>12.5k likes 15,065 comments</p>
-      </div>
+      </div> -->
     </div>
-    <ToolBox type="challenge" />
+    <ToolBox type="challenge" :is_praise="item.is_praise" :is_collect="item.is_collect" />
   </div>
 </template>
 
@@ -94,13 +94,13 @@ export default {
       color: $blackColor;
       line-height: 1.5;
       white-space: normal;
-      .v-content-achievement {
-        @include fit(13px);
-        color: $blackColor;
-        font-weight: bold;
-        @include fit2(padding-left padding-right, 20px);
-        @include fit2(padding-top padding-bottom, 12px);
-      }
+      // .v-content-achievement {
+      //   @include fit(13px);
+      //   color: $blackColor;
+      //   font-weight: bold;
+      //   @include fit2(padding-left padding-right, 20px);
+      //   @include fit2(padding-top padding-bottom, 12px);
+      // }
     }
   }
 }

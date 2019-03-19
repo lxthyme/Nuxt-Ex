@@ -1,19 +1,24 @@
 <template>
   <div v-if="item" class="v-item-repost-s">
     <div class="repost-avatar">
-      <Avatar/>
+      <Avatar :data="item.origin_avatar"/>
+      <div v-if="item.content.length > 0" class="v-content" @click="showPostDetail">
+        <VPText :text="item.content" :links="item.attention" />
+      </div>
     </div>
     <div class="v-item-repost">
-      <Avatar/>
-      <div class="v-content" @click="showPostDetail">
-        <VPText :text="item.text" :links="item.links"/>
+      <Avatar :data="item.avatar"/>
+      <div v-if="item.origin_content.length > 0" class="v-content" @click="showPostDetail">
+        <VPText :text="item.origin_content" :links="item.origin_attention" />
       </div>
-      <Banner :id="item.key" :key="item.key" :data="item.images"/>
-      <div class="v-content-achievement">
-        <p>12.5k likes 15,065 comments</p>
+      <div class="v-repost-banner">
+        <Banner :id="item.key" :key="item.key" :data="item.images"/>
       </div>
     </div>
-    <ToolBox type="challenge"/>
+    <div class="v-content-achievement">
+      <p>{{ item.praise_num}} likes {{ item.comments_num }} comments</p>
+    </div>
+    <ToolBox type="challenge" :is_praise="item.origin_is_praise" :is_collect="item.origin_is_collect" />
   </div>
 </template>
 
@@ -52,6 +57,14 @@ export default {
   @include fit2(padding-bottom, 20px);
   .repost-avatar {
     background-color: $whiteColor;
+    .v-content {
+      @include fit2(padding-left padding-right, 16px);
+      @include fit2(padding-bottom, 14px);
+      @include fit(14px);
+      color: $blackColor;
+      line-height: 1.5;
+      white-space: normal;
+    }
   }
   .v-item-repost {
     @include fit2(border-radius, 4px);
@@ -64,13 +77,17 @@ export default {
       line-height: 1.5;
       white-space: normal;
     }
-    .v-content-achievement {
-      @include fit(13px);
-      color: $blackColor;
-      font-weight: bold;
-      @include fit2(padding-left padding-right, 20px);
-      @include fit2(padding-top padding-bottom, 12px);
+    .v-repost-banner {
+      @include fit2(padding-left padding-right, 16px);
     }
+  }
+  .v-content-achievement {
+    @include fit(13px);
+    background-color: $whiteColor;
+    color: $blackColor;
+    font-weight: bold;
+    @include fit2(padding-left padding-right, 20px);
+    @include fit2(padding-top padding-bottom, 12px);
   }
 }
 </style>

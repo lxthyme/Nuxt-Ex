@@ -1,7 +1,7 @@
 <template>
   <div>
     <span class="show-text" v-html="showText" />
-    <label class="expand-more" @click="showMore">{{ tips }}</label>
+    <label v-if="canShowSlice" class="expand-more" @click="showMore">{{ tips }}</label>
   </div>
 </template>
 
@@ -24,10 +24,11 @@ export default {
   data() {
     return {
       showText: '',
-      formatText: '',
+      fullFormatText: '',
       sliceText: '',
       isSlice: false,
-      tips: '更多'
+      tips: '更多',
+      canShowSlice: false
     }
   },
   mounted() {
@@ -37,13 +38,20 @@ export default {
   },
   methods: {
     __main() {
-      this.showText = this.sliceText = this.text.slice(0, 200) + '...'
-      this.formatText = this.__formatText()
+      if (this.text.length <= 200) {
+        this.showText = this.__formatText(this.text)
+        this.canShowSlice = false
+        return
+      }
+      this.canShowSlice = true
+      const sliceText = this.text.slice(0, 200) + '...'
+      this.showText = this.sliceText = this.__formatText(sliceText)
+      this.fullFormatText = this.__formatText(this.text)
       this.isSlice = true
     },
     showMore(e) {
       if (this.isSlice) {
-        this.showText = this.formatText
+        this.showText = this.fullFormatText
         this.tips = '收起'
       } else {
         this.showText = this.sliceText
@@ -51,15 +59,22 @@ export default {
       }
       this.isSlice = !this.isSlice
     },
-    __formatText() {
-      let t = this.text
+    __formatText(t) {
       const l = this.links
+
+      // #
+      t = t.replace(/#([\S]+)/g, '<a href="">#$1</a>')
+
+      // @
       if (!l || l.length <= 0) {
         return t
       }
+      t = t.replace('@', '')
       l.forEach(s => {
-        t = t.replace(s, '<a href="">@' + s + '</a>')
+        const n = s.member_name.nickname
+        t = t.replace(n, '<a href="">@' + n + '</a>')
       })
+
       return t
     }
   }
@@ -71,5 +86,6 @@ export default {
 .show-text {
   @include fit(14px);
   color: $blackColor;
+  word-break: break-word;
 }
 </style>

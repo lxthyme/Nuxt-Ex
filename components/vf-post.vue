@@ -1,16 +1,17 @@
 <template>
-  <div v-if="item" class="v-item-post-s">
+  <div v-if="item && item.category === 'posts'" class="v-item-post-s">
     <div class="v-item-post">
-      <Avatar/>
-      <div class="v-content" @click="showPostDetail">
-        <VPText :text="item.text" :links="item.links"/>
+      <Avatar :data="item.avatar"/>
+      <div v-if="item.content.length > 0" class="v-content" @click="showPostDetail">
+        <!-- TODO: links -->
+        <VPText :text="item.content" :links="item.attention"/>
       </div>
       <Banner :id="item.key" :key="item.key" :data="item.images"/>
       <div class="v-content-achievement">
-        <p>12.5k likes 15,065 comments</p>
+        <p>{{ item.praise_num}} likes {{ item.comments_num }} comments</p>
       </div>
     </div>
-    <ToolBox/>
+    <ToolBox :is_praise="item.is_praise" :is_collect="item.is_collect" />
   </div>
 </template>
 

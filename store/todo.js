@@ -1,5 +1,7 @@
-export const state = {
-  list: []
+export const state = () => {
+  return {
+    list: []
+  }
 }
 
 export const getters = {
@@ -10,10 +12,7 @@ export const getters = {
 
 export const mutations = {
   add(state, { text }) {
-    state.list.push({
-      text,
-      done: false
-    })
+    state.list.push({ text, done: false })
   },
 
   toggle(state, todo) {

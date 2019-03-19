@@ -104,23 +104,39 @@ module.exports = {
     // baseURL: 'https://apitest.vaffle.com',
     browserBaseURL: process.env._ENV === 'production' ?
       'https://api.vaffle.com' : 'https://apitest.vaffle.com',
+    // browserBaseURL: process.env._ENV === 'production' ?
+    //   'https://api.vaffle.com' : 'http://172.100.13.23:3039',
     // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest3.vaffle.com',
     // prefix: '/233',
     // withCredentials: true,
     timeout: 60000,
+    proxyHeaders: false,
+    credentials: false,
     proxy: process.env._ENV !== 'production',
     validateStatus: function (status) {
       console.log('status: ', status)
       return status >= 200 && status < 300 // default
     }
   },
-  proxy: {
-    // 开启代理
-    '/api': {
-      target: 'http://172.0.0.1:3041'
-      // pathRewrite: { '^/api/': '' }
-    }
-  },
+  // proxy: {
+  //   // 开启代理
+  //   '/web': {
+  //     target: 'http://127.0.0.1:8888',
+  //     pathRewrite: { '^/web/': '/web/' }
+  //   }
+  // },
+  // proxy: [
+  //   [
+  //     '/web',//拦截目录
+  //     {
+  //       target: 'https://apitest.vaffle.com', // 代理api主机
+  //       pathRewrite: { '^/web/' : '' }
+  //     }
+  //   ]
+  // ],
+  // proxyTable: {
+  //   '/web': { target: 'http://127.0.0.1:8888', ws: false }
+  // },
 
   /*
    ** Add server middleware

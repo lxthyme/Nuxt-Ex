@@ -92,7 +92,8 @@ export default ({ app, $axios }) => {
   $axios.onRequest(config => {
     config.headers = {
       ...config.headers,
-      ...config.params
+      ...config.params,
+      version: '3.6.1'
     }
     // config.withCredentials = true
     return config

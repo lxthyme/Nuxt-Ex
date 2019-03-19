@@ -1,6 +1,9 @@
 export const state = () => ({
   showMask: false,
   postDetail: {},
+  list: {
+    post: {}
+  },
   bannerList: [
     {
       logo: '/_nuxt/static/images/placeholder/1.png'
@@ -14,113 +17,44 @@ export const state = () => ({
     {
       logo: '/_nuxt/static/images/placeholder/4.png'
     }
-  ],
-  postList: [
-    {
-      text:
-        'For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens. And to be sure, ' +
-        'that is the exciting area of astronomy that accounts for it’s huge popularity. So to the uninitiated, the idea of “radio astronomy” seems strange. There are two reasons' +
-        'for that. First is that humans are far more visual than audio oriented.',
-      links: ['astronomy'],
-      images: [
-        {
-          logo: '/_nuxt/static/images/placeholder/1.png'
-        }
-      ]
-    },
-    {
-      text:
-        'For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens. And to be sure, ' +
-        'that is the exciting area of astronomy that accounts for it’s huge popularity. So to the uninitiated, the idea of “radio astronomy” seems strange. There are two reasons' +
-        'for that. First is that humans are far more visual than audio oriented.',
-      links: ['astronomy', 'something we'],
-      images: [
-        {
-          logo: '/_nuxt/static/images/placeholder/1.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/2.png'
-        }
-      ]
-    },
-    {
-      text:
-        'For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens. And to be sure, ' +
-        'that is the exciting area of astronomy that accounts for it’s huge popularity. So to the uninitiated, the idea of “radio astronomy” seems strange. There are two reasons' +
-        'for that. First is that humans are far more visual than audio oriented.',
-      links: ['astronomy', 'something we', 'magnificent'],
-      images: [
-        {
-          logo: '/_nuxt/static/images/placeholder/1.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/2.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/3.png'
-        }
-      ]
-    },
-    {
-      text:
-        'For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens. And to be sure, ' +
-        'that is the exciting area of astronomy that accounts for it’s huge popularity. So to the uninitiated, the idea of “radio astronomy” seems strange. There are two reasons' +
-        'for that. First is that humans are far more visual than audio oriented.',
-      links: ['astronomy', 'something we', 'magnificent', 'radio astronomy'],
-      images: [
-        {
-          logo: '/_nuxt/static/images/placeholder/1.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/2.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/3.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/4.png'
-        }
-      ]
-    },
-    {
-      text:
-        'For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens. And to be sure, ' +
-        'that is the exciting area of astronomy that accounts for it’s huge popularity. So to the uninitiated, the idea of “radio astronomy” seems strange. There are two reasons' +
-        'for that. First is that humans are far more visual than audio oriented.',
-      links: [
-        'For',
-        'astronomy',
-        'magnificent',
-        'radio astronomy',
-        'accounts for it’s',
-        'First is that humans are far more visual than audio oriented'
-      ],
-      images: [
-        {
-          logo: '/_nuxt/static/images/placeholder/1.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/2.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/3.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/4.png'
-        },
-        {
-          logo: '/_nuxt/static/images/placeholder/2.png'
-        }
-      ]
-    }
   ]
 })
 
 export const getters = {
-  getPostList(state) {
-    const p = state.postList
+  getPostList: (state, getters) => {
+    const p = state.list.post.list
+    if (!p) {
+      return p
+    }
     p.map((i, idx) => {
-      i.key = 'key-' + idx
+      // 1.
+      i.key = 'post-' + idx
+      // 2. avatar
+      const a = i.avatar
+      if (a) {
+        let p = a.path
+        const s = a.thumb_size && a.thumb_size.s
+        if (s) {
+          p = p.replace('__##__', s)
+        }
+        a.path_format = p
+        // 3. avatar info
+        // a.f_from = i.from
+        a.f_displayname = i.member_name.displayname
+        a.f_nickname = i.member_name.nickname
+        a.f_created_at = i.created_at
+        a.f_is_follow = i.is_follow
+        // 4. images
+        const s2 = i.thumb_size && i.thumb_size.s
+        if (s2) {
+          i.images.map(i2 => {
+            i2.path_format = i2.path.replace('__##__', s2)
+          })
+        }
+
+        // 5. @|#
+        // i.avatar = a
+      }
     })
     return p
   },
@@ -137,5 +71,22 @@ export const mutations = {
   },
   setPostDetail: (state, data) => {
     state.postDetail = data
+  },
+  setPostList: (state, data) => {
+    state.list.post = data
+  }
+}
+
+export const actions = {
+  async postsLists({ commit }, params) {
+    try {
+      const result = await this.$api.postsLists(params)
+      const res = result.data
+      console.log('RES: ', res)
+      commit('setPostList', res)
+      return result
+    } catch (error) {
+      commit('postsLists-error: ', null)
+    }
   }
 }

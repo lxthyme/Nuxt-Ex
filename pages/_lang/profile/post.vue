@@ -1,14 +1,49 @@
 <template>
   <div>
-      <Post v-for="item in $store.getters['post/getPostList']" :key="item.key" :item="item" />
+    <div v-for="item in $store.getters['center/getPostList']" :key="item.key">
+      <Post v-if="item.f_category === 'posts'" :key="item.key" :item="item"/>
+      <Challenge v-if="item.f_category === 'challenge'" :key="item.key" :item="item"/>
+      <Repost v-if="item.f_category === 'repost'" :key="item.key" :item="item"/>
+    </div>
   </div>
 </template>
 
 <script>
 import Post from '~/components/vf-post'
+import Repost from '~/components/vf-repost'
+import Challenge from '~/components/vf-challenge'
+
 export default {
   components: {
-    Post
+    Post,
+    Repost,
+    Challenge
+  },
+  async fetch({ query, store }) {
+    const params = {
+      type: query.type || 'all',
+      member_id: 1462,
+      page: query.page || 1
+    }
+    await store.dispatch('center/memberPost', params)
+    console.log('END-post')
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.__main()
+    })
+  },
+  methods: {
+    __main() {
+      this.initInfiniteScroll()
+    },
+    initInfiniteScroll() {
+      console.log('1')
+      const $$ = window.app.$
+      $$('.pull-to-refresh-content').on('refresh', function(e) {
+        console.log('refresh')
+      })
+    }
   }
 }
 </script>

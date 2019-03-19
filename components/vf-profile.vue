@@ -6,37 +6,35 @@
         <span>Influence</span>
       </div>
       <div class="influence-content">
-        <div class="item">
-          <span class="value">3</span>
-          <span class="name">Number of posts yesterday</span>
-        </div>
-        <div class="item">
-          <span class="value">8,127</span>
-          <span class="name">Number of posts yesterday</span>
+        <div v-for="(item, idx) in data.contribution" :key="idx" class="item">
+          <span class="value">{{ item.val }}</span>
+          <span class="name">{{ item.tip }}</span>
         </div>
       </div>
       <div class="basic-information">
         <span class="title">Basic information</span>
         <div class="item">
           <img class="logo" src="~/static/images/profile/Group 7 Copy 6.png" alt>
-          <span class="value">2JNT Mods/Supremo</span>
+          <span class="value">
+            <span v-for="(item2, idx2) in data.device" :key="idx2">{{ item2.brand_name }}/{{ item2.type_name }}; </span>
+          </span>
         </div>
         <div class="item">
           <img class="logo" src="~/static/images/profile/position.png" alt>
-          <span class="value">Tokyo, Japan</span>
+          <span class="value">{{ data.nation_name }}</span>
         </div>
         <div class="item">
           <img class="logo" src="~/static/images/profile/birth.png" alt>
-          <span class="value">16 Feb 1992</span>
+          <span class="value">{{ $moment.format(data.birthday, 'DD MMM YYYY') }}</span>
         </div>
         <div class="item">
           <img class="logo" src="~/static/images/profile/ic_language_change copy.png" alt>
-          <a href="https://www.heavengifts.com" class="value">https://www.heavengifts.com</a>
+          <a :href="data.website" class="value">{{ data.website }}</a>
         </div>
       </div>
       <div class="introduction">
         <span class="title">Introduction</span>
-        <p>{{ intro }}</p>
+        <p>{{ data.profile }}</p>
       </div>
     </div>
   </div>
@@ -44,6 +42,15 @@
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Object,
+      required: false,
+      default: () => {
+        return null
+      }
+    }
+  },
   data() {
     return {
       intro:

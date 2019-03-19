@@ -1,17 +1,13 @@
 <template>
   <!-- .swiper-container>.swiper-wrapper>.swiper-slide*5 -->
   <div>
-    <img src="~/static/images/placeholder/1.png" alt="" style="display: none;">
-    <img src="~/static/images/placeholder/2.png" alt="" style="display: none;">
-    <img src="~/static/images/placeholder/3.png" alt="" style="display: none;">
-    <img src="~/static/images/placeholder/4.png" alt="" style="display: none;">
     <div :id="bphID" style="display: none;" />
     <div :id="containerID">
       <div v-if="data && data.length > 0" :id="id" class="swiper-container">
         <div class="swiper-wrapper">
           <div v-for="(item, idx) in data" :key="idx" class="swiper-slide">
             <div class="silde-item">
-              <img :src="item.logo" alt>
+              <img :src="item.path_format" alt>
               <!-- <img src="~/static/images/banner_placeholder.png" alt> -->
               <!-- <img src="~/static/images/banner-placeholder.png" alt> -->
             </div>
@@ -100,7 +96,7 @@ export default {
         opts = {
           ...opts,
           ...{
-            autoplay: true,
+            // autoplay: true,
             pagination: {
               el: '.' + me.paginationID,
               type: 'bullets'

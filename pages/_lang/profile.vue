@@ -6,24 +6,22 @@
           <img class="bg" src="~/static/images/profile/profile.png" alt>
           <div class="edit">
             <!-- <button>Edit Profile</button> -->
-            <nuxt-link :to="{name: 'lang-profile-edit'}" tag="button">
-              Edit Profile
-            </nuxt-link>
+            <nuxt-link :to="{name: 'lang-profile-edit'}" tag="button">Edit Profile</nuxt-link>
           </div>
           <div class="avatar">
-            <img src="~/static/images/profile/avatar.png" alt>
+            <img :src="data && data.avatar && data.avatar.path_format" alt>
           </div>
         </div>
         <div class="profile-content">
-          <span class="uname">Bilal Ck</span>
+          <span class="uname">{{ data && data.nickname }}</span>
           <span class="uinfo">
             <!-- <span class="ubold">373k</span> Followers -->
             <nuxt-link :to="{name: 'lang-follow'}" tag="span">
-              <span class="ubold">373k</span> Followers
+              <span class="ubold">{{ data && data.followers }}</span> Followers
             </nuxt-link>
             <!-- <span class="ubold">299</span> Following -->
             <nuxt-link :to="{name: 'lang-follow-following'}" tag="span">
-              <span class="ubold">299</span> Following
+              <span class="ubold">{{ data && data.following }}</span> Following
             </nuxt-link>
           </span>
         </div>
@@ -57,12 +55,25 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   layout: 'mobile',
   data() {
     return {
       offsetTop: 0
     }
+  },
+  async fetch({ query, store }) {
+    const params = {
+      member_id: 1462
+    }
+    await store.dispatch('center/memberCenter', params)
+    console.log('END')
+  },
+  computed: {
+    ...mapGetters({
+      data: 'center/formatCenter'
+    })
   },
   mounted() {
     this.$nextTick(function() {
@@ -129,6 +140,7 @@ export default {
         // max-height: pax(80);
         @include fit2(width, 80px);
         @include fit2(height, 80px);
+        @include fit2(border-radius, 40px);
         // bottom: -50%;
         // transform: translateY(-50%);
         // margin-top: vw(-40);
@@ -136,11 +148,12 @@ export default {
         @include fit2(border-width, 3px);
         border-style: solid;
         border-color: $whiteColor;
-        @include fit2(border-radius, 40px);
         bottom: 0;
         transform: translateY(50%);
 
         img {
+          @include fit2(border-radius, 40px);
+          background-color: $placeholderColor;
           width: 100%;
           height: 100%;
         }
