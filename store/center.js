@@ -1,15 +1,38 @@
 export const state = () => {
   return {
-    data: null,
-    post: null,
-    info: null,
-    news: null
+    dcenter: {
+      data: null,
+      params: null,
+      cache: false
+    },
+    dinfo: {
+      data: null,
+      params: null,
+      cache: false
+    },
+    dreviews: {
+      data: null,
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
+    },
+    dpost: {
+      data: null,
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
+    }
   }
 }
-
 export const getters = {
   formatCenter(state) {
-    const d = state.data
+    const d = state.dcenter.data
     if (!d) {
       return d
     }
@@ -25,9 +48,8 @@ export const getters = {
     }
     return d
   },
-  getPostList: (state, getters) => {
-    const p = state.post && state.post.list
-    console.log('P: ', p)
+  getPostList(state) {
+    const p = state.dpost.data && state.dpost.data.list
     if (!p) {
       return p
     }
@@ -61,6 +83,9 @@ export const getters = {
 
           // 5. @|#
           // i.avatar = a
+
+          // 6. icon
+          a.member_name = i.member_name
         }
       }
 
@@ -84,74 +109,213 @@ export const getters = {
 
           // 5. @|#
           // i.avatar = a
-        }
-      }
 
-      // 4. challenge
-      if (i.challenge) {
+          // 6. icon
+          a.member_name = i.origin_member_name
+        }
+      } else if (i.challenge) {
+        // 4. challenge
         i.f_category = 'challenge'
+      } else if (i.video) {
+        // 5. video
+        i.f_category = 'video'
       }
     })
     return p
+  },
+  getReviewsList(state) {
+    const l = state.dreviews.data && state.dreviews.data.list
+    if (!l) {
+      return
+    }
+
+    l.map(item => {
+      const images = item.images
+      const thumbSize = item.thumb_size
+      if (images && thumbSize) {
+        images.map(img => {
+          const path = img.path
+          img.path_format = path.replace('__##__', thumbSize.s)
+        })
+        item.images = images
+      }
+    })
+    return l
   }
 }
 
 export const mutations = {
-  setCenter: (state, data) => {
-    state.data = data
+  resetPageData(state) {
+    console.log('resetPageData')
+    this.commit('center/resetCenter')
+    this.commit('center/resetInfo')
+    this.commit('center/resetPost')
+    this.commit('center/resetReviews')
   },
-  setPostList: (state, data) => {
-    console.log('--set post list')
-    state.post = data
+  // center
+  setCenterData(state, data) {
+    state.dcenter.data = data
   },
-  setInfo: (state, data) => {
-    console.log('--set info')
-    state.info = data
+  setCenterCache(state, cache) {
+    state.dcenter.cache = cache
   },
-  setNews: (state, data) => {
-    state.news = data
+  resetCenter(state) {
+    state.dcenter = {
+      data: null,
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
+    }
+  },
+  // info
+  resetInfo(state) {
+    state.dinfo = {
+      data: null,
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
+    }
+  },
+  setInfoData(state, data) {
+    state.dinfo.data = data
+  },
+  setInfoCache(state, cache) {
+    state.dinfo.cache = cache
+  },
+  // Post
+  resetPost(state) {
+    state.dpost = {
+      data: null,
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
+    }
+  },
+  setPostData(state, data) {
+    state.dpost.data = data
+  },
+  setPostParams(state, params) {
+    state.dpost.params = { ...state.dpost.params, ...params }
+  },
+  setPostCache(state, cache) {
+    state.dpost.cache = cache
+  },
+  // Reviews
+  resetReviews(state) {
+    state.dreviews = {
+      data: null,
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
+    }
+  },
+  setReviewsData(state, data) {
+    state.dreviews.data = data
+  },
+  setReviewsParams(state, params) {
+    state.dreviews.params = { ...state.dreviews.params, ...params }
+  },
+  setReviewsCache(state, cache) {
+    state.dreviews.cache = cache
   }
 }
 
 export const actions = {
-  async memberCenter({ commit }, params) {
+  async memberCenter({ commit, state }, params) {
     try {
       const result = await this.$api.memberCenter(params)
       const res = result.data
-      commit('setCenter', res)
+      commit('setCenterData', res)
       return result
     } catch (error) {
-      commit('setCenter', null)
+      // commit('setCenterData', null)
     }
   },
-  async memberPost({ commit }, params) {
+  async memberPost({ commit, state }, params) {
     try {
-      const result = await this.$api.memberPost(params)
+      const p = { ...params }
+      if (!params.page) {
+        p.page = state.dpost.params.page + 1
+      }
+      if (state.dpost.params.last_id) {
+        p.last_id = state.dpost.params.last_id
+      }
+      const result = await this.$api.memberPost(p)
       const res = result.data
-      commit('setPostList', res)
+      let last = res.list.slice(-1)
+      last = last[0]
+      const _p = {
+        last_id: last.post_id,
+        page: res.page,
+        total_page: res.total_page
+      }
+      commit('setPostParams', _p)
+      if (
+        params.page > 1 &&
+        state.dpost.data &&
+        state.dpost.data.list.length >= 0
+      ) {
+        res.list = state.dpost.data.list.concat(res.list)
+      }
+      commit('setPostData', res)
       return result
     } catch (error) {
-      commit('setPostList', null)
+      commit('setPostData', null)
     }
   },
   async memberInfo({ commit }, params) {
     try {
       const result = await this.$api.memberInfo(params)
       const res = result.data
-      commit('setInfo', res)
+      commit('setInfoData', res)
       return result
     } catch (error) {
-      commit('setInfo', null)
+      // commit('setInfo', null)
     }
   },
-  async memberNewsList({ commit }, params) {
+  async reviewsList({ commit, state }, params) {
     try {
-      const result = await this.$api.memberNewsList(params)
+      const p = { ...params }
+      if (!params.page) {
+        p.page = state.dreviews.params.page + 1
+      }
+      if (state.dreviews.params.last_id) {
+        p.last_id = state.dreviews.params.last_id
+      }
+      const result = await this.$api.newsList(p)
       const res = result.data
-      commit('setNews', res)
+      let last = res.list.slice(-1)
+      last = last[0]
+      const _p = {
+        last_id: last.post_id,
+        page: res.page,
+        total_page: res.total_page
+      }
+      commit('setReviewsParams', _p)
+      if (
+        params.page > 1 &&
+        state.dreviews.data &&
+        state.dreviews.data.list.length >= 0
+      ) {
+        res.list = state.dreviews.data.list.concat(res.list)
+      }
+      commit('setReviewsData', res)
       return result
     } catch (error) {
-      commit('setNews', null)
+      console.log('setReviewsData: ', error)
+      // commit('setReviewsData', null)
     }
   }
 }

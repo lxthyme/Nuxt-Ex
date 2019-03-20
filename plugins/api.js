@@ -23,6 +23,7 @@ export default function(ctx, inject) {
   inject('momentShow', momentShow)
 
   const mom = {
+    moment: moment,
     format(timestamp, format) {
       if (!timestamp || !parseInt(timestamp)) {
         return timestamp

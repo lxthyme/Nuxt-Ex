@@ -12,6 +12,10 @@
 import Post from '~/components/vf-post'
 import Repost from '~/components/vf-repost'
 import Challenge from '~/components/vf-challenge'
+import { mapState } from 'vuex'
+// import MiniRefreshTools from 'minirefresh'
+// import 'minirefresh/dist/themes/default/minirefresh.theme.default.min.js'
+import MeScroll from 'mescroll.js'
 
 export default {
   components: {
@@ -19,30 +23,110 @@ export default {
     Repost,
     Challenge
   },
-  async fetch({ query, store }) {
-    const params = {
-      type: query.type || 'all',
-      member_id: 1462,
-      page: query.page || 1
+  data() {
+    return {
+      mescroll: window.mescroll
     }
-    await store.dispatch('center/memberPost', params)
-    console.log('END-post')
+  },
+  computed: {
+    ...mapState({
+      param: state => state.center.dpost.params
+    })
+  },
+  async fetch({ query, param, store }) {
+    if (store.state.center.dpost.cache) {
+      return
+    }
+    const p = {
+      type: query.type || 'all',
+      member_id: 959,
+      page: query.page || store.state.center.dpost.params.page || 1
+    }
+    await store.dispatch('center/memberPost', p)
   },
   mounted() {
     this.$nextTick(function() {
+      this.$store.commit('center/setPostCache', true)
       this.__main()
     })
   },
+  watch: {
+    'mescroll.optUp.page.num'(v) {
+      if (this._inactive) {
+        return
+      }
+      if (parseInt(v) > 0) {
+        // this.$route.query.page = v
+        this.$router.push({
+          path: this.$route.path,
+          query: { page: v }
+        })
+        this.$store.commit('center/setPostParams', {
+          page: v
+        })
+      }
+    }
+  },
+  activated() {
+    const me = this
+    if (window.mescroll) {
+      me.mescroll = window.mescroll
+      me.mescroll.optUp.callback = me.loadPostData || me.methods.loadPostData
+
+      const page = parseInt(me.$store.state.center.dpost.params.page)
+      if (page > 0) {
+        me.mescroll.setPageNum(page + 1)
+        me.$router.push({
+          path: me.$route.path,
+          query: {
+            ...me.$route.query,
+            page: page
+          }
+        })
+      }
+    }
+  },
+  deactivated() {},
   methods: {
     __main() {
-      this.initInfiniteScroll()
+      // this.initInfiniteScroll()
     },
     initInfiniteScroll() {
-      console.log('1')
-      const $$ = window.app.$
-      $$('.pull-to-refresh-content').on('refresh', function(e) {
-        console.log('refresh')
+      const me = this
+      me.mescroll = new MeScroll('minirefresh', {
+        down: {
+          auto: false
+        },
+        up: {
+          auto: false,
+          callback: me.loadPostData,
+          page: {
+            num: 0,
+            size: 10
+          },
+          isBounce: true
+        }
       })
+      window.mescroll = me.mescroll
+    },
+    loadPostData(page) {
+      const me = this
+      console.log('post 上拉事件: ', page, '\t\tthis: ', this)
+      const query = this.$route.query
+      const p = {
+        type: query.type || 'all',
+        member_id: 959,
+        page: page.num
+      }
+      this.$store
+        .dispatch('center/memberPost', p)
+        .then(({ data }) => {
+          me.mescroll.endSuccess(data.list.length, data.total_page > 1)
+        })
+        .catch(error => {
+          console.log('Error: ', error)
+          me.mescroll.endErr()
+        })
     }
   }
 }

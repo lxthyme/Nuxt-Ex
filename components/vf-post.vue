@@ -7,8 +7,15 @@
         <VPText :text="item.content" :links="item.attention"/>
       </div>
       <Banner :id="item.key" :key="item.key" :data="item.images"/>
-      <div class="v-content-achievement">
-        <p>{{ item.praise_num}} likes {{ item.comments_num }} comments</p>
+      <div v-if="item.praise_num > 0 || item.comments_num > 0" class="v-content-achievement">
+        <p>
+          <span v-if="item.praise_num > 0">
+            {{ item.praise_num }} {{ item.praise_num === 1 ? 'like' : 'likes' }}
+          </span>
+          <span v-if="item.comments_num > 0">
+            {{ item.comments_num }} {{ item.comments_num === 1 ? 'comment': 'comments' }}
+          </span>
+        </p>
       </div>
     </div>
     <ToolBox :is_praise="item.is_praise" :is_collect="item.is_collect" />

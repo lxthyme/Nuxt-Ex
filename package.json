@@ -15,7 +15,7 @@
     },
     "config": {
         "nuxt": {
-            "host": "172.100.9.13",
+            "host": "172.100.13.17",
             "port": "3039"
         }
     },
@@ -28,7 +28,8 @@
         "cross-env": "^5.2.0",
         "express": "^4.16.4",
         "express-session": "^1.15.6",
-        "framework7": "^4.1.1",
+        "mescroll.js": "^1.4.1",
+        "minirefresh": "^2.0.2",
         "moment": "^2.24.0",
         "nuxt": "^2.4.0",
         "swiper": "^4.5.0",

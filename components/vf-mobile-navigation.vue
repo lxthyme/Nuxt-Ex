@@ -46,6 +46,7 @@ export default {
     color: $blackColor;
     display: inline-block;
     vertical-align: middle;
+    width: 100%;
   }
 }
 </style>

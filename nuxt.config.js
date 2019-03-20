@@ -14,12 +14,14 @@ module.exports = {
    */
   head: {
     title: pkg.name,
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8'
       },
+      // <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        content: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'
       },
       {
         hid: 'description',
@@ -27,11 +29,13 @@ module.exports = {
         content: pkg.description
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      }
+    ]
   },
 
   /*
@@ -65,7 +69,8 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{
+  plugins: [
+    {
       src: '~/plugins/axios',
       ssr: false
     },
@@ -102,8 +107,10 @@ module.exports = {
     },
     debug: process.env._ENV !== 'production',
     // baseURL: 'https://apitest.vaffle.com',
-    browserBaseURL: process.env._ENV === 'production' ?
-      'https://api.vaffle.com' : 'https://apitest.vaffle.com',
+    browserBaseURL:
+      process.env._ENV === 'production'
+        ? 'https://api.vaffle.com'
+        : 'https://apitest.vaffle.com',
     // browserBaseURL: process.env._ENV === 'production' ?
     //   'https://api.vaffle.com' : 'http://172.100.13.23:3039',
     // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest3.vaffle.com',
@@ -113,16 +120,17 @@ module.exports = {
     proxyHeaders: false,
     credentials: false,
     proxy: process.env._ENV !== 'production',
-    validateStatus: function (status) {
+    validateStatus: function(status) {
       console.log('status: ', status)
       return status >= 200 && status < 300 // default
-    }
+    },
+    proxy: true
   },
   // proxy: {
   //   // 开启代理
   //   '/web': {
   //     target: 'http://127.0.0.1:8888',
-  //     pathRewrite: { '^/web/': '/web/' }
+  //     pathRewrite: { '^/web/': '' }
   //   }
   // },
   // proxy: [
@@ -181,14 +189,16 @@ module.exports = {
         // vueLoader.options.loaders.sass = 'vue-style-loader!css-loader!sass-loader'
       }
     },
-    loaders: [{
-      test: /\.(png|jpe?g|gif|svg)$/,
-      loader: 'url-loader',
-      query: {
-        limit: 10000,
-        name: 'img/[name].[hash].[ext]'
+    loaders: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: 'img/[name].[hash].[ext]'
+        }
       }
-    }],
+    ],
     styleResources: {
       scss: '~assets/scss/base.scss'
     },

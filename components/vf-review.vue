@@ -1,21 +1,32 @@
 <template>
   <div class="v-reviews-bg">
     <div class="v-reviews">
-      <p>What Can Happen If High Blood Pressure Is Left Untreated</p>
+      <p>{{ data.title }}</p>
       <div class="images">
-        <img src="~/static/images/placeholder/reviews.png" alt>
-        <img src="~/static/images/placeholder/reviews.png" alt>
-        <img src="~/static/images/placeholder/reviews.png" alt>
-        <img src="~/static/images/placeholder/reviews.png" alt>
+        <img v-for="(item, idx) in data.images.slice(0, 4)" :key="idx" :src="item.path_format" alt>
       </div>
       <div class="v-reviews-bottom">
-        <span>谷歌搜索</span>
-        <span>26 阅读</span>
-        <span class="time">1小时前</span>
+        <span>{{ data.from }}</span>
+        <span>{{ data.read_num }} 阅读</span>
+        <span class="time">{{ $moment.moment(data.created_at * 1000).format('MM/DD/YYYY') }}</span>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    data: {
+      type: Object,
+      required: true,
+      default: () => {
+        return {}
+      }
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 .profile {
@@ -34,8 +45,8 @@
       font-size: 0;
       img {
         @include fit2(padding-left padding-right border-radius, 1px);
+        @include fit2(width height, 84px);
         display: inline-block;
-        width: 25%;
       }
     }
     .v-reviews-bottom {

@@ -1,16 +1,21 @@
 <template>
   <div class="v-item-news-s">
     <div class="v-item-news">
-      <div class="v-news-content">
+      <div v-if="data.images.length > 0" class="v-news-content">
         <div class="left">
-          <VFText :text="text" :links="[]"/>
+          <VFText :text="data.title" :links="[]"/>
         </div>
-        <img class="logo" src="~/static/images/placeholder/reviews.png" alt>
+        <img class="logo" :src="data.images[0].path_format" alt>
+      </div>
+      <div v-else class="v-news-content" style="min-height: 0;">
+        <div class="left">
+          <VFText :text="data.title" :links="[]"/>
+        </div>
       </div>
       <div class="v-news-bottom">
-        <span>谷歌搜索</span>
-        <span>26 阅读</span>
-        <span class="time">1小时前</span>
+        <span>{{ data.from }}</span>
+        <span>{{ data.read_num }} 阅读</span>
+        <span class="time">{{ $momentShow(data.created_at) }}</span>
       </div>
     </div>
   </div>
@@ -22,10 +27,13 @@ export default {
   components: {
     VFText
   },
-  data() {
-    return {
-      text:
-        'The state of Utah in the United States is home to lots of beautiful National Parks, & Bryce Canyon National Park ranks as three… the most magnificent & awe inspiring. Bryce Canyon isn’t a canyon. it is the spectacular edge of the Paunsaugunt Plateau, a place where intricately carved towers & archways of stone shimmer in a dazzling array of colour under the bright sun. '
+  props: {
+    data: {
+      type: Object,
+      required: true,
+      default: () => {
+        return {}
+      }
     }
   },
   mounted() {
@@ -48,10 +56,11 @@ export default {
   font-size: 0;
   .v-item-news {
     @include fit2(border-radius, 4px);
+    @include fit2(padding-top, 14px);
     background-color: $whiteColor;
     .v-news-content {
       @include fit2(padding-left padding-right, 16px);
-      @include fit2(padding-top, 14px);
+      @include fit2(min-height, 84px);
       @include fit(14px);
       color: $blackColor;
       position: relative;
@@ -65,11 +74,13 @@ export default {
       .logo {
         @include fit2(width height, 84px);
         @include fit2(right, 16px);
+        @include fit2(border-radius, 2px);
         display: inline-block;
         width: 30%;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        background-color: $placeholderColor;
       }
     }
     .v-news-bottom {

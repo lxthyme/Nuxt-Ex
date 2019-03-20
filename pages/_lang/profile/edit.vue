@@ -23,9 +23,13 @@
         <label for="email">Email</label>
         <div style="position: relative;">
           <input id="email" type="text" name="email" value="hettinger.yoshiko@yahoo.com">
-          <button class="send-email">Send email</button>
+          <button class="send-email">
+            Send email
+          </button>
         </div>
-        <p class="mail-introd">Your new email hettinger.yoshiko@yahoo.com has not been verifield, and you can change.</p>
+        <p class="mail-introd">
+          Your new email hettinger.yoshiko@yahoo.com has not been verifield, and you can change.
+        </p>
       </div>
       <div class="edit-item">
         <label for="birthday">Birthday</label>

@@ -4,9 +4,26 @@
       <img :src="data && data.path_format" alt>
     </div>
     <div class="v-profile">
-      <span class="v-username">{{ data && data.f_displayname }}</span>
+      <span
+        v-if="data.member_name && data.member_name.icon && data.member_name.icon.length > 0"
+        class="v-username"
+      >
+        {{ data && data.f_displayname }}
+        <img
+          v-for="(item, idx) in data.member_name.icon"
+          :key="idx"
+          :src="item"
+          alt
+        >
+      </span>
+      <span v-else class="v-username">
+        {{ data && data.f_displayname }}
+      </span>
       <span class="v-timeline">{{ data && data.f_created_at && $momentShow(data.f_created_at) }}</span>
-      <button v-if="$route.fullPath.indexOf('profile/post') < 0" :class="{'unfollow': data && data.f_is_follow}">Follow</button>
+      <button
+        v-if="$route.fullPath.indexOf('profile/post') < 0"
+        :class="{'unfollow': data && data.f_is_follow}"
+      >Follow</button>
     </div>
   </div>
 </template>
@@ -48,6 +65,9 @@ export default {
       color: $blackColor;
       @include fit(14px);
       font-weight: bold;
+      img {
+        @include fit2(width height, 14px);
+      }
     }
     .v-timeline {
       display: block;

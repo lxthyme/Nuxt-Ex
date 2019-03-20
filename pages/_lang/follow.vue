@@ -8,7 +8,9 @@
           tag="span"
           :class="{active: !$route.path.includes('following')}"
           replace
-        >Followers</nuxt-link>
+        >
+          Followers
+        </nuxt-link>
       </div>
       <div class="item">
         <!-- <span>Following</span> -->
@@ -17,7 +19,9 @@
           tag="span"
           :class="{active: $route.path.includes('following')}"
           replace
-        >Following</nuxt-link>
+        >
+          Following
+        </nuxt-link>
       </div>
     </div>
     <div class="v-container">

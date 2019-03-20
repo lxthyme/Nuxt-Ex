@@ -12,22 +12,23 @@ export default {
     Profile
   },
   async fetch({ query, store }) {
+    if (store.state.center.dinfo.cache) {
+      return
+    }
     const params = {
-      member_id: 1462
+      member_id: 959
     }
     await store.dispatch('center/memberInfo', params)
-    console.log('END-info')
   },
   computed: {
     ...mapState({
-      data: state => state.center.info
+      data: state => state.center.dinfo.data
     })
   },
   mounted() {
     this.$nextTick(function() {
-      // this.__main()
+      this.$store.commit('center/setInfoCache', true)
       window.t = this
-      console.log('T: ', this)
     })
   }
 }

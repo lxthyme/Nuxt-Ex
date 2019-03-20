@@ -1,7 +1,7 @@
 <template>
   <!-- .swiper-container>.swiper-wrapper>.swiper-slide*5 -->
   <div>
-    <div :id="bphID" style="display: none;" />
+    <div :id="bphID" style="display: none;"/>
     <div :id="containerID">
       <div v-if="data && data.length > 0" :id="id" class="swiper-container">
         <div class="swiper-wrapper">
@@ -13,9 +13,9 @@
             </div>
           </div>
         </div>
-        <div v-if="data.length > 1" :class="paginationID" class="swiper-pagination" />
-        <div v-if="data.length > 1" :class="prevID" class="swiper-button-prev" />
-        <div v-if="data.length > 1" :class="nextID" class="swiper-button-next" />
+        <div v-if="data.length > 1" :class="paginationID" class="swiper-pagination"/>
+        <div v-if="data.length > 1" :class="prevID" class="swiper-button-prev"/>
+        <div v-if="data.length > 1" :class="nextID" class="swiper-button-next"/>
       </div>
     </div>
   </div>
@@ -65,7 +65,6 @@ export default {
     },
     initialSwiper() {
       const me = this
-      console.log('initialSwiper: ', me.id, '\t\tdata: ', me.data)
       let opts = {
         direction: 'horizontal',
         clickable: true,
@@ -82,7 +81,13 @@ export default {
             // this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
           },
           tap: function(e) {
-            console.log('click E: ', e)
+            const cl = e.target.classList
+            if (
+              cl.contains('swiper-button-prev') ||
+              cl.contains('swiper-button-next')
+            ) {
+              return
+            }
             document.querySelector('#' + me.id).classList.toggle('full-screen')
             const container = document.querySelector('#' + me.containerID)
             const bph = document.querySelector('#' + me.bphID)
@@ -120,6 +125,16 @@ export default {
 
 <style>
 @import '~/assets/css/lib/swiper.min.css';
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-image: url(~static/images/toolbox/back.png);
+}
+.swiper-button-next {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+}
 </style>
 
 <style lang="scss">

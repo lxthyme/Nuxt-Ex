@@ -5,7 +5,7 @@ export default ({ isHMR, app, store, route, params, error, redirect }) => {
 
   const defaultLocale = app.i18n.fallbackLocale
   const locale = params.lang || defaultLocale
-  console.log('route: ', route)
+  // console.log('route: ', route)
   if (store.state.locales.indexOf(locale) === -1) {
     return error({
       message:

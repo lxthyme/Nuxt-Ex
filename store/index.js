@@ -23,12 +23,16 @@ export const state = () => ({
   counter: 0,
   locales: ['en', 'zh'],
   locale: 'en',
-  user: null
+  user: null,
+  nuxtServerInit: {}
 })
 
 export const getters = () => {}
 
 export const mutations = {
+  nuxtServerInit: (state, data) => {
+    state.nuxtServerInit = data
+  },
   increment(state) {
     state.counter++
   },
@@ -45,9 +49,6 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit({ commit }, { req }) {
-    console.log('>>>: nuxtServerInit')
-  },
   async login({ commit }, { uname, upwd }) {
     try {
       const { data } = await axios.post('/api/login', { uname, upwd })

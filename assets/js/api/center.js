@@ -14,8 +14,8 @@ export default (axios, ctx) => ({
     const res = await axios.post(url, params)
     return res
   },
-  async memberNewsList(params) {
-    const url = '/web/member/news/list'
+  async newsList(params) {
+    const url = '/web/news/list'
     const res = await axios.post(url, params)
     return res
   }
