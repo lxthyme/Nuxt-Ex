@@ -56,14 +56,14 @@ export default {
         return 'post'
       }
     },
-    is_praise: {
+    isPraise: {
       type: Number,
       required: false,
       default: () => {
         return 0
       }
     },
-    is_collect: {
+    isCollect: {
       type: Number,
       required: false,
       default: () => {

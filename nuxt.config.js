@@ -21,7 +21,8 @@ module.exports = {
       // <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'
+        content:
+          'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'
       },
       {
         hid: 'description',
@@ -123,8 +124,7 @@ module.exports = {
     validateStatus: function(status) {
       console.log('status: ', status)
       return status >= 200 && status < 300 // default
-    },
-    proxy: true
+    }
   },
   // proxy: {
   //   // 开启代理

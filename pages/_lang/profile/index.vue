@@ -11,6 +11,11 @@ export default {
   components: {
     Profile
   },
+  computed: {
+    ...mapState({
+      data: state => state.center.dinfo.data
+    })
+  },
   async fetch({ query, store }) {
     if (store.state.center.dinfo.cache) {
       return
@@ -19,11 +24,6 @@ export default {
       member_id: 959
     }
     await store.dispatch('center/memberInfo', params)
-  },
-  computed: {
-    ...mapState({
-      data: state => state.center.dinfo.data
-    })
   },
   mounted() {
     this.$nextTick(function() {

@@ -23,6 +23,31 @@ export default {
       mescroll: null
     }
   },
+  computed: {
+    ...mapState({
+      dreviews: state => state.center.dreviews
+    }),
+    ...mapMutations({
+      setReviewsCache: 'center/setReviewsCache'
+    })
+  },
+  watch: {
+    'mescroll.optUp.page.num'(v) {
+      if (this._inactive) {
+        return
+      }
+      if (parseInt(v) > 0) {
+        // this.$route.query.page = v
+        this.$router.push({
+          path: this.$route.path,
+          query: { page: v }
+        })
+        this.$store.commit('center/setReviewsParams', {
+          page: v
+        })
+      }
+    }
+  },
   async fetch({ query, store }) {
     if (store.state.center.dreviews.cache) {
       return
@@ -33,14 +58,6 @@ export default {
       page: query.page || store.state.center.dreviews.params.page || 1
     }
     await store.dispatch('center/reviewsList', p)
-  },
-  computed: {
-    ...mapState({
-      dreviews: state => state.center.dreviews
-    }),
-    ...mapMutations({
-      setReviewsCache: 'center/setReviewsCache'
-    })
   },
   activated() {
     const me = this
@@ -68,23 +85,6 @@ export default {
       this.$store.commit('center/setReviewsCache', true)
       this.__main()
     })
-  },
-  watch: {
-    'mescroll.optUp.page.num'(v) {
-      if (this._inactive) {
-        return
-      }
-      if (parseInt(v) > 0) {
-        // this.$route.query.page = v
-        this.$router.push({
-          path: this.$route.path,
-          query: { page: v }
-        })
-        this.$store.commit('center/setReviewsParams', {
-          page: v
-        })
-      }
-    }
   },
   methods: {
     __main() {

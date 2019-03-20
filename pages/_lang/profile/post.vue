@@ -33,23 +33,6 @@ export default {
       param: state => state.center.dpost.params
     })
   },
-  async fetch({ query, param, store }) {
-    if (store.state.center.dpost.cache) {
-      return
-    }
-    const p = {
-      type: query.type || 'all',
-      member_id: 959,
-      page: query.page || store.state.center.dpost.params.page || 1
-    }
-    await store.dispatch('center/memberPost', p)
-  },
-  mounted() {
-    this.$nextTick(function() {
-      this.$store.commit('center/setPostCache', true)
-      this.__main()
-    })
-  },
   watch: {
     'mescroll.optUp.page.num'(v) {
       if (this._inactive) {
@@ -66,6 +49,23 @@ export default {
         })
       }
     }
+  },
+  async fetch({ query, param, store }) {
+    if (store.state.center.dpost.cache) {
+      return
+    }
+    const p = {
+      type: query.type || 'all',
+      member_id: 959,
+      page: query.page || store.state.center.dpost.params.page || 1
+    }
+    await store.dispatch('center/memberPost', p)
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.$store.commit('center/setPostCache', true)
+      this.__main()
+    })
   },
   activated() {
     const me = this

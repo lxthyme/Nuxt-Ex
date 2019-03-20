@@ -23,7 +23,9 @@
       <button
         v-if="$route.fullPath.indexOf('profile/post') < 0"
         :class="{'unfollow': data && data.f_is_follow}"
-      >Follow</button>
+      >
+        Follow
+      </button>
     </div>
   </div>
 </template>
