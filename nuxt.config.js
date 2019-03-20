@@ -39,6 +39,10 @@ module.exports = {
     ]
   },
 
+  
+
+  
+
   /*
    ** Customize the progress-bar color
    */
@@ -80,6 +84,9 @@ module.exports = {
     },
     {
       src: '~/plugins/api'
+    },
+    {
+      src: '~/plugins/player'
     }
   ],
 

@@ -100,15 +100,6 @@ export default {
       offsetTop: 0
     }
   },
-  async fetch({ query, store }) {
-    if (store.state.center.dcenter.cache) {
-      return
-    }
-    const params = {
-      member_id: 959
-    }
-    await store.dispatch('center/memberCenter', params)
-  },
   computed: {
     ...mapGetters({
       data: 'center/formatCenter'
@@ -120,6 +111,15 @@ export default {
       const isKeepAlive = this.$route.path.indexOf('profile') > -1
       return isKeepAlive
     }
+  },
+  async fetch({ query, store }) {
+    if (store.state.center.dcenter.cache) {
+      return
+    }
+    const params = {
+      member_id: 959
+    }
+    await store.dispatch('center/memberCenter', params)
   },
   mounted() {
     this.$nextTick(function() {
