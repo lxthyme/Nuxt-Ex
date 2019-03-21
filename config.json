@@ -1,0 +1,16 @@
+{
+    "apps": [{
+        "name": "vaffle-mobile",
+        "script": "npm start",
+        "watch": true,
+        "ignoreWatch": ["node_modules", "public", "views"],
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "out_file": "/Users/lxthyme/Desktop/Lucky/.config/pm2/vaffle_mobil.out_file.log",
+        "error_file": "/Users/lxthyme/Desktop/Lucky/.config/pm2/vaffle_mobile.err_file.log",
+        "env": {
+            "NODE_ENV": "production",
+            "PORT": "3040",
+            "BASE_URL": "https://apitest.vaffle.com"
+        }
+    }]
+}
