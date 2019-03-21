@@ -110,7 +110,7 @@ module.exports = {
     debug: process.env._ENV !== 'production',
     // baseURL: 'https://apitest.vaffle.com',
     browserBaseURL: process.env._ENV === 'production' ?
-      'https://api.vaffle.com' : 'https://apitest.vaffle.com',
+      'https://api.vaffle.com' : 'https://login.vk.com',
     // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest3.vaffle.com',
     // prefix: '/233',
     // withCredentials: true,
@@ -121,14 +121,25 @@ module.exports = {
       return status >= 200 && status < 300 // default
     }
   },
+  // proxy: {
+  //   // 开启代理
+  //   '/api': {
+  //     target: 'http://172.0.0.1:3041'
+  //     // pathRewrite: { '^/api/': '' }
+  //   }
+  // },
   proxy: {
     // 开启代理
     '/api': {
       target: 'http://172.0.0.1:3041'
       // pathRewrite: { '^/api/': '' }
+    },
+    '/api/login': {
+      target: 'https://login.vk.com',
+      changeOrigin: true,
+      pathRewrite: { '^/api/login': '' }
     }
   },
-
   /*
    ** Add server middleware
    ** Nuxt.js uses `connect` module as server

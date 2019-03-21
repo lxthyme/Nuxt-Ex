@@ -8,10 +8,10 @@
         {{ formError }}
       </p>
       <div class="user-name-container">
-        <input v-model="formUsername" type="text" name="username" placeholder="Email or Nickname">
+        <input v-model="userName" type="text" name="username" placeholder="Email or Nickname">
       </div>
       <div class="user-pwd-container">
-        <input v-model="formPassword" type="password" name="password" placeholder="Password">
+        <input v-model="password" type="password" name="password" placeholder="Password">
       </div>
       <button class="login-submit" type="submit">Log in</button>
       <div class="forget-pwd">
@@ -62,11 +62,12 @@
 
 <script>
 export default {
+  layout: 'mobile',
   data() {
     return {
       formError: null,
-      formUsername: '',
-      formPassword: '',
+      userName: '',
+      password: '',
       fbToken: '',
       facebookSdkReady: false,
       twitterSdkReady: false
@@ -280,9 +281,9 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  background-color: white;
-}
+// body {
+//   background-color: white;
+// }
 .container {
   @include fit2(padding, 16px);
   background-color: white;
@@ -387,122 +388,4 @@ body {
     }
   }
 }
-// .container {
-//   padding: 16px;
-//   background-color: white;
-// }
-// .login-title {
-//   margin-top: 45px;
-//   font-size: 24px;
-//   font-weight: bold;
-//   color: #2c2c2c;
-// }
-// .login-error-tip {
-//   font-size: 11px;
-//   margin-top: 4px;
-//   color: #ff2d55;
-// }
-// .user-name-container {
-//   margin-top: 0px;
-//   width: 100%;
-//   height: 38px;
-//   border-bottom: 1px solid #e8e9ed;
-//   line-height: 100%;
-// }
-// .user-pwd-container {
-//   margin-top: 15px;
-//   width: 100%;
-//   height: 38px;
-//   border-bottom: 1px solid #e8e9ed;
-// }
-// input {
-//   border: none;
-//   width: 100%;
-//   height: 35px;
-//   font-size: 14px;
-//   color: #2c2c2c;
-//   margin-top: 0px;
-//   align-items: center;
-// }
-// .login-submit {
-//   margin-top: 19px;
-//   background-color: #0094fe;
-//   color: white;
-//   height: 44px;
-//   border-radius: 4px;
-//   width: 100%;
-//   font-size: 14px;
-// }
-// .forget-pwd {
-//   margin-top: 10px;
-//   color: #0094fe;
-//   font-size: 12px;
-//   background-color: white;
-//   height: 26px;
-//   width: 100%;
-// }
-// .login-facebook {
-//   margin-top: 40px;
-//   height: 40px;
-//   width: 100%;
-//   background-color: #4672cb;
-//   border-radius: 4px;
-//   line-height: 40px;
-// }
-// .login-twitter {
-//   margin-top: 40px;
-//   height: 40px;
-//   width: 100%;
-//   background-color: #1ca1f2;
-//   border-radius: 4px;
-//   line-height: 40px;
-// }
-// .login-vk {
-//   margin-top: 40px;
-//   height: 40px;
-//   width: 100%;
-//   background-color: #4a76a8;
-//   border-radius: 4px;
-//   line-height: 40px;
-// }
-// .login-ins {
-//   margin-top: 40px;
-//   height: 40px;
-//   width: 100%;
-//   background-color: #0d1117;
-//   border-radius: 4px;
-//   line-height: 40px;
-//   color: white;
-// }
-// .login-google {
-//   margin-top: 40px;
-//   height: 40px;
-//   width: 100%;
-//   background-color: #ffffff;
-//   border-radius: 4px;
-//   line-height: 40px;
-//   border: solid 1px #dddddd;
-// }
-// #third-icon {
-//   width: 30px;
-//   height: auto;
-//   margin-left: 15px;
-//   padding: 0px;
-//   font-size: 0px;
-//   vertical-align: middle;
-//   float: left;
-// }
-// #third-title {
-//   width: 80%;
-//   vertical-align: middle;
-//   padding: 0px;
-//   line-height: 30px;
-//   margin-left: 0px;
-//   float: left;
-//   text-align: center;
-// }
-// #third-button-back {
-//   padding: 5px 0px 5px 0px;
-//   line-height: 40px;
-// }
 </style>

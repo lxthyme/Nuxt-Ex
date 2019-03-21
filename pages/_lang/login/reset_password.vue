@@ -1,27 +1,19 @@
 <template>
-  <div class="my-container">
-    <label class="login-title">Identification</label>
+    <div class="my-container">
+    <label class="login-title">Reset password</label>
     <div><label class="login-error-tip">同意错误提示文本信息</label></div>
-    <div class="user-name-container">
-      <input v-model="formUsername" type="text" name="username" placeholder="Email or Nickname">
-    </div>
-    <div class="verification-code">
-      Click to send verification code
-    </div>
     <div class="user-pwd-container">
-      <input v-model="formPassword" type="password" name="password" placeholder="Password">
+      <input v-model="formUsername" type="text" name="password" placeholder="New password">
     </div>
-    <button class="next-submit" type="submit">Next</button>
+    <div class="user-confirm-pwd-container">
+      <input v-model="formPassword" type="password" name="confirmPassord" placeholder="Confirm password">
+    </div>
+    <button class="next-submit" type="submit">Sumbmit</button>
   </div>
 </template>
 <script>
 export default {
-  layout: 'mobile',
-  methods: {
-    test() {
-      console.log('123456')
-    }
-  }
+  layout: 'mobile'
 }
 </script>
 <style lang="scss">
@@ -44,7 +36,7 @@ body {
     @include fit2(margin-top, 4px);
     color: #ff2d55;
   }
-  .user-name-container {
+  .user-pwd-container {
     @include fit2(margin-top, 25px);
     @include fit2(height, 38px);
     border-bottom-width: 1px;
@@ -53,18 +45,7 @@ body {
     border-bottom-style: solid;
     line-height: 100%;
   }
-  .verification-code {
-    @include fit2(padding-left padding-right, 16px);
-    @include fit2(padding-top padding-bottom, 4px);
-    @include fit2(margin-top, 8px);
-    @include fit(12px);
-    @include fit2(border-radius, 4px);
-    color: #0094fe;
-    border-color: $lineColor;
-    border-style: solid;
-    border-width: 1px;
-  }
-  .user-pwd-container {
+  .user-confirm-pwd-container {
     @include fit2(margin-top, 20px);
     @include fit2(height, 38px);
     border-bottom-width: 1px;

@@ -1,25 +1,34 @@
 <template>
   <div class="my-container">
-    <label class="login-title">Identification</label>
-    <div><label class="login-error-tip">同意错误提示文本信息</label></div>
-    <div class="user-name-container">
-      <input v-model="formUsername" type="text" name="username" placeholder="Email or Nickname">
+    <label class="login-title">Sign Up</label>
+    <div>
+      <label class="login-error-tip">同意错误提示文本信息</label>
     </div>
-    <div class="verification-code">
-      Click to send verification code
+    <div class="user-name-container">
+      <input v-model="username" type="text" name="name" placeholder="Name">
+    </div>
+    <div class="user-email-container">
+      <input v-model="userEmail" type="text" name="email" placeholder="E-mail">
     </div>
     <div class="user-pwd-container">
-      <input v-model="formPassword" type="password" name="password" placeholder="Password">
+      <input v-model="userPassword" type="password" name="password" placeholder="Password">
     </div>
-    <button class="next-submit" type="submit">Next</button>
+    <button class="next-submit" type="submit" @click='nextButtonAction'>Next</button>
   </div>
 </template>
 <script>
 export default {
   layout: 'mobile',
+  data() {
+    return {
+      username: '',
+      userEmail: '',
+      userPassword: ''
+    }
+  },
   methods: {
-    test() {
-      console.log('123456')
+    nextButtonAction() {
+      console.log(this.username, this.userEmail, this.userPassword)
     }
   }
 }
@@ -53,16 +62,13 @@ body {
     border-bottom-style: solid;
     line-height: 100%;
   }
-  .verification-code {
-    @include fit2(padding-left padding-right, 16px);
-    @include fit2(padding-top padding-bottom, 4px);
-    @include fit2(margin-top, 8px);
-    @include fit(12px);
-    @include fit2(border-radius, 4px);
-    color: #0094fe;
-    border-color: $lineColor;
-    border-style: solid;
-    border-width: 1px;
+  .user-email-container {
+    @include fit2(margin-top, 20px);
+    @include fit2(height, 38px);
+    border-bottom-width: 1px;
+    width: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: $lineColor;
   }
   .user-pwd-container {
     @include fit2(margin-top, 20px);

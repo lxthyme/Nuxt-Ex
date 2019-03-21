@@ -10,6 +10,7 @@
 </template>
 <script>
 export default {
+  layout: 'mobile',
   data() {
     return {
       playerOptions: {
@@ -55,11 +56,6 @@ export default {
 }
 </script>
 <style>
-body {
-  width: 100%;
-  height: 2000px;
-  overflow: scroll;
-}
 .vjs-big-play-button {
   width: 2em !important;
   background-color: black !important;
