@@ -26,6 +26,7 @@ export default {
 .v-mobile-navigation {
   @include fit2(padding-top, 16px);
   @include fit2(padding-bottom, 14px);
+  @include fit2(height, 46px);
   @extend %v-shadow;
   position: relative;
   font-size: 0;

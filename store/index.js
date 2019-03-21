@@ -49,11 +49,19 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ commit }, { uname, upwd }) {
+  async login({ commit, app, $api }, { uname, upwd }) {
     try {
-      const { data } = await axios.post('/api/login', { uname, upwd })
+      const p = {
+        account: uname,
+        password: upwd,
+        equipment_number: 'xxxxx',
+        fcm_token: ''
+      }
+      const { data } = await this.$api.login('/web/sign/in', p)
       commit('setUser', data)
+      console.log('login: ', data)
     } catch (error) {
+      console.log('login: ', error)
       if (error.response && error.response.statusCode === 401) {
         throw new Error('Bad Credentials!')
       }

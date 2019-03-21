@@ -6,7 +6,7 @@
         <img src="~/static/images/post/topic.png" alt>
         <span>{{ item.challenge.them }}</span>
       </div>
-      <div v-if="item.content.length > 0" class="v-content" @click="showPostDetail">
+      <div v-if="item.content && item.content.length > 0" class="v-content" @click="showPostDetail">
         <VPText :text="item.content" :links="item.attention"/>
       </div>
       <Banner :id="item.key" :key="item.key" :data="item.images"/>
@@ -14,7 +14,7 @@
         <p>12.5k likes 15,065 comments</p>
       </div> -->
     </div>
-    <ToolBox type="challenge" :is_praise="item.is_praise" :is_collect="item.is_collect" />
+    <ToolBox type="challenge" :isPraise="item.is_praise" :isCollect="item.is_collect" />
   </div>
 </template>
 

@@ -27,11 +27,17 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
+      required: false,
+      default: () => {
+        return ''
+      }
     },
     data: {
       type: Array,
-      required: true
+      required: {},
+      default: () => {
+        return []
+      }
     }
   },
   computed: {

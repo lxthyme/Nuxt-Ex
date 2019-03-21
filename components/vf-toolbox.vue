@@ -4,7 +4,7 @@
     <!-- (div.v-toolbox-item>img)*4 -->
     <div v-if="type === 'review' || type === 'news'">
       <div class="v-toolbox-item w-half">
-        <img v-if="is_praise === 1" src="~/static/images/toolbox/like_red.png" alt>
+        <img v-if="isPraise === 1" src="~/static/images/toolbox/like_red.png" alt>
         <img v-else src="~/static/images/toolbox/like_grey.png" alt>
       </div>
       <div class="v-toolbox-item w-half">
@@ -13,20 +13,20 @@
     </div>
     <div v-else-if="type === 'challenge' || type === 'repost'">
       <div class="v-toolbox-item w-third">
-        <img v-if="is_praise === 1" src="~/static/images/toolbox/like_red.png" alt>
+        <img v-if="isPraise === 1" src="~/static/images/toolbox/like_red.png" alt>
         <img v-else src="~/static/images/toolbox/like_grey.png" alt>
       </div>
       <div class="v-toolbox-item w-third">
         <img src="~/static/images/toolbox/comment.png" alt>
       </div>
       <div class="v-toolbox-item w-third">
-        <img v-if="is_collect === 1" src="~/static/images/toolbox/collection_grey.png" alt>
+        <img v-if="isCollect === 1" src="~/static/images/toolbox/collection_grey.png" alt>
         <img v-else src="~/static/images/toolbox/collection.png" alt>
       </div>
     </div>
     <div v-else>
       <div class="v-toolbox-item w-quarter">
-        <img v-if="is_praise === 1" src="~/static/images/toolbox/like_red.png" alt>
+        <img v-if="isPraise === 1" src="~/static/images/toolbox/like_red.png" alt>
         <img v-else src="~/static/images/toolbox/like_grey.png" alt>
       </div>
       <div class="v-toolbox-item w-quarter">
@@ -36,7 +36,7 @@
         <img src="~/static/images/toolbox/repost.png" alt>
       </div>
       <div class="v-toolbox-item w-quarter">
-        <img v-if="is_collect === 1" src="~/static/images/toolbox/collection_grey.png" alt>
+        <img v-if="isCollect === 1" src="~/static/images/toolbox/collection_grey.png" alt>
         <img v-else src="~/static/images/toolbox/collection.png" alt>
       </div>
     </div>

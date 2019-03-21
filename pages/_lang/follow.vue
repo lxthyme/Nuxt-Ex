@@ -26,7 +26,7 @@
     </div>
     <div class="v-container">
       <div class="wrapper">
-        <nuxt-child/>
+        <nuxt-child keep-alive />
       </div>
     </div>
   </div>

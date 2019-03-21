@@ -1,10 +1,15 @@
 <template>
   <div>
-    <div v-for="item in $store.getters['center/getPostList']" :key="item.key">
-      <Post v-if="item.f_category === 'posts'" :key="item.key" :item="item"/>
-      <Challenge v-if="item.f_category === 'challenge'" :key="item.key" :item="item"/>
-      <Repost v-if="item.f_category === 'repost'" :key="item.key" :item="item"/>
-    </div>
+    <template v-if="!$store.getters['center/getPostList'] || $store.getters['center/getPostList'].length <= 0">
+      <NoData />
+    </template>
+    <template v-else>
+      <div v-for="item in $store.getters['center/getPostList']" :key="item.key">
+        <Post v-if="item.f_category === 'posts'" :key="item.key" :item="item"/>
+        <Challenge v-if="item.f_category === 'challenge'" :key="item.key" :item="item"/>
+        <Repost v-if="item.f_category === 'repost'" :key="item.key" :item="item"/>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -12,16 +17,15 @@
 import Post from '~/components/vf-post'
 import Repost from '~/components/vf-repost'
 import Challenge from '~/components/vf-challenge'
+import NoData from '~/components/vf-no-data'
 import { mapState } from 'vuex'
-// import MiniRefreshTools from 'minirefresh'
-// import 'minirefresh/dist/themes/default/minirefresh.theme.default.min.js'
-import MeScroll from 'mescroll.js'
 
 export default {
   components: {
     Post,
     Repost,
-    Challenge
+    Challenge,
+    NoData
   },
   data() {
     return {
@@ -35,16 +39,20 @@ export default {
   },
   watch: {
     'mescroll.optUp.page.num'(v) {
-      if (this._inactive) {
+      const me = this
+      if (me._inactive) {
         return
       }
       if (parseInt(v) > 0) {
         // this.$route.query.page = v
-        this.$router.push({
-          path: this.$route.path,
-          query: { page: v }
+        me.$router.push({
+          path: me.$route.path,
+          query: {
+            ...me.$route.query,
+            page: v
+          }
         })
-        this.$store.commit('center/setPostParams', {
+        me.$store.commit('center/setPostParams', {
           page: v
         })
       }
@@ -56,7 +64,7 @@ export default {
     }
     const p = {
       type: query.type || 'all',
-      member_id: 959,
+      member_id: query.member_id,
       page: query.page || store.state.center.dpost.params.page || 1
     }
     await store.dispatch('center/memberPost', p)
@@ -68,6 +76,7 @@ export default {
     })
   },
   activated() {
+    console.log('post activated')
     const me = this
     if (window.mescroll) {
       me.mescroll = window.mescroll
@@ -86,36 +95,18 @@ export default {
       }
     }
   },
-  deactivated() {},
+  deactivated() {
+    this.mescroll && (this.mescroll.optUp.callback = null)
+  },
   methods: {
-    __main() {
-      // this.initInfiniteScroll()
-    },
-    initInfiniteScroll() {
-      const me = this
-      me.mescroll = new MeScroll('minirefresh', {
-        down: {
-          auto: false
-        },
-        up: {
-          auto: false,
-          callback: me.loadPostData,
-          page: {
-            num: 0,
-            size: 10
-          },
-          isBounce: true
-        }
-      })
-      window.mescroll = me.mescroll
-    },
+    __main() {},
     loadPostData(page) {
       const me = this
       console.log('post 上拉事件: ', page, '\t\tthis: ', this)
       const query = this.$route.query
       const p = {
         type: query.type || 'all',
-        member_id: 959,
+        member_id: this.$route.query.member_id,
         page: page.num
       }
       this.$store

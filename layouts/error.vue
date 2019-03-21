@@ -1,24 +1,27 @@
 <template>
   <div style="white-space: normal;">
     <h2 v-if="error.statusCode === 404">
-      404页面不存在
-      {{ error }}
+      <V404 :reason="error" />
     </h2>
     <h2 v-else>
-      500服务器错误
+      <V404 reason="500服务器错误" />
     </h2>
-    <ul>
+    <!-- <ul>
       <li>
         <nuxt-link :to="{name: 'lang'}" exact>
           {{ $t('links.home') }}
         </nuxt-link>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
 <script>
+import V404 from '~/components/vf-404'
 export default {
+  components: {
+    V404
+  },
   props: {
     error: {
       type: Object,

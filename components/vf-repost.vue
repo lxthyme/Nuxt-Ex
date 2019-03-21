@@ -2,13 +2,13 @@
   <div v-if="item" class="v-item-repost-s">
     <div class="repost-avatar">
       <Avatar :data="item.origin_avatar"/>
-      <div v-if="item.content.length > 0" class="v-content" @click="showPostDetail">
+      <div v-if="item.content && item.content.length > 0" class="v-content" @click="showPostDetail">
         <VPText :text="item.content" :links="item.attention" />
       </div>
     </div>
     <div class="v-item-repost">
       <Avatar :data="item.avatar"/>
-      <div v-if="item.origin_content.length > 0" class="v-content" @click="showPostDetail">
+      <div v-if="item.origin_content && item.origin_content.length > 0" class="v-content" @click="showPostDetail">
         <VPText :text="item.origin_content" :links="item.origin_attention" />
       </div>
       <div class="v-repost-banner">
@@ -25,7 +25,7 @@
         </span>
       </p>
     </div>
-    <ToolBox type="challenge" :is_praise="item.origin_is_praise" :is_collect="item.origin_is_collect" />
+    <ToolBox type="challenge" :isPraise="item.origin_is_praise" :isCollect="item.origin_is_collect" />
   </div>
 </template>
 

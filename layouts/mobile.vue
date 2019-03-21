@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <MobileNavigation/> -->
+    <MobileNavigation/>
     <!-- <div id="minirefresh" class="mescroll"> -->
     <div id="minirefresh" class="mescroll">
       <div>
@@ -21,12 +21,12 @@
   </div>
 </template>
 <script>
-// import MobileNavigation from '~/components/vf-mobile-navigation.vue'
+import MobileNavigation from '~/components/vf-mobile-navigation.vue'
 // import 'minirefresh/dist/minirefresh.min.css'
 import MeScroll from 'mescroll.js'
 export default {
   components: {
-    // MobileNavigation
+    MobileNavigation
   },
   data() {
     return {
@@ -36,7 +36,6 @@ export default {
   computed: {
     isKeepAlive() {
       const isKeepAlive = this.keepAlivePages.indexOf(this.$route.path) > -1
-      console.log('--->isKeepAlive: ', isKeepAlive)
       return isKeepAlive
     }
   },
@@ -102,6 +101,7 @@ export default {
 #mobile-container {
   .page {
     top: auto;
+    // @include fit2(top, 46px);
     // z-index: -1;
   }
 }
@@ -111,7 +111,8 @@ export default {
 .mescroll {
   position: fixed;
   // @include fit2(top, 46px);
-  top: 44px;
+  // top: 44px;
+  @include fit2(top, 46px);
   bottom: 0;
   height: auto; /*如设置bottom:50px,则需height:auto才能生效*/
 }

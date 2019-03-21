@@ -2,7 +2,7 @@
   <div v-if="item && item.category === 'posts'" class="v-item-post-s">
     <div class="v-item-post">
       <Avatar :data="item.avatar"/>
-      <div v-if="item.content.length > 0" class="v-content" @click="showPostDetail">
+      <div v-if="item.content && item.content.length > 0" class="v-content" @click="showPostDetail">
         <!-- TODO: links -->
         <VPText :text="item.content" :links="item.attention"/>
       </div>
@@ -18,7 +18,7 @@
         </p>
       </div>
     </div>
-    <ToolBox :is_praise="item.is_praise" :is_collect="item.is_collect" />
+    <ToolBox :isPraise="item.is_praise" :isCollect="item.is_collect" />
   </div>
 </template>
 

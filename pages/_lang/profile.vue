@@ -3,7 +3,7 @@
     <div v-if="!$route.path.includes('edit')" class="profile-content">
       <div class="profile-header">
         <div style="position: relative;">
-          <img class="bg" :src="data.cover_path" alt>
+          <img class="bg" :src="data && data.cover_path" alt>
           <div class="edit">
             <!-- <button>Edit Profile</button> -->
             <nuxt-link :to="{name: 'lang-profile-edit'}" tag="button">
@@ -17,7 +17,9 @@
         <div class="profile-content">
           <span class="uname">
             {{ data && data.nickname }}
-            <img v-for="(item, idx) in data.member_name.icon" :key="idx" :src="item" alt>
+            <template v-if="data && data.member_name">
+              <img v-for="(item, idx) in data.member_name.icon" :key="idx" :src="item" alt>
+            </template>
           </span>
           <span class="uinfo">
             <!-- <span class="ubold">373k</span> Followers -->
@@ -34,25 +36,25 @@
       <div class="switch-bar-placeholder">
         <div class="switch-bar">
           <nuxt-link
-            :to="{name: 'lang-profile'}"
+            :to="{name: 'lang-profile', query: {...$route.query, page: undefined}}"
             tag="span"
             :class="{active: (!$route.path.includes('post') && !$route.path.includes('reviews'))}"
           >
             Profile
           </nuxt-link>
           <nuxt-link
-            :to="{name: 'lang-profile-post', query: {page: $store.state.center.dpost.params.page}, params: {keep: true}}"
+            :to="{name: 'lang-profile-post', query: {...$route.query, page: $store.state.center.dpost.params.page}}"
             tag="span"
             :class="{active: $route.path.includes('post')}"
           >
-            {{ data.posts_num }} Post
+            {{ data && data.posts_num }} Post
           </nuxt-link>
           <nuxt-link
-            :to="{name: 'lang-profile-reviews'}"
+            :to="{name: 'lang-profile-reviews', query: {...$route.query, page: $store.state.center.dreviews.params.page}}"
             tag="span"
             :class="{active: $route.path.includes('reviews')}"
           >
-            {{ data.review_num }} Reviews
+            {{ data && data.review_num }} Reviews
           </nuxt-link>
         </div>
       </div>
@@ -117,7 +119,7 @@ export default {
       return
     }
     const params = {
-      member_id: 959
+      member_id: query.member_id
     }
     await store.dispatch('center/memberCenter', params)
   },

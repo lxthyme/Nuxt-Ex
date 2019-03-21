@@ -21,7 +21,7 @@ export default {
       return
     }
     const params = {
-      member_id: 959
+      member_id: query.member_id
     }
     await store.dispatch('center/memberInfo', params)
   },

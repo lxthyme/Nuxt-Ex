@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container login">
     <nuxt-child />
     <label class="login-title">Log In</label>
     <div><label class="login-error-tip">同意错误提示文本信息</label></div>
-    <form v-if="!$store.state.authUser" @submit.prevent="login">
+    <div>
       <p v-if="formError" class="error">
         {{ formError }}
       </p>
@@ -13,7 +13,7 @@
       <div class="user-pwd-container">
         <input v-model="formPassword" type="password" name="password" placeholder="Password">
       </div>
-      <button class="login-submit" type="submit">Log in</button>
+      <button class="login-submit" type="submit" @click="login">Log in</button>
       <div class="forget-pwd">
         <nuxt-link :to="{name: 'lang-login-forget_password'}" tag="button">
             Forgot your password
@@ -40,28 +40,20 @@
         <img id="third-icon" src="~/static/images/login/google.png" alt="" srcset="">
         <span id="third-title">Google</span>
       </div>
-    </form>
-
-    <div v-else>
-      Hello {{ $store.state.authUser.username }}!
-      <pre>I am the secret content, I am shown only when the use is connected.</pre>
-      <p>
-        <i>You can also refresh this page, you'll still be connected!</i>
-      </p>
-      <button @click="logout">
-        Logout
-      </button>
     </div>
-    <p>
-      <nuxt-link :to="{name: 'lang-secret'}">
-        Super secret page
-      </nuxt-link>
-    </p>
   </div>
 </template>
 
 <script>
 export default {
+  layout: 'mobile',
+  head: {
+    script: [
+      { src: 'http://adodson.com/hello.js/dist/hello.all.js' },
+      { src: 'vk.com/js/api/openapi.js?152' },
+      { src: 'https://apis.google.com/js/api:client.js' }
+    ]
+  },
   data() {
     return {
       formError: null,
@@ -282,6 +274,11 @@ export default {
 <style lang="scss">
 body {
   background-color: white;
+}
+.login {
+  input {
+    outline: none;
+  }
 }
 .container {
   @include fit2(padding, 16px);

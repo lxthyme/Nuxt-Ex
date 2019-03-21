@@ -100,6 +100,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa',
@@ -119,6 +120,8 @@ module.exports = {
       process.env._ENV === 'production'
         ? 'https://api.vaffle.com'
         : 'https://apitest.vaffle.com',
+        // : 'https://apibeta.vaffle.com',
+        // : 'http://127.0.0.1:3039',
     // browserBaseURL: process.env._ENV === 'production' ?
     //   'https://api.vaffle.com' : 'http://172.100.13.23:3039',
     // baseURL: process.env._ENV == 'production' ? 'https://api.vaffle.com' : 'https://apitest3.vaffle.com',
@@ -133,13 +136,13 @@ module.exports = {
       return status >= 200 && status < 300 // default
     }
   },
-  // proxy: {
-  //   // 开启代理
-  //   '/web': {
-  //     target: 'http://127.0.0.1:8888',
-  //     pathRewrite: { '^/web/': '' }
-  //   }
-  // },
+  proxy: {
+    // 开启代理
+    '/web': {
+      target: 'http://lx.com'
+      // pathRewrite: { '^/web/': '' }
+    }
+  },
   // proxy: [
   //   [
   //     '/web',//拦截目录

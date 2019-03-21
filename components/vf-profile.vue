@@ -6,35 +6,39 @@
         <span>Influence</span>
       </div>
       <div class="influence-content">
-        <div v-for="(item, idx) in data.contribution" :key="idx" class="item">
-          <span class="value">{{ item.val }}</span>
-          <span class="name">{{ item.tip }}</span>
-        </div>
+        <template v-if="data && data.contribution">
+          <div v-for="(item, idx) in data.contribution" :key="idx" class="item">
+            <span class="value">{{ item.val }}</span>
+            <span class="name">{{ item.tip }}</span>
+          </div>
+        </template>
       </div>
       <div class="basic-information">
         <span class="title">Basic information</span>
         <div class="item">
           <img class="logo" src="~/static/images/profile/Group 7 Copy 6.png" alt>
           <span class="value">
-            <span v-for="(item2, idx2) in data.device" :key="idx2">{{ item2.brand_name }}/{{ item2.type_name }}; </span>
+            <template v-if="data && data.device">
+              <span v-for="(item2, idx2) in data.device" :key="idx2">{{ item2.brand_name }}/{{ item2.type_name }}; </span>
+            </template>
           </span>
         </div>
         <div class="item">
           <img class="logo" src="~/static/images/profile/position.png" alt>
-          <span class="value">{{ data.nation_name }}</span>
+          <span class="value">{{ data && data.nation_name }}</span>
         </div>
         <div class="item">
           <img class="logo" src="~/static/images/profile/birth.png" alt>
-          <span class="value">{{ $moment.moment(data.birthday_date).format('DD MMM YYYY') }}</span>
+          <span class="value">{{ data && $moment.moment(data.birthday_date).format('DD MMM YYYY') }}</span>
         </div>
         <div class="item">
           <img class="logo" src="~/static/images/profile/ic_language_change copy.png" alt>
-          <a :href="data.website" class="value">{{ data.website }}</a>
+          <a :href="data && data.website" class="value">{{ data && data.website }}</a>
         </div>
       </div>
       <div class="introduction">
         <span class="title">Introduction</span>
-        <p>{{ data.profile }}</p>
+        <p>{{ data && data.profile }}</p>
       </div>
     </div>
   </div>

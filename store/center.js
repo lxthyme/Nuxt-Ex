@@ -27,6 +27,24 @@ export const state = () => {
         total_page: 1
       },
       cache: null
+    },
+    followers: {
+      data: {},
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
+    },
+    following: {
+      data: {},
+      params: {
+        last_id: null,
+        page: 1,
+        total_page: 1
+      },
+      cache: null
     }
   }
 }
@@ -89,7 +107,7 @@ export const getters = {
         }
       }
 
-      // 3. origin
+      // 3. repost
       if (i.original !== 0) {
         i.f_category = 'repost'
         const a = i.origin_avatar
@@ -141,6 +159,66 @@ export const getters = {
       }
     })
     return l
+  },
+  getFollowersList(state) {
+    const er = state.followers.data.list
+    if (!er) {
+      return
+    }
+    er.map((i, idx) => {
+      // 1. avatar
+      const a = i.avatar
+      if (a) {
+        let p = a.path
+        const s = a.thumb_size && a.thumb_size.s
+        if (s) {
+          p = p.replace('__##__', s)
+        }
+        a.path_format = p
+        // 3. avatar info
+        // a.f_from = i.from
+        a.f_displayname = i.member_name.displayname
+        a.f_nickname = i.member_name.nickname
+        a.f_is_follow = i.is_follow
+
+        // 5. @|#
+        // i.avatar = a
+
+        // 6. icon
+        a.member_name = i.member_name
+      }
+    })
+    return er
+  },
+  getFollowingList(state) {
+    const ing = state.following.data.list
+    if (!ing) {
+      return
+    }
+    ing.map((i, idx) => {
+      // 1. avatar
+      const a = i.avatar
+      if (a) {
+        let p = a.path
+        const s = a.thumb_size && a.thumb_size.s
+        if (s) {
+          p = p.replace('__##__', s)
+        }
+        a.path_format = p
+        // 3. avatar info
+        // a.f_from = i.from
+        a.f_displayname = i.member_name.displayname
+        a.f_nickname = i.member_name.nickname
+        a.f_is_follow = i.is_follow
+
+        // 5. @|#
+        // i.avatar = a
+
+        // 6. icon
+        a.member_name = i.member_name
+      }
+    })
+    return ing
   }
 }
 
@@ -204,7 +282,10 @@ export const mutations = {
     state.dpost.data = data
   },
   setPostParams(state, params) {
-    state.dpost.params = { ...state.dpost.params, ...params }
+    state.dpost.params = {
+      ...state.dpost.params,
+      ...params
+    }
   },
   setPostCache(state, cache) {
     state.dpost.cache = cache
@@ -225,10 +306,39 @@ export const mutations = {
     state.dreviews.data = data
   },
   setReviewsParams(state, params) {
-    state.dreviews.params = { ...state.dreviews.params, ...params }
+    state.dreviews.params = {
+      ...state.dreviews.params,
+      ...params
+    }
   },
   setReviewsCache(state, cache) {
     state.dreviews.cache = cache
+  },
+  // followers
+  setFollowersData(state, er) {
+    state.followers.data = er
+  },
+  setFollowersParams(state, params) {
+    state.followers.params = {
+      ...state.followers.params,
+      ...params
+    }
+  },
+  setFollowersCache(state, cache) {
+    state.followers.cache = cache
+  },
+  // following
+  setFollowingData(state, ing) {
+    state.following.data = ing
+  },
+  setFollowingParams(state, params) {
+    state.following.params = {
+      ...state.following.params,
+      ...params
+    }
+  },
+  setFollowingCache(state, cache) {
+    state.following.cache = cache
   }
 }
 
@@ -245,7 +355,9 @@ export const actions = {
   },
   async memberPost({ commit, state }, params) {
     try {
-      const p = { ...params }
+      const p = {
+        ...params
+      }
       if (!params.page) {
         p.page = state.dpost.params.page + 1
       }
@@ -257,7 +369,7 @@ export const actions = {
       let last = res.list.slice(-1)
       last = last[0]
       const _p = {
-        last_id: last.post_id,
+        last_id: last && last.post_id,
         page: res.page,
         total_page: res.total_page
       }
@@ -287,7 +399,9 @@ export const actions = {
   },
   async reviewsList({ commit, state }, params) {
     try {
-      const p = { ...params }
+      const p = {
+        ...params
+      }
       if (!params.page) {
         p.page = state.dreviews.params.page + 1
       }
@@ -299,7 +413,7 @@ export const actions = {
       let last = res.list.slice(-1)
       last = last[0]
       const _p = {
-        last_id: last.post_id,
+        last_id: last && last.post_id,
         page: res.page,
         total_page: res.total_page
       }
@@ -316,6 +430,75 @@ export const actions = {
     } catch (error) {
       console.log('setReviewsData: ', error)
       // commit('setReviewsData', null)
+    }
+  },
+  async followers({ state, commit }, params) {
+    try {
+      if (!params.page) {
+        params.page = state.followers.params.page
+      }
+      if (!params.last_id) {
+        params.last_id = state.followers.params.last_id
+      }
+      const result = await this.$api.followers(params)
+      const res = result.data
+      if (
+        (params.page > 1 || !!params.last_id) &&
+        state.followers.data.list.length >= 0
+      ) {
+        res.list = state.followers.data.list.concat(res.list)
+      }
+      commit('setFollowersData', res)
+
+      if (!state.followers.cache) {
+        commit('setFollowersCache', true)
+      }
+
+      let last = res.list.slice(-1)
+      last = last[0]
+      const _p = {
+        last_id: last.member_id,
+        total_page: res.total_page
+      }
+      commit('setFollowersParams', _p)
+
+      return result
+    } catch (error) {
+      // commit('setFollowersData', null)
+    }
+  },
+  async following({ state, commit }, params) {
+    try {
+      if (!params.page) {
+        params.page = state.following.params.page
+      }
+      if (!params.last_id) {
+        params.last_id = state.following.params.last_id
+      }
+      const result = await this.$api.following(params)
+      const res = result.data
+      if (
+        (params.page > 1 || !!params.last_id) &&
+        state.following.data.list.length >= 0
+      ) {
+        res.list = state.following.data.list.concat(res.list)
+      }
+      commit('setFollowingData', res)
+      if (!state.following.cache) {
+        commit('setFollowingCache', true)
+      }
+
+      let last = res.list.slice(-1)
+      last = last[0]
+      const _p = {
+        last_id: last.member_id,
+        total_page: res.total_page
+      }
+      commit('setFollowingParams', _p)
+
+      return result
+    } catch (error) {
+      // commit('setFollowingData', null)
     }
   }
 }

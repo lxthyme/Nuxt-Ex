@@ -18,5 +18,15 @@ export default (axios, ctx) => ({
     const url = '/web/news/list'
     const res = await axios.post(url, params)
     return res
+  },
+  async followers(params) {
+    const url = '/web/follow/followers'
+    const res = await axios.post(url, params)
+    return res
+  },
+  async following(params) {
+    const url = '/web/follow/following'
+    const res = await axios.post(url, params)
+    return res
   }
 })

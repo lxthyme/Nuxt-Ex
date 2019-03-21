@@ -1,22 +1,28 @@
 <template>
   <div>
-    <div v-for="item in $store.getters['center/getReviewsList']" :key="item.key">
-      <Review v-if="item.category === 'review'" :data="item"/>
-      <News v-if="item.category === 'news'" :data="item"/>
-    </div>
+    <template v-if="!$store.getters['center/getReviewsList'] || $store.getters['center/getReviewsList'].length <= 0">
+      <NoData />
+    </template>
+    <template v-else>
+      <div v-for="item in $store.getters['center/getReviewsList']" :key="item.key">
+        <Review v-if="item.category === 'review'" :data="item"/>
+        <News v-if="item.category === 'news'" :data="item"/>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import Review from '~/components/vf-review'
 import News from '~/components/vf-news'
+import NoData from '~/components/vf-no-data'
 import { mapState, mapMutations } from 'vuex'
-import MeScroll from 'mescroll.js'
 
 export default {
   components: {
     Review,
-    News
+    News,
+    NoData
   },
   data() {
     return {
@@ -33,16 +39,20 @@ export default {
   },
   watch: {
     'mescroll.optUp.page.num'(v) {
-      if (this._inactive) {
+      const me = this
+      if (me._inactive) {
         return
       }
       if (parseInt(v) > 0) {
         // this.$route.query.page = v
-        this.$router.push({
-          path: this.$route.path,
-          query: { page: v }
+        me.$router.push({
+          path: me.$route.path,
+          query: {
+            ...me.$route.query,
+            page: v
+          }
         })
-        this.$store.commit('center/setReviewsParams', {
+        me.$store.commit('center/setReviewsParams', {
           page: v
         })
       }
@@ -54,12 +64,13 @@ export default {
     }
     const p = {
       category: 'mine',
-      member_id: 959,
+      member_id: query.member_id,
       page: query.page || store.state.center.dreviews.params.page || 1
     }
     await store.dispatch('center/reviewsList', p)
   },
   activated() {
+    console.log('reviews activated')
     const me = this
     if (window.mescroll) {
       me.mescroll = window.mescroll
@@ -79,7 +90,9 @@ export default {
       }
     }
   },
-  deactivated() {},
+  deactivated() {
+    this.mescroll && (this.mescroll.optUp.callback = null)
+  },
   mounted() {
     this.$nextTick(function() {
       this.$store.commit('center/setReviewsCache', true)
@@ -87,27 +100,7 @@ export default {
     })
   },
   methods: {
-    __main() {
-      // this.initInfiniteScroll()
-    },
-    initInfiniteScroll() {
-      const me = this
-      me.mescroll = new MeScroll('minirefresh', {
-        down: {
-          auto: false
-        },
-        up: {
-          auto: false,
-          callback: me.loadReviewsData,
-          page: {
-            num: 0,
-            size: 10
-          },
-          isBounce: true
-        }
-      })
-      window.mescroll = me.mescroll
-    },
+    __main() {},
     loadReviewsData(page) {
       const me = this
       console.log('reviews 上拉事件: ', page, '\t\tthis: ', this)
@@ -116,7 +109,7 @@ export default {
       }
       const p = {
         category: 'mine',
-        member_id: 959,
+        member_id: this.$route.query.member_id,
         page: page.num
       }
       this.$store
